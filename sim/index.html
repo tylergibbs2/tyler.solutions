@@ -18,19 +18,22 @@
         }
 
         function getData() {
-            var generations = document.getElementById('generations').value;
-            var mouse_count = document.getElementById('starting_mice').value;
-            var coyote_count = document.getElementById('starting_coyote').value;
-            var needed_to_live = document.getElementById('mice_to_live').value;
-            var max_pups = document.getElementById('max_coyote_pups').value;
-            var mice_to_reproduce = document.getElementById('mice_to_reproduce').value;
-            var mice_multiplier = document.getElementById('mice_multiplier').value;
+            var generations = Number(document.getElementById('generations').value);
+            var mouse_count = Number(document.getElementById('starting_mice').value);
+            var coyote_count = Number(document.getElementById('starting_coyote').value);
+            var needed_to_live = Number(document.getElementById('mice_to_live').value);
+            var max_pups = Number(document.getElementById('max_coyote_pups').value);
+            var mice_to_reproduce = Number(document.getElementById('mice_to_reproduce').value);
+            var mice_multiplier = Number(document.getElementById('mice_multiplier').value);
 
             var generation_array = [];
-            for (i = 0; i <= generations; i++) {
-                for (j = 0; j <= coyote_count; j++) {
+
+            generation_array.push([0, mouse_count, coyote_count]);
+
+            for (i = 1; i <= generations; i++) {
+                for (j = 0; j < coyote_count; j++) {
                     var landed_on = randint(0, mouse_count);
-                    if ((mouse_count - landed_on) <= 1) {
+                    if (mouse_count - landed_on <= 1) {
                         continue;
                     }
                     mouse_count -= landed_on;
@@ -44,14 +47,15 @@
                     else if (mice_after_living >= mice_to_reproduce) {
                         var pups = Math.floor(mice_after_living / mice_to_reproduce);
                         if (pups > max_pups) {
-                            pups = max_pups
+                            pups = max_pups;
                         }
-                        coyote_count += pups
+                        coyote_count += pups;
                     }
                 }
 
                 mouse_count *= mice_multiplier;
-                generation_array.push([Number(i), Number(mouse_count), Number(coyote_count)]);
+                generation_array.push([i, mouse_count, coyote_count]);
+                console.log(i, mouse_count, coyote_count)
             }
             return generation_array
         }
@@ -96,7 +100,7 @@
         }
     </script>
 </head>
-<body>
+<br>
 
 <pre>
 Generations             : <input type="number" id="generations" value="50"><br />
@@ -112,5 +116,6 @@ Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2">
 
 <div id="chart_div"></div>
 
+<br>Written by Tyler Gibbs for AP Environmental Science.
 </body>
 </html>
