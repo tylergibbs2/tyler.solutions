@@ -116,7 +116,7 @@
 
           data.addRows(generation_array);
 
-          var generations = document.getElementById('generations').value.toString();
+          var generations = generation_array[generation_array.length-1][0].toString();
           var options = {
             title: 'Coyote/Mouse Simulation, ' + generations + ' generations',
             curveType: 'function',
