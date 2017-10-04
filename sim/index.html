@@ -6,10 +6,12 @@
     <script type="text/javascript">
 
           // Load the Visualization API and the corechart package.
-          google.charts.load('current', {'packages':['corechart','line']});
+        google.charts.load('current', {'packages':['corechart','line']});
 
           // Set a callback to run when the Google Visualization API is loaded.
-          google.charts.setOnLoadCallback(initialize);
+        google.charts.setOnLoadCallback(initialize);
+
+        var generation_array = [];
 
         function randint(min, max) {
           min = Math.ceil(min);
@@ -17,22 +19,16 @@
           return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
         }
 
-        function getData() {
-            var generations = Number(document.getElementById('generations').value);
+        function simulateGenerations(amount) {
             var mouse_count = Number(document.getElementById('starting_mice').value);
             var coyote_count = Number(document.getElementById('starting_coyote').value);
             var needed_to_live = Number(document.getElementById('mice_to_live').value);
             var max_pups = Number(document.getElementById('max_coyote_pups').value);
             var mice_to_reproduce = Number(document.getElementById('mice_to_reproduce').value);
             var mice_multiplier = Number(document.getElementById('mice_multiplier').value);
-
-            var generation_array = [];
-
-            generation_array.push([0, mouse_count, coyote_count]);
-
-            for (i = 1; i <= generations; i++) {
+            for (i = 1; i <= amount; i++) {
                 for (j = 0; j < coyote_count; j++) {
-                    var landed_on = randint(0, Math.floor(mouse_count/10));
+                    var landed_on = randint(0, Math.floor(mouse_count / 10));
                     if (mouse_count - landed_on <= 1) {
                         continue;
                     }
@@ -41,7 +37,7 @@
                     if (landed_on < needed_to_live) {
                         if (coyote_count > 1) {
                             coyote_count -= 1;
-                        continue;
+                            continue;
                         }
                     }
                     else if (mice_after_living >= mice_to_reproduce) {
@@ -52,11 +48,24 @@
                         coyote_count += pups;
                     }
                 }
-
                 mouse_count *= mice_multiplier;
-                generation_array.push([i, mouse_count, coyote_count]);
-                console.log(i, mouse_count, coyote_count)
+                var last_generation = generation_array[generation_array.length-1][0];
+                generation_array.push([last_generation+1, mouse_count, coyote_count]);
             }
+
+        }
+
+        function getData() {
+            var generations = Number(document.getElementById('generations').value);
+            var mouse_count = Number(document.getElementById('starting_mice').value);
+            var coyote_count = Number(document.getElementById('starting_coyote').value);
+
+            if (generation_array.length === 0) {
+                generation_array.push([0, mouse_count, coyote_count]);
+            }
+            simulateGenerations(generations);
+            localStorage.setItem("sim_data", JSON.stringify(generation_array));
+
             return generation_array
         }
 
@@ -67,10 +76,9 @@
           data.addColumn('number', 'Mice');
           data.addColumn('number', 'Coyotes');
 
-          var simData = getData();
-          data.addRows(simData);
+          data.addRows(generation_array);
 
-          var generations = document.getElementById('generations').value.toString();
+          var generations = generation_array[generation_array.length-1][0].toString();
           var options = {
             chart: {
               title: 'Coyote/Mouse Simulation',
@@ -98,8 +106,7 @@
           data.addColumn('number', 'Mice');
           data.addColumn('number', 'Coyotes');
 
-          var simData = getData();
-          data.addRows(simData);
+          data.addRows(generation_array);
 
           var generations = document.getElementById('generations').value.toString();
           var options = {
@@ -110,7 +117,7 @@
             animation: {
               startup: true,   /* Need to add this for animations */
               duration: 1000,
-              easing: 'inAndOut',
+              easing: 'inAndOut'
             },
             curveType: 'function',
             smoothline: 'true',
@@ -132,12 +139,56 @@
         }
 
         function initialize() {
+
             var button = document.getElementById('generate');
+            var reset_b = document.getElementById('reset');
+            var curved_radio = document.getElementById('curved');
+            var straight_radio = document.getElementById('straight');
+
+            var graph_type = localStorage.getItem('graph_type');
+            if (graph_type === null) {
+                graph_type = 'straight';
+                localStorage.setItem('graph_type', 'straight');
+            }
+
+            var storage = localStorage.getItem('sim_data');
+            if (storage !== null && generation_array instanceof Array) {
+                generation_array = JSON.parse(storage);
+            } else {
+                generation_array = [[0, 0, 0]];
+                generation_array.shift();
+            }
+
+            if (graph_type === 'straight') {
+                drawChart()
+                straight_radio.checked = true;
+            } else {
+                drawCurvedChart()
+                straight_radio.checked = false;
+                curved_radio.checked = true;
+            }
+
+            curved_radio.onclick = function () {
+                localStorage.setItem('graph_type', 'curved');
+                drawCurvedChart()
+            };
+            straight_radio.onclick = function () {
+                localStorage.setItem('graph_type', 'straight');
+                drawChart()
+            };
+            reset_b.onclick = function () {
+                generation_array = [[0, 0, 0]];
+                localStorage.setItem("sim_data", JSON.stringify(generation_array));
+                drawChart();
+                generation_array.shift();
+            };
             button.onclick = function () {
                 if (document.getElementById('straight').checked) {
+                    getData();
                     drawChart()
                 }
                 else {
+                    getData();
                     drawCurvedChart()
                 }
             };
@@ -149,14 +200,14 @@
 <pre>
 Generations             : <input type="number" id="generations" value="50" title="How many generations to simulate."/><br />
 
-Starting Mice           : <input type="number" id="starting_mice" value="100" title="The amount of mice the simulation starts with."/>     <input type="radio" name="graph_type" id="straight" checked> Straight Lines<br>
+Starting Mice           : <input type="number" id="starting_mice" value="100" title="The amount of mice the simulation starts with."/>     <input type="radio" name="graph_type" id="straight"> Straight Lines<br>
 Starting Coyote         : <input type="number" id="starting_coyote" value="10" title="The amount of coyotes the simulation starts with."/>     <input type="radio" name="graph_type" id="curved"> Curved Lines<br>
 Mice Needed to Live     : <input type="number" id="mice_to_live" value="2" title="The amount of mice a coyote needs to eat in order to live."/><br />
 Max Coyote Offspring    : <input type="number" id="max_coyote_pups" value="5" title="The maximum offspring a single coyote can have."/><br />
 Mice Breeding Multiplier: <input type="number" id="mice_multiplier" value="2" title="The multiplier by which mice breed at the end of a generation."/><br />
 Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2" title="The amount of mice to produce one coyote pup, after a coyote eats the mice needed to live."/><br />
 
-<button id="generate">Generate Graph</button></pre>
+<button id="generate">Simulate Generations</button> <button id="reset">Reset Graph</button></pre>
 
 
 <div id="chart_div"></div>
