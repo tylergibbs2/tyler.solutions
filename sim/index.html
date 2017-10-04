@@ -71,6 +71,10 @@
 
         function drawChart() {
 
+          if (generation_array[0][0] === 0 && generation_array[0][1] === 0 && generation_array[0][2] === 0 && generation_array.length > 1) {
+              generation_array.shift();
+          }
+
           var data = new google.visualization.DataTable();
           data.addColumn('number', 'Generation');
           data.addColumn('number', 'Mice');
@@ -100,6 +104,10 @@
         }
 
         function drawCurvedChart() {
+
+          if (generation_array[0] === 0 && generation_array[1] === 0 && generation_array[2] === 0) {
+              generation_array.shift();
+          }
 
           var data = new google.visualization.DataTable();
           data.addColumn('number', 'Generation');
@@ -148,6 +156,7 @@
                 generation_array = JSON.parse(storage);
             } else {
                 generation_array = [[0, 0, 0]];
+                getData()
                 generation_array.shift();
             }
 
