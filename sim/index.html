@@ -27,8 +27,8 @@
             var mice_multiplier = document.getElementById('mice_multiplier').value;
 
             var generation_array = [];
-            for (i = 1; i < generations; i++) {
-                for (i = 1; i < coyote_count; i++) {
+            for (i = 0; i <= generations; i++) {
+                for (ii = 0; ii <= coyote_count; ii++) {
                     var landed_on = randint(0, mouse_count);
                     if ((mouse_count - landed_on) <= 1) {
                         continue;
@@ -50,10 +50,9 @@
                     }
                 }
 
-                mouse_count *= mice_multiplier
-                generation_array.push([i, mouse_count, coyote_count]);
+                mouse_count *= mice_multiplier;
+                generation_array.push([Number(i), Number(mouse_count), Number(coyote_count)]);
             }
-
             return generation_array
         }
 
@@ -61,10 +60,10 @@
 
           var data = new google.visualization.DataTable();
           data.addColumn('number', 'Generation');
-          data.addColumn('number', 'Coyotes');
           data.addColumn('number', 'Mice');
+          data.addColumn('number', 'Coyotes');
 
-          simData = getData()
+          var simData = getData();
           data.addRows(simData);
 
           var generations = document.getElementById('generations').value.toString();
@@ -80,7 +79,8 @@
             },
             vAxis: {
                 title: 'Count'
-            }
+            },
+            curveType: 'function'
           };
 
           var chart = new google.charts.Line(document.getElementById('chart_div'));
@@ -99,7 +99,7 @@
 <body>
 
 <pre>
-Generations             : <input type="number" id="generations" value="10"><br /><br />
+Generations             : <input type="number" id="generations" value="50"><br />
 
 Starting Mice           : <input type="number" id="starting_mice" value="10"><br />
 Starting Coyote         : <input type="number" id="starting_coyote" value="1"><br />
