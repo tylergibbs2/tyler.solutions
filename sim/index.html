@@ -110,15 +110,7 @@
 
           var generations = document.getElementById('generations').value.toString();
           var options = {
-            chart: {
-              title: 'Coyote/Mouse Simulation',
-              subtitle: generations.concat(' generations')
-            },
-            animation: {
-              startup: true,   /* Need to add this for animations */
-              duration: 1000,
-              easing: 'inAndOut'
-            },
+            title: 'Coyote/Mouse Simulation, ' + generations + ' generations',
             curveType: 'function',
             smoothline: 'true',
             width: 900,
