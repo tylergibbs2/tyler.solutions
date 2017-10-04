@@ -83,8 +83,7 @@
             },
             vAxis: {
                 title: 'Count'
-            },
-            curveType: 'function'
+            }
           };
 
           var chart = new google.charts.Line(document.getElementById('chart_div'));
@@ -92,11 +91,56 @@
           chart.draw(data, google.charts.Line.convertOptions(options));
         }
 
-        function initialize() {
-            var button = document.getElementById('generate')
-            button.onclick = function () {
-                drawChart()
+        function drawCurvedChart() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'Generation');
+          data.addColumn('number', 'Mice');
+          data.addColumn('number', 'Coyotes');
+
+          var simData = getData();
+          data.addRows(simData);
+
+          var generations = document.getElementById('generations').value.toString();
+          var options = {
+            chart: {
+              title: 'Coyote/Mouse Simulation',
+              subtitle: generations.concat(' generations')
+            },
+            animation: {
+              startup: true,   /* Need to add this for animations */
+              duration: 1000,
+              easing: 'inAndOut',
+            },
+            curveType: 'function',
+            smoothline: 'true',
+            width: 900,
+            height: 450,
+            hAxis: {
+                title: 'Generation',
+                baseline: 0
+            },
+            vAxis: {
+                title: 'Count',
+                baseline: 0
             }
+          };
+
+          var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+          chart.draw(data, options);
+        }
+
+        function initialize() {
+            var button = document.getElementById('generate');
+            button.onclick = function () {
+                if (document.getElementById('straight').checked) {
+                    drawChart()
+                }
+                else {
+                    drawCurvedChart()
+                }
+            };
         }
     </script>
 </head>
@@ -105,13 +149,14 @@
 <pre>
 Generations             : <input type="number" id="generations" value="50" title="How many generations to simulate."/><br />
 
-Starting Mice           : <input type="number" id="starting_mice" value="100" title="The amount of mice the simulation starts with."/><br />
-Starting Coyote         : <input type="number" id="starting_coyote" value="10" title="The amount of coyotes the simulation starts with."/><br />
+Starting Mice           : <input type="number" id="starting_mice" value="100" title="The amount of mice the simulation starts with."/>     <input type="radio" name="graph_type" id="straight" checked> Straight Lines<br>
+Starting Coyote         : <input type="number" id="starting_coyote" value="10" title="The amount of coyotes the simulation starts with."/>     <input type="radio" name="graph_type" id="curved"> Curved Lines<br>
 Mice Needed to Live     : <input type="number" id="mice_to_live" value="2" title="The amount of mice a coyote needs to eat in order to live."/><br />
 Max Coyote Offspring    : <input type="number" id="max_coyote_pups" value="5" title="The maximum offspring a single coyote can have."/><br />
 Mice Breeding Multiplier: <input type="number" id="mice_multiplier" value="2" title="The multiplier by which mice breed at the end of a generation."/><br />
 Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2" title="The amount of mice to produce one coyote pup, after a coyote eats the mice needed to live."/><br />
-<button id="generate">Generate</button></pre>
+
+<button id="generate">Generate Graph</button></pre>
 
 
 <div id="chart_div"></div>
