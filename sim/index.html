@@ -1,1 +1,116 @@
-<iframe src="https://trinket.io/embed/python3/86bf47d208?runOption=run" width="100%" height="700" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<!-- <iframe src="https://trinket.io/embed/python3/86bf47d208?runOption=run" width="100%" height="700" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe> -->
+
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+          // Load the Visualization API and the corechart package.
+          google.charts.load('current', {'packages':['corechart','line']});
+
+          // Set a callback to run when the Google Visualization API is loaded.
+          google.charts.setOnLoadCallback(initialize);
+
+        function randint(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+        }
+
+        function getData() {
+            var generations = document.getElementById('generations').value;
+            var mouse_count = document.getElementById('starting_mice').value;
+            var coyote_count = document.getElementById('starting_coyote').value;
+            var needed_to_live = document.getElementById('mice_to_live').value;
+            var max_pups = document.getElementById('max_coyote_pups').value;
+            var mice_to_reproduce = document.getElementById('mice_to_reproduce').value;
+            var mice_multiplier = document.getElementById('mice_multiplier').value;
+
+            var generation_array = [];
+            for (i = 1; i < generations; i++) {
+                for (i = 1; i < coyote_count; i++) {
+                    var landed_on = randint(0, mouse_count);
+                    if ((mouse_count - landed_on) <= 1) {
+                        continue;
+                    }
+                    mouse_count -= landed_on;
+                    var mice_after_living = landed_on - needed_to_live;
+                    if (landed_on < needed_to_live) {
+                        if (coyote_count > 1) {
+                            coyote_count -= 1;
+                        continue;
+                        }
+                    }
+                    else if (mice_after_living >= mice_to_reproduce) {
+                        var pups = Math.floor(mice_after_living / mice_to_reproduce);
+                        if (pups > max_pups) {
+                            pups = max_pups
+                        }
+                        coyote_count += pups
+                    }
+                }
+
+                mouse_count *= mice_multiplier
+                generation_array.push([i, mouse_count, coyote_count]);
+            }
+
+            return generation_array
+        }
+
+        function drawChart() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'Generation');
+          data.addColumn('number', 'Coyotes');
+          data.addColumn('number', 'Mice');
+
+          simData = getData()
+          data.addRows(simData);
+
+          var generations = document.getElementById('generations').value.toString();
+          var options = {
+            chart: {
+              title: 'Coyote/Mouse Simulation',
+              subtitle: generations.concat(' generations')
+            },
+            width: 900,
+            height: 450,
+            hAxis: {
+                title: 'Generation'
+            },
+            vAxis: {
+                title: 'Count'
+            }
+          };
+
+          var chart = new google.charts.Line(document.getElementById('chart_div'));
+
+          chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+
+        function initialize() {
+            var button = document.getElementById('generate')
+            button.onclick = function () {
+                drawChart()
+            }
+        }
+    </script>
+</head>
+<body>
+
+<pre>
+Generations             : <input type="number" id="generations" value="10"><br /><br />
+
+Starting Mice           : <input type="number" id="starting_mice" value="10"><br />
+Starting Coyote         : <input type="number" id="starting_coyote" value="1"><br />
+Mice Needed to Live     : <input type="number" id="mice_to_live" value="2"><br />
+Max Coyote Offspring    : <input type="number" id="max_coyote_pups" value="5"><br />
+Mice Breeding Multiplier: <input type="number" id="mice_multiplier" value="2"><br />
+Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2"><br />
+<button id="generate">Generate</button></pre>
+
+
+<div id="chart_div"></div>
+
+</body>
+</html>
