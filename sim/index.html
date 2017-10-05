@@ -69,6 +69,50 @@
             return generation_array
         }
 
+        function drawImage(generation) {
+            var canvas = document.getElementById('sim_image');
+            var ctx = canvas.getContext('2d');
+            var grass = document.getElementById('grass_img');
+            var coyote = document.getElementById('coyote_img');
+            var mouse = document.getElementById('mouse_img');
+            var open_positions = [];
+            ctx.fillStyle = 'green';
+            ctx.fillRect(0, 0, 612, 612);
+            for (i=0; i <= 612; i+=34) {
+                for (j=0; j <= 612; j+=34) {
+                    ctx.drawImage(grass, i, j);
+                    open_positions.push([i, j])
+                }
+            }
+          if (generation_array[0][0] === 0 && generation_array[0][1] === 0 && generation_array[0][2] === 0 && generation_array.length > 1) {
+              generation_array.shift();
+          }
+
+          generation = generation_array[generation];
+          if (typeof generation === 'undefined') {
+              return null;
+          }
+          var mice_count = generation[1];
+          var coyote_count = generation[2];
+          for (i=1; i<=mice_count; i++) {
+              var index = Math.floor(Math.random() * open_positions.length);
+              var coords = open_positions[index];
+              open_positions.splice(index, 1);
+              var x = coords[0] + 1;
+              var y = coords[1] + 1;
+              ctx.drawImage(mouse, x, y);
+          }
+          for (i=1; i<=coyote_count; i++){
+              var index = Math.floor(Math.random() * open_positions.length);
+              var coords = open_positions[index];
+              console.log(coords);
+              open_positions.splice(index, 1);
+              var x = coords[0] + 1;
+              var y = coords[1] + 1;
+              ctx.drawImage(coyote, x, y);
+          }
+        }
+
         function drawChart() {
 
           if (generation_array[0][0] === 0 && generation_array[0][1] === 0 && generation_array[0][2] === 0 && generation_array.length > 1) {
@@ -101,6 +145,7 @@
           var chart = new google.charts.Line(document.getElementById('chart_div'));
 
           chart.draw(data, google.charts.Line.convertOptions(options));
+          drawImage(Number(generations));
         }
 
         function drawCurvedChart() {
@@ -136,10 +181,10 @@
           var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
           chart.draw(data, options);
+          drawImage(Number(generations));
         }
 
         function initialize() {
-
             var button = document.getElementById('generate');
             var reset_b = document.getElementById('reset');
             var curved_radio = document.getElementById('curved');
@@ -156,26 +201,26 @@
                 generation_array = JSON.parse(storage);
             } else {
                 generation_array = [[0, 0, 0]];
-                getData()
+                getData();
                 generation_array.shift();
             }
 
             if (graph_type === 'straight') {
-                drawChart()
+                drawChart();
                 straight_radio.checked = true;
             } else {
-                drawCurvedChart()
+                drawCurvedChart();
                 straight_radio.checked = false;
                 curved_radio.checked = true;
             }
 
             curved_radio.onclick = function () {
                 localStorage.setItem('graph_type', 'curved');
-                drawCurvedChart()
+                drawCurvedChart();
             };
             straight_radio.onclick = function () {
                 localStorage.setItem('graph_type', 'straight');
-                drawChart()
+                drawChart();
             };
             reset_b.onclick = function () {
                 generation_array = [[0, 0, 0]];
@@ -186,11 +231,11 @@
             button.onclick = function () {
                 if (document.getElementById('straight').checked) {
                     getData();
-                    drawChart()
+                    drawChart();
                 }
                 else {
                     getData();
-                    drawCurvedChart()
+                    drawCurvedChart();
                 }
             };
         }
@@ -209,11 +254,18 @@ Mice Breeding Multiplier: <input type="number" id="mice_multiplier" value="2" ti
 Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2" title="The amount of mice to produce one coyote pup, after a coyote eats the mice needed to live."/><br />
 
 <button id="generate">Simulate Generations</button> <button id="reset">Reset Graph</button></pre>
-
+<div style="position: absolute;right: 10;top: 10;">
+    <canvas id="sim_image" width="612" height="612"></canvas>
+</div>
 
 <div id="chart_div"></div>
 
 <br>Written by Tyler Gibbs for AP Environmental Science.<br>
 <a href="https://github.com/TheTrain2000/thetrain2000.github.io/blob/master/sim/index.html">source code</a>
 </body>
+<div style="display: none;">
+    <img id="grass_img" src="_grass.png" height="34" width="34">
+    <img id="coyote_img" src="_coyote.png" height="32" width="32">
+    <img id="mouse_img" src="_mouse.png" height="32" width="32">
+</div>
 </html>
