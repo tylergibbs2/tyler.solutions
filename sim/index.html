@@ -12,7 +12,8 @@
         google.charts.setOnLoadCallback(initialize);
 
         var generation_array = [];
-        var image_generation = 0;
+        var image_generation = null;
+        var simulated_generations = [];
 
         function randint(min, max) {
           min = Math.ceil(min);
@@ -22,6 +23,11 @@
 
         function getLatestCoyoteCount() {
             var last_generation = generation_array[generation_array.length-1];
+
+            if (typeof last_generation === 'undefined') {
+                return Number(document.getElementById('starting_coyote').value);
+            }
+
             if (last_generation[2] > 0) {
                 return last_generation[2];
             } else {
@@ -31,6 +37,11 @@
 
         function getLatestMouseCount() {
             var last_generation = generation_array[generation_array.length-1];
+
+            if (typeof last_generation === 'undefined') {
+                return Number(document.getElementById('starting_mice').value);
+            }
+
             if (last_generation[1] > 0) {
                 return last_generation[1];
             } else {
@@ -70,20 +81,11 @@
                 mouse_count *= mice_multiplier;
                 var last_generation = generation_array[generation_array.length-1][0];
                 generation_array.push([last_generation+1, mouse_count, coyote_count]);
+                simulated_generations.push(last_generation+1);
             }
+            localStorage.setItem('simulated_generations', JSON.stringify(simulated_generations));
+            localStorage.setItem('sim_data', JSON.stringify(generation_array));
 
-        }
-
-        function getData() {
-            var generations = Number(document.getElementById("generations").value);
-            var mouse_count = Number(document.getElementById("starting_mice").value);
-            var coyote_count = Number(document.getElementById("starting_coyote").value);
-
-            if (generation_array.length === 0) {
-                generation_array.push([0, mouse_count, coyote_count]);
-            }
-            simulateGenerations(generations);
-            localStorage.setItem("sim_data", JSON.stringify(generation_array));
         }
 
         function drawImage(generation) {
@@ -139,7 +141,7 @@
             if (mice_count === 0 || coyote_count === 0) {
                 return null;
             }
-            for (i=1; i<=mice_count; i++) {
+            for (i=0; i<=mice_count; i++) {
                 var index = Math.floor(Math.random() * open_positions.length);
                 var coords = open_positions[index];
                 open_positions.splice(index, 1);
@@ -149,7 +151,7 @@
                 image_storage[generation]["mice"].push([x, y]);
             }
 
-            for (i=1; i<=coyote_count; i++){
+            for (i=0; i<=coyote_count; i++){
                 var index = Math.floor(Math.random() * open_positions.length);
                 var coords = open_positions[index];
                 open_positions.splice(index, 1);
@@ -173,7 +175,6 @@
           if (data_array.length === 0) {
               data_array = [[0, 0, 0]];
           }
-
           data.addRows(data_array);
           if (generation_array.length !== 0) {
               var generations = (generation_array.length-1).toString();
@@ -242,6 +243,77 @@
           drawImage(Number(generations));
         }
 
+        function showPrevGen() {
+            if (generation_array === null) {
+                return null;
+            }
+
+            var mouse_count = Number(document.getElementById("starting_mice").value);
+            var coyote_count = Number(document.getElementById("starting_coyote").value);
+
+            if (generation_array.length === 0) {
+                generation_array.push([0, mouse_count, coyote_count]);
+                simulated_generations.push(0)
+            }
+
+            if (image_generation === null) {
+                image_generation = generation_array[generation_array.length-1][0]
+            }
+
+            if (image_generation === 0) {
+                return null;
+            }
+
+            image_generation -= 1;
+            document.getElementById('gen_disp').innerHTML = image_generation;
+            drawImage(image_generation);
+        }
+
+        function showNextGen() {
+            if (generation_array === null) {
+                return null;
+            }
+
+            var mouse_count = Number(document.getElementById("starting_mice").value);
+            var coyote_count = Number(document.getElementById("starting_coyote").value);
+
+            if (generation_array.length === 0) {
+                generation_array.push([0, mouse_count, coyote_count]);
+                simulated_generations.push(0)
+            }
+
+            if (image_generation === null) {
+                image_generation = generation_array[generation_array.length-1][0]
+            }
+
+            console.log(image_generation);
+            console.log(simulated_generations);
+            console.log(generation_array[0]);
+            if (typeof generation_array[0] === 'undefined') {
+                simulateGenerations(1);
+                if (document.getElementById("straight").checked) {
+                    drawChart();
+                }
+                else {
+                    drawCurvedChart();
+                }
+            }
+
+            if (!simulated_generations.includes(image_generation+1)) {
+                simulateGenerations(1);
+                if (document.getElementById("straight").checked) {
+                    drawChart();
+                }
+                else {
+                    drawCurvedChart();
+                }
+            }
+
+            image_generation += 1;
+            document.getElementById('gen_disp').innerHTML = image_generation;
+            drawImage(image_generation);
+        }
+
         function initialize() {
 
             if (localStorage.getItem("image_data") === null) {
@@ -253,14 +325,33 @@
             if (localStorage.getItem("sim_data") === null) {
                 localStorage.setItem("sim_data", JSON.stringify([]));
                 localStorage.setItem("image_data", JSON.stringify({}));
-            } else {
-                generation_array = JSON.parse(localStorage.getItem('sim_data'));
             }
-            
+            if (localStorage.getItem('sim_speed') === null) {
+                localStorage.setItem('sim_speed', '5');
+            }
+            if (localStorage.getItem('simulated_generations') === null) {
+                localStorage.setItem('simulated_generations', '[]');
+            }
+
+            generation_array = JSON.parse(localStorage.getItem('sim_data'));
+            simulated_generations = JSON.parse(localStorage.getItem('simulated_generations'));
+
+            if (simulated_generations.length !== 0) {
+                document.getElementById('gen_disp').innerHTML = simulated_generations[simulated_generations.length-1];
+            }
+
+            var slider_disp = document.getElementById('slider_disp');
+            var slider = document.getElementById('speed_slider');
+            slider_disp.innerHTML = localStorage.getItem('sim_speed');
+            slider.value = localStorage.getItem('sim_speed');
+
             var button = document.getElementById("generate");
             var reset_b = document.getElementById("reset");
             var curved_radio = document.getElementById("curved");
             var straight_radio = document.getElementById("straight");
+            var play_b = document.getElementById('play');
+            var next_gen_b = document.getElementById('next_gen');
+            var prev_gen_b = document.getElementById('prev_gen');
 
             var graph_type = localStorage.getItem("graph_type");
 
@@ -272,6 +363,13 @@
                 straight_radio.checked = false;
                 curved_radio.checked = true;
             }
+
+            prev_gen_b.onclick = function () {
+                showPrevGen();
+            };
+            next_gen_b.onclick = function () {
+                showNextGen();
+            };
 
             curved_radio.onclick = function () {
                 localStorage.setItem("graph_type", "curved");
@@ -285,22 +383,37 @@
                 generation_array = [];
                 localStorage.setItem("sim_data", JSON.stringify([]));
                 localStorage.setItem("image_data", JSON.stringify({}));
+                localStorage.setItem('sim_speed', '5');
+                localStorage.setItem('simulated_generations', '[]');
+                slider.value = '5';
+                slider_disp.innerHTML = '5';
+                document.getElementById('gen_disp').innerHTML = '';
+                image_generation = null;
+                simulated_generations = [];
                 drawChart();
             };
             button.onclick = function () {
-                getData();
+                if (generation_array.length === 0) {
+                    generation_array.push([0, getLatestMouseCount(), getLatestCoyoteCount()]);
+                    simulated_generations.push(0)
+                }
+                simulateGenerations(document.getElementById('generations').value);
                 if (document.getElementById("straight").checked) {
                     drawChart();
                 }
                 else {
                     drawCurvedChart();
                 }
+                image_generation = simulated_generations[simulated_generations.length-1]
+
+                drawImage(image_generation);
+                document.getElementById('gen_disp').innerHTML = image_generation;
             };
         }
     </script>
 </head>
 <br>
-
+<div>
 <pre>
 Generations             : <input type="number" id="generations" value="50" title="How many generations to simulate."/><br />
 
@@ -312,14 +425,30 @@ Mice Breeding Multiplier: <input type="number" id="mice_multiplier" value="2" ti
 Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2" title="The amount of mice to produce one coyote pup, after a coyote eats the mice needed to live."/><br />
 
 <button id="generate">Simulate Generations</button> <button id="reset">Reset</button></pre>
+</div>
 <div id="chart_div"></div>
 
-<div style="position: absolute;right:10;top:30;">
+<div style="position: absolute;right:10px;top:30px;">
     <canvas id="sim_image" width="612" height="612"></canvas>
-    <div style="position: absolute;bottom:-40;left:148;">
-        <pre><button>Show Prev Generation</button>   <button id="play">Play</button>   <button id="cur_gen">Show Next Generation</button></pre>
+    <div style="position: absolute;bottom:-40px;left:148px;">
+        <pre><button id="prev_gen">Show Prev Generation</button>   <button id="play">Play</button>   <button id="next_gen">Show Next Generation</button></pre>
+    </div>
+    <div style="position: absolute;bottom:-64px;left:275px;">
+        <input id="speed_slider" type="range" min="0" max="10" step="1" oninput="showValue(this.value)"/><br>
+    </div>
+    <div style="position: absolute;bottom:-84;left:338px;">
+        <span id="slider_disp"></span>
+    </div>
+    <div style="position: absolute;top:-20;left:255">
+        <span>Showing Generation: </span><span id="gen_disp"></span>
     </div>
 </div>
+<script type="text/javascript">
+    function showValue(newVal) {
+        localStorage.setItem('sim_speed', newVal);
+        document.getElementById('slider_disp').innerHTML=newVal;
+    }
+</script>
 
 <br>Written by Tyler Gibbs for AP Environmental Science.<br>
 <a href="https://github.com/TheTrain2000/thetrain2000.github.io/blob/master/sim/index.html">source code</a>
