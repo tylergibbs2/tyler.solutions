@@ -312,11 +312,14 @@ Mice Breeding Multiplier: <input type="number" id="mice_multiplier" value="2" ti
 Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2" title="The amount of mice to produce one coyote pup, after a coyote eats the mice needed to live."/><br />
 
 <button id="generate">Simulate Generations</button> <button id="reset">Reset Graph</button></pre>
-<div style="position: absolute;right: 10;top: 10;">
-    <canvas id="sim_image" width="612" height="612"></canvas>
-</div>
-
 <div id="chart_div"></div>
+
+<div style="position: absolute;right:10;top:30;">
+    <canvas id="sim_image" width="612" height="612"></canvas>
+    <div style="position: absolute;bottom:-40;left:148;">
+        <pre><button>Show Prev Generation</button>   <button id="play">Play</button>   <button id="cur_gen">Show Next Generation</button></pre>
+    </div>
+</div>
 
 <br>Written by Tyler Gibbs for AP Environmental Science.<br>
 <a href="https://github.com/TheTrain2000/thetrain2000.github.io/blob/master/sim/index.html">source code</a>
