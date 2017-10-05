@@ -410,7 +410,7 @@
     </script>
 </head>
 <br>
-<div>
+<div style="float:left;height: 335px;width: 400px;border: 1px">
 <pre>
 Generations             : <input type="number" id="generations" value="50" title="How many generations to simulate."/><br />
 
@@ -423,27 +423,31 @@ Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2" 
 
 <button id="generate">Simulate Generations</button> <button id="reset">Reset</button></pre>
 </div>
-<div style="margin-right: 5px">
-    <div id="chart_div" style="height:450px;width:900px;margin-left:10px;margin-right:10px"></div>
+    <div style="width:612px;height:612px;float:right;border:1px;display: inline;">
+        <canvas id="sim_image" width="612" height="612"></canvas>
+        <div style="clear:both;">
+            <pre><button id="prev_gen">Show Prev Generation</button>   <button id="play">Play</button>   <button id="next_gen">Show Next Generation</button></pre>
+        </div>
+        <div style="clear:both;">
+            <input id="speed_slider" type="range" min="0" max="10" step="1" oninput="showValue(this.value)"/><br>
+        </div>
+        <div style="clear:both;">
+            <span id="slider_disp"></span>
+        </div>
+        <div style="clear:both;">
+            <span>Showing Generation: </span><span id="gen_disp"></span>
+        </div>
+    </div>
+    <div>
+    <div style=height:450px;width:900px;float:left;border:1px;">
+        <div id="chart_div"></div>
+    </div>
+</div>
+<div style="position:fixed;bottom:0;">
     <br>Written by Tyler Gibbs for AP Environmental Science.<br>
     <a href="https://github.com/TheTrain2000/thetrain2000.github.io/blob/master/sim/index.html">source code</a>
 </div>
 
-<div style="position: absolute;margin-right:5px;margin-left:5px;right:5px;top:25px">
-    <canvas id="sim_image" width="612" height="612"></canvas>
-    <div style="position: absolute;bottom:-40px;left:148px;">
-        <pre><button id="prev_gen">Show Prev Generation</button>   <button id="play">Play</button>   <button id="next_gen">Show Next Generation</button></pre>
-    </div>
-    <div style="position: absolute;bottom:-64px;left:275px;">
-        <input id="speed_slider" type="range" min="0" max="10" step="1" oninput="showValue(this.value)"/><br>
-    </div>
-    <div style="position: absolute;bottom:-84;left:338px;">
-        <span id="slider_disp"></span>
-    </div>
-    <div style="position: absolute;top:-20;left:255">
-        <span>Showing Generation: </span><span id="gen_disp"></span>
-    </div>
-</div>
 <script type="text/javascript">
     function showValue(newVal) {
         localStorage.setItem('sim_speed', newVal);
