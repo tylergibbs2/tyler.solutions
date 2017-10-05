@@ -423,18 +423,18 @@ Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2" 
 
 <button id="generate">Simulate Generations</button> <button id="reset">Reset</button></pre>
 </div>
-    <div style="width:612px;height:612px;float:right;border:1px;display: inline;">
-        <canvas id="sim_image" width="612" height="612"></canvas>
-        <div style="clear:both;">
+    <div style="width:612px;height:720px;float:right;border:1px;display: inline;">
+        <canvas id="sim_image" width="612" height="730"></canvas>
+        <div style="clear: both;position: relative;top: -80px;left: 115px;">
             <pre><button id="prev_gen">Show Prev Generation</button>   <button id="play">Play</button>   <button id="next_gen">Show Next Generation</button></pre>
         </div>
-        <div style="clear:both;">
+        <div style="clear:both;position: relative;top:-85px;left:243px;">
             <input id="speed_slider" type="range" min="0" max="10" step="1" oninput="showValue(this.value)"/><br>
         </div>
-        <div style="clear:both;">
-            <span id="slider_disp"></span>
+        <div style="clear:both;position: relative;top: -85px;left:283px;">
+            <span>Speed: </span><span id="slider_disp"></span>
         </div>
-        <div style="clear:both;">
+        <div style="clear:both;position: relative;top: -840px;left:243px;">
             <span>Showing Generation: </span><span id="gen_disp"></span>
         </div>
     </div>
