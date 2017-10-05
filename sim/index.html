@@ -47,7 +47,7 @@
             var mice_multiplier = Number(document.getElementById("mice_multiplier").value);
             for (i = 0; i < amount; i++) {
                 for (j = 0; j < coyote_count; j++) {
-                    var landed_on = randint(0, Math.ceil(mouse_count / 10));
+                    var landed_on = randint(0, Math.ceil(mouse_count / 16));
                     if (mouse_count - landed_on <= 1) {
                         continue;
                     }
