@@ -286,9 +286,6 @@
                 image_generation = generation_array[generation_array.length-1][0]
             }
 
-            console.log(image_generation);
-            console.log(simulated_generations);
-            console.log(generation_array[0]);
             if (typeof generation_array[0] === 'undefined') {
                 simulateGenerations(1);
                 if (document.getElementById("straight").checked) {
@@ -426,9 +423,13 @@ Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2" 
 
 <button id="generate">Simulate Generations</button> <button id="reset">Reset</button></pre>
 </div>
-<div id="chart_div"></div>
+<div style="margin-right: 5px">
+    <div id="chart_div" style="height:450px;width:900px;margin-left:10px;margin-right:10px"></div>
+    <br>Written by Tyler Gibbs for AP Environmental Science.<br>
+    <a href="https://github.com/TheTrain2000/thetrain2000.github.io/blob/master/sim/index.html">source code</a>
+</div>
 
-<div style="position: absolute;right:-60px;top:-40px;transform:scale(0.75,0.75);">
+<div style="position: absolute;margin-right:5px;margin-left:5px;right:5px;top:25px">
     <canvas id="sim_image" width="612" height="612"></canvas>
     <div style="position: absolute;bottom:-40px;left:148px;">
         <pre><button id="prev_gen">Show Prev Generation</button>   <button id="play">Play</button>   <button id="next_gen">Show Next Generation</button></pre>
@@ -450,8 +451,6 @@ Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2" 
     }
 </script>
 
-<br>Written by Tyler Gibbs for AP Environmental Science.<br>
-<a href="https://github.com/TheTrain2000/thetrain2000.github.io/blob/master/sim/index.html">source code</a>
 </body>
 <div style="display: none;">
     <img id="grass_img" src="_grass.png" height="34" width="34">
