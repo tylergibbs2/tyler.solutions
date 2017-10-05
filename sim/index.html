@@ -103,10 +103,6 @@
                 }
             }
 
-            if (generation_array[0][0] === 0 && generation_array[0][1] === 0 && generation_array[0][2] === 0 && generation_array.length > 1) {
-                generation_array.shift();
-            }
-
             var gen_data = generation_array[generation];
             if (typeof gen_data === "undefined") {
                 return null;
@@ -168,18 +164,22 @@
 
         function drawChart() {
 
-          if (generation_array[0][0] === 0 && generation_array[0][1] === 0 && generation_array[0][2] === 0 && generation_array.length > 1) {
-              generation_array.shift();
-          }
-
           var data = new google.visualization.DataTable();
           data.addColumn("number", "Generation");
           data.addColumn("number", "Mice");
           data.addColumn("number", "Coyotes");
 
-          data.addRows(generation_array);
+          var data_array = generation_array.slice(0);
+          if (data_array.length === 0) {
+              data_array = [[0, 0, 0]];
+          }
 
-          var generations = generation_array[generation_array.length-1][0].toString();
+          data.addRows(data_array);
+          if (generation_array.length !== 0) {
+              var generations = (generation_array.length-1).toString();
+          } else {
+              var generations = '0';
+          }
           var options = {
             chart: {
               title: "Coyote/Mouse Simulation",
@@ -203,18 +203,23 @@
 
         function drawCurvedChart() {
 
-          if (generation_array[0] === 0 && generation_array[1] === 0 && generation_array[2] === 0) {
-              generation_array.shift();
-          }
-
           var data = new google.visualization.DataTable();
           data.addColumn("number", "Generation");
           data.addColumn("number", "Mice");
           data.addColumn("number", "Coyotes");
 
-          data.addRows(generation_array);
+          var data_array = generation_array.slice(0);
+          if (data_array.length === 0) {
+              data_array = [[0, 0, 0]];
+          }
 
-          var generations = generation_array[generation_array.length-1][0].toString();
+          data.addRows(data_array);
+          if (generation_array.length !== 0) {
+              var generations = (generation_array.length-1).toString();
+          } else {
+              var generations = '0';
+          }
+
           var options = {
             title: "Coyote/Mouse Simulation, " + generations + " generations",
             curveType: "function",
@@ -246,12 +251,11 @@
                 localStorage.setItem("graph_type", "straight");
             }
             if (localStorage.getItem("sim_data") === null) {
-                generation_array = [[0, 0, 0]];
-                localStorage.setItem("sim_data", JSON.stringify(generation_array));
+                localStorage.setItem("sim_data", JSON.stringify([]));
                 localStorage.setItem("image_data", JSON.stringify({}));
-                drawChart();
-                generation_array.shift();
-            }            
+            } else {
+                generation_array = JSON.parse(localStorage.getItem('sim_data'));
+            }
             
             var button = document.getElementById("generate");
             var reset_b = document.getElementById("reset");
@@ -259,15 +263,6 @@
             var straight_radio = document.getElementById("straight");
 
             var graph_type = localStorage.getItem("graph_type");
-
-            var storage = localStorage.getItem("sim_data");
-            if (storage !== null && generation_array instanceof Array) {
-                generation_array = JSON.parse(storage);
-            } else {
-                generation_array = [[0, 0, 0]];
-                getData();
-                generation_array.shift();
-            }
 
             if (graph_type === "straight") {
                 drawChart();
@@ -287,15 +282,13 @@
                 drawChart();
             };
             reset_b.onclick = function () {
-                generation_array = [[0, 0, 0]];
-                localStorage.setItem("sim_data", JSON.stringify(generation_array));
+                generation_array = [];
+                localStorage.setItem("sim_data", JSON.stringify([]));
                 localStorage.setItem("image_data", JSON.stringify({}));
                 drawChart();
-                generation_array.shift();
             };
             button.onclick = function () {
                 getData();
-                console.log(generation_array);
                 if (document.getElementById("straight").checked) {
                     drawChart();
                 }
