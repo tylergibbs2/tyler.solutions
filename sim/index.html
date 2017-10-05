@@ -28,7 +28,7 @@
             var mice_multiplier = Number(document.getElementById('mice_multiplier').value);
             for (i = 1; i <= amount; i++) {
                 for (j = 0; j < coyote_count; j++) {
-                    var landed_on = randint(0, Math.floor(mouse_count / 10));
+                    var landed_on = randint(0, Math.ceil(mouse_count / 18));
                     if (mouse_count - landed_on <= 1) {
                         continue;
                     }
@@ -76,6 +76,7 @@
             var coyote = document.getElementById('coyote_img');
             var mouse = document.getElementById('mouse_img');
             var open_positions = [];
+
             ctx.fillStyle = 'green';
             ctx.fillRect(0, 0, 612, 612);
             for (i=0; i <= 612; i+=34) {
@@ -84,33 +85,65 @@
                     open_positions.push([i, j])
                 }
             }
-          if (generation_array[0][0] === 0 && generation_array[0][1] === 0 && generation_array[0][2] === 0 && generation_array.length > 1) {
-              generation_array.shift();
-          }
 
-          generation = generation_array[generation];
-          if (typeof generation === 'undefined') {
-              return null;
-          }
-          var mice_count = generation[1];
-          var coyote_count = generation[2];
-          for (i=1; i<=mice_count; i++) {
-              var index = Math.floor(Math.random() * open_positions.length);
-              var coords = open_positions[index];
-              open_positions.splice(index, 1);
-              var x = coords[0] + 1;
-              var y = coords[1] + 1;
-              ctx.drawImage(mouse, x, y);
-          }
-          for (i=1; i<=coyote_count; i++){
-              var index = Math.floor(Math.random() * open_positions.length);
-              var coords = open_positions[index];
-              console.log(coords);
-              open_positions.splice(index, 1);
-              var x = coords[0] + 1;
-              var y = coords[1] + 1;
-              ctx.drawImage(coyote, x, y);
-          }
+            if (generation_array[0][0] === 0 && generation_array[0][1] === 0 && generation_array[0][2] === 0 && generation_array.length > 1) {
+                generation_array.shift();
+            }
+
+            var gen_data = generation_array[generation];
+            if (typeof gen_data === 'undefined') {
+                return null;
+            }
+            generation = String(gen_data[0]);
+
+            var image_storage = JSON.parse(localStorage.getItem('image_data'));
+
+            if (typeof image_storage[generation] !== 'undefined') {
+                for (i=0; i <= image_storage[generation]['mice'].length; i++) {
+                    coords = image_storage[generation]['mice'][i];
+                    if (typeof coords === 'undefined'){
+                        continue;
+                    }
+                    ctx.drawImage(mouse, coords[0], coords[1]);
+                }
+                for (i=0; i <= image_storage[generation]['coyotes'].length; i++) {
+                    coords = image_storage[generation]['coyotes'][i];
+                    if (typeof coords === 'undefined'){
+                        continue;
+                    }
+                    ctx.drawImage(coyote, coords[0], coords[1]);
+                }
+
+                return null;
+            }
+
+            image_storage[generation] = {};
+            image_storage[generation]['coyotes'] = [];
+            image_storage[generation]['mice'] = [];
+
+            var mice_count = gen_data[1];
+            var coyote_count = gen_data[2];
+            for (i=1; i<=mice_count; i++) {
+                var index = Math.floor(Math.random() * open_positions.length);
+                var coords = open_positions[index];
+                open_positions.splice(index, 1);
+                var x = coords[0] + 1;
+                var y = coords[1] + 1;
+                ctx.drawImage(mouse, x, y);
+                image_storage[generation]['mice'].push([x, y]);
+            }
+
+            for (i=1; i<=coyote_count; i++){
+                var index = Math.floor(Math.random() * open_positions.length);
+                var coords = open_positions[index];
+                open_positions.splice(index, 1);
+                var x = coords[0] + 1;
+                var y = coords[1] + 1;
+                ctx.drawImage(coyote, x, y);
+                image_storage[generation]['coyotes'].push([x, y]);
+            }
+
+            localStorage.setItem('image_data', JSON.stringify(image_storage));
         }
 
         function drawChart() {
@@ -190,6 +223,10 @@
             var curved_radio = document.getElementById('curved');
             var straight_radio = document.getElementById('straight');
 
+            if (localStorage.getItem('image_data') === null) {
+                localStorage.setItem('image_data', JSON.stringify({}));
+            }
+
             var graph_type = localStorage.getItem('graph_type');
             if (graph_type === null) {
                 graph_type = 'straight';
@@ -225,6 +262,7 @@
             reset_b.onclick = function () {
                 generation_array = [[0, 0, 0]];
                 localStorage.setItem("sim_data", JSON.stringify(generation_array));
+                localStorage.setItem("image_data", JSON.stringify({}));
                 drawChart();
                 generation_array.shift();
             };
