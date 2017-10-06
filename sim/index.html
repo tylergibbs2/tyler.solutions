@@ -232,6 +232,9 @@
             },
             vAxis: {
                 title: "Count"
+            },
+            legend: {
+                position: 'bottom'
             }
           };
 
@@ -273,7 +276,11 @@
             vAxis: {
                 title: "Count",
                 baseline: 0
-            }
+            },
+            legend: {
+                position: 'bottom'
+            },
+            theme: 'material'
           };
 
           var chart = new google.visualization.LineChart(document.getElementById("chart_div"));
