@@ -2,6 +2,27 @@
 
 <html>
 <head>
+
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Coyote/Mouse Simulation</title>
+    <meta name="A coyote and mouse simulation." content="">
+    <meta name="Tyler Gibbs" content="">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!--<link rel="stylesheet" href="css/normalize.css">-->
+    <link rel="stylesheet" href="css/pure/pure.css">
+
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="_coyote.png">
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 
@@ -410,40 +431,79 @@
     </script>
 </head>
 <br>
-<div style="float:left;height: 335px;width: 400px;border: 1px">
-<pre>
-Generations             : <input type="number" id="generations" value="50" title="How many generations to simulate."/><br />
+<div class="pure-g" style="margin-left: 10px">
+    <div class="pure-u-1-2">
+        <div class="pure-form pure-form-aligned">
+            <fieldset>
+                <legend>Simulation Parameters</legend>
 
-Starting Mice           : <input type="number" id="starting_mice" value="100" title="The amount of mice the simulation starts with."/>     <input type="radio" name="graph_type" id="straight"> Straight Lines<br>
-Starting Coyote         : <input type="number" id="starting_coyote" value="10" title="The amount of coyotes the simulation starts with."/>     <input type="radio" name="graph_type" id="curved"> Curved Lines<br>
-Mice Needed to Live     : <input type="number" id="mice_to_live" value="2" title="The amount of mice a coyote needs to eat in order to live."/><br />
-Max Coyote Offspring    : <input type="number" id="max_coyote_pups" value="5" title="The maximum offspring a single coyote can have."/><br />
-Mice Breeding Multiplier: <input type="number" id="mice_multiplier" value="2" title="The multiplier by which mice breed at the end of a generation."/><br />
-Mice Needed to Reproduce: <input type="number" id="mice_to_reproduce" value="2" title="The amount of mice to produce one coyote pup, after a coyote eats the mice needed to live."/><br />
+            <div class="pure-control-group">
+                <label for="generations">Generations</label>
+                <input type="number" id="generations" value="50" title="How many generations to simulate."/>
+            </div>
+            <div class="pure-control-group">
+                <label for="starting_mice">Starting Mice</label>
+                <input class="pure-form" type="number" id="starting_mice" value="100" title="The amount of mice the simulation starts with."/>
+            </div>
+            <div class="pure-control-group">
+                <label for="starting_coyote">Starting Coyote</label>
+                <input class="pure-form" type="number" id="starting_coyote" value="10" title="The amount of coyotes the simulation starts with."/>
+            </div>
+            <div class="pure-control-group">
+                <label for="mice_to_live">Mice Needed to Live</label>
+                <input class="pure-form" type="number" id="mice_to_live" value="2" title="The amount of mice a coyote needs to eat in order to live."/>
+            </div>
+            <div class="pure-control-group">
+                <label for="max_coyote_pups">Max Coyote Offspring</label>
+                <input class="pure-form" type="number" id="max_coyote_pups" value="5" title="The maximum offspring a single coyote can have."/>
+            </div>
+            <div class="pure-control-group">
+                <label for="mice_multiplier">Mice Breeding Multiplier</label>
+                <input class="pure-form" type="number" id="mice_multiplier" value="2" title="The multiplier by which mice breed at the end of a generation."/>
+            </div>
+            <div class="pure-control-group">
+                <label for="mice_to_reproduce">Mice Needed to Reproduce</label>
+                <input class="pure-form" type="number" id="mice_to_reproduce" value="2" title="The amount of mice to produce one coyote pup, after a coyote eats the mice needed to live."/>
+            </div>
 
-<button id="generate">Simulate Generations</button> <button id="reset">Reset</button></pre>
+            <div class="pure-controls">
+                <label for="straight" class="pure-radio" style="display:inline;">
+                    <input class="pure-radio" type="radio" name="graph_type" id="straight" style="display:inline;"> Straight Lines
+                </label>
+                <label for="curved" class="pure-radio" style="display:inline;">
+                    <input class="pure-radio" type="radio" name="graph_type" id="curved" style="display:inline;"> Curved Lines
+                </label>
+
+                <br><button class="pure-button" id="generate">Simulate Generations</button> <button class="pure-button" id="reset">Reset</button>
+            </div>
+        </fieldset>
+
+    </div>
 </div>
-    <div style="width:612px;height:720px;float:right;border:1px;display: inline;">
-        <canvas id="sim_image" width="612" height="730"></canvas>
-        <div style="clear: both;position: relative;top: -80px;left: 115px;">
-            <pre><button id="prev_gen">Show Prev Generation</button>   <button id="play">Play</button>   <button id="next_gen">Show Next Generation</button></pre>
+    <div class="pure-u-1-2" style="margin-top: 10px;">
+        <canvas id="sim_image" width="612" height="612"></canvas>
+        <div style="bottom: 0;margin-top: 5px;margin-left: 78px;">
+            <button class="pure-button" id="prev_gen">Show Prev Generation</button>
+            <button class="pure-button" id="play">Play</button>
+            <button class="pure-button" id="next_gen">Show Next Generation</button>
         </div>
-        <div style="clear:both;position: relative;top:-85px;left:243px;">
-            <input id="speed_slider" type="range" min="0" max="10" step="1" oninput="showValue(this.value)"/><br>
+        <div style="clear:both;position: relative;top:5px;left:243px;">
+            <input class="pure-form" id="speed_slider" type="range" min="0" max="10" step="1" oninput="showValue(this.value)"/><br>
         </div>
-        <div style="clear:both;position: relative;top: -85px;left:283px;">
+        <div style="clear:both;position: relative;top: 5px;left:283px;">
             <span>Speed: </span><span id="slider_disp"></span>
         </div>
-        <div style="clear:both;position: relative;top: -840px;left:243px;">
+        <div style="clear:both;position: relative;top: -710px;left:0px;">
             <span>Showing Generation: </span><span id="gen_disp"></span>
         </div>
     </div>
-    <div>
-    <div style=height:450px;width:900px;float:left;border:1px;">
+    <div class="pure-u-1-2">
         <div id="chart_div"></div>
     </div>
 </div>
-<div style="position:fixed;bottom:0;">
+
+
+<div style="position:fixed;bottom:0;right:0;">
     <br>Written by Tyler Gibbs for AP Environmental Science.<br>
     <a href="https://github.com/TheTrain2000/thetrain2000.github.io/blob/master/sim/index.html">source code</a>
 </div>
