@@ -357,6 +357,15 @@
             drawImage(image_generation);
         }
 
+        function sleep(milliseconds) {
+          var start = new Date().getTime();
+          for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+              break;
+            }
+          }
+        }
+
         function initialize() {
 
             if (localStorage.getItem("image_data") === null) {
@@ -381,6 +390,7 @@
 
             if (simulated_generations.length !== 0) {
                 document.getElementById('gen_disp').innerHTML = simulated_generations[simulated_generations.length-1];
+                image_generation = simulated_generations[simulated_generations.length-1];
             }
 
             var slider_disp = document.getElementById('slider_disp');
@@ -395,6 +405,7 @@
             var play_b = document.getElementById('play');
             var next_gen_b = document.getElementById('next_gen');
             var prev_gen_b = document.getElementById('prev_gen');
+            var playing_status = false;
 
             var graph_type = localStorage.getItem("graph_type");
 
@@ -433,6 +444,8 @@
                 document.getElementById('gen_disp').innerHTML = '';
                 image_generation = null;
                 simulated_generations = [];
+                playing_status = false;
+                play_b.innerHTML = 'Play';
                 drawChart();
             };
             button.onclick = function () {
@@ -453,7 +466,38 @@
                 document.getElementById('gen_disp').innerHTML = image_generation;
             };
             play_b.onclick = function () {
-                return null;
+                if (image_generation === null) {
+                    return null;
+                }
+
+                playing_status = !playing_status;
+                if (playing_status === true) {
+                    play_b.innerHTML = 'Stop';
+                } else {
+                    play_b.innerHTML = 'Play';
+                }
+
+                do_play();
+
+            function do_play() {
+                if (playing_status === false) {
+                    return null;
+                }
+                if (simulated_generations.indexOf(image_generation+1) > -1) {
+                    image_generation += 1;
+                } else {
+                    image_generation = 0;
+                }
+                drawImage(image_generation);
+                document.getElementById('gen_disp').innerHTML = image_generation;
+                var sleep_time = Number(document.getElementById('slider_disp').innerHTML) * 1000;
+                if (sleep_time === 0) {
+                    sleep_time = 1000;
+                }
+                setTimeout(function() {
+                    do_play();
+                }, sleep_time);
+            }
             }
         }
     </script>
