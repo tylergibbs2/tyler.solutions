@@ -9,7 +9,7 @@ body, html {
 #main {
     position: relative;
     top: 30%;
-    transform: translateY(-50%);
+    transform: translateY(-30%);
     text-align: center;
 }
 
