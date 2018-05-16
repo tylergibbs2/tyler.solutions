@@ -123,13 +123,13 @@ function drawImage(generation) {
         canvas.height = board_size;
         canvas.width = board_size;
 
-        for (var i=0; i <=board_size; i+=34) {
-            for (var j=0; j <= board_size; j+=34) {
+        for (var i=0; i <= board_size - 34; i+=34) {
+            for (var j=0; j <= board_size - 34; j+=34) {
                 ctx.drawImage(grass, i, j);
             }
         }
 
-        for (i=0; i <= image_storage[generation]["mice"].length; i++) {
+        for (var i=0; i <= image_storage[generation]["mice"].length; i++) {
             coords = image_storage[generation]["mice"][i];
             if (typeof coords === "undefined"){
                 continue;
@@ -137,7 +137,7 @@ function drawImage(generation) {
                 ctx.drawImage(mouse, coords[0], coords[1]);
             }
         }
-        for (i=0; i <= image_storage[generation]["coyotes"].length; i++) {
+        for (var i=0; i <= image_storage[generation]["coyotes"].length; i++) {
             coords = image_storage[generation]["coyotes"][i];
             if (typeof coords === "undefined"){
                 continue;
@@ -175,14 +175,14 @@ function drawImage(generation) {
     canvas.height = board_size;
     canvas.width = board_size;
 
-    for (var i=0; i <=board_size; i+=34) {
-        for (var j=0; j <= board_size; j+=34) {
+    for (var i=0; i <= board_size - 34; i+=34) {
+        for (var j=0; j <= board_size - 34; j+=34) {
             ctx.drawImage(grass, i, j);
             open_positions.push([i, j])
         }
     }
 
-    for (i=0; i<mice_count; i++) {
+    for (var i=0; i<mice_count; i++) {
         var index = Math.floor(Math.random() * open_positions.length);
         var coords = open_positions[index];
         open_positions.splice(index, 1);
@@ -192,7 +192,7 @@ function drawImage(generation) {
         image_storage[generation]["mice"].push([x, y]);
     }
 
-    for (i=0; i<coyote_count; i++){
+    for (var i=0; i<coyote_count; i++){
         var index = Math.floor(Math.random() * open_positions.length);
         var coords = open_positions[index];
         open_positions.splice(index, 1);
