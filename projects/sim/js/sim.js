@@ -9,6 +9,8 @@ var generation_array = [];
 var image_generation = null;
 var simulated_generations = [];
 
+var map = null;
+
 function randint(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -44,14 +46,15 @@ function getLatestMouseCount() {
 }
 
 function simulateGenerations(amount) {
-    var mouse_count = getLatestMouseCount() || Number(document.getElementById("starting_mice").value);
-    var coyote_count = getLatestCoyoteCount() || Number(document.getElementById("starting_coyote").value);
+    var mouse_count = getLatestMouseCount();
+    var coyote_count = getLatestCoyoteCount();
     var needed_to_live = Number(document.getElementById("mice_to_live").value);
     var max_pups = Number(document.getElementById("max_coyote_pups").value);
     var mice_to_reproduce = Number(document.getElementById("mice_to_reproduce").value);
     var mice_multiplier = Number(document.getElementById("mice_multiplier").value);
-    for (i = 0; i < amount; i++) {
-        for (j = 0; j < coyote_count; j++) {
+
+    for (var i = 0; i < amount; i++) {
+        for (var j = 0; j < coyote_count; j++) {
             var landed_on = randint(0, Math.ceil(mouse_count / 16));
             if (mouse_count - landed_on <= 1) {
                 continue;
@@ -61,7 +64,6 @@ function simulateGenerations(amount) {
             if (landed_on < needed_to_live) {
                 if (coyote_count > 1) {
                     coyote_count -= 1;
-                    continue;
                 }
             }
             else if (mice_after_living >= mice_to_reproduce) {
@@ -83,21 +85,22 @@ function simulateGenerations(amount) {
 }
 
 function drawImage(generation) {
-    var canvas = document.getElementById("sim_image");
+
+    //var canvas = document.getElementById("sim_image");
+    var canvas = document.createElement("canvas");
+
     var ctx = canvas.getContext("2d");
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     var grass = document.getElementById("grass_img");
     var coyote = document.getElementById("coyote_img");
     var mouse = document.getElementById("mouse_img");
+
     var open_positions = [];
 
     ctx.fillStyle = "green";
     ctx.fillRect(0, 0, 612, 612);
-    for (i=0; i <= 612; i+=34) {
-        for (j=0; j <= 612; j+=34) {
-            ctx.drawImage(grass, i, j);
-            open_positions.push([i, j])
-        }
-    }
 
     var gen_data = generation_array[generation];
     if (typeof gen_data === "undefined") {
@@ -107,21 +110,53 @@ function drawImage(generation) {
 
     var image_storage = JSON.parse(localStorage.getItem("image_data"));
 
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
+
     if (typeof image_storage[generation] !== "undefined") {
+
+        var mice_count = image_storage[generation]["mice"].length;
+        var coyote_count = image_storage[generation]["coyotes"].length;
+
+        var board_size = Math.max(Math.ceil(Math.sqrt(mice_count + coyote_count)) * 34, 612);
+        canvas.height = board_size;
+        canvas.width = board_size;
+
+        for (var i=0; i <=board_size; i+=34) {
+            for (var j=0; j <= board_size; j+=34) {
+                ctx.drawImage(grass, i, j);
+            }
+        }
+
         for (i=0; i <= image_storage[generation]["mice"].length; i++) {
             coords = image_storage[generation]["mice"][i];
             if (typeof coords === "undefined"){
                 continue;
+            } else {
+                ctx.drawImage(mouse, coords[0], coords[1]);
             }
-            ctx.drawImage(mouse, coords[0], coords[1]);
         }
         for (i=0; i <= image_storage[generation]["coyotes"].length; i++) {
             coords = image_storage[generation]["coyotes"][i];
             if (typeof coords === "undefined"){
                 continue;
+            } else {
+                ctx.drawImage(coyote, coords[0], coords[1]);
             }
-            ctx.drawImage(coyote, coords[0], coords[1]);
         }
+
+        var w = canvas.width,
+            h = canvas.height,
+            url = canvas.toDataURL();
+
+        var southWest = map.unproject([0, h], map.getMaxZoom()-1);
+        var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
+        var bounds = new L.LatLngBounds(southWest, northEast);
+
+        L.imageOverlay(url, bounds).addTo(map);
+
+        map.setMaxBounds(bounds);
 
         return null;
     }
@@ -135,7 +170,19 @@ function drawImage(generation) {
     if (mice_count === 0 || coyote_count === 0) {
         return null;
     }
-    for (i=0; i<=mice_count; i++) {
+
+    var board_size = Math.max(Math.ceil(Math.sqrt(mice_count + coyote_count)) * 34, 612);
+    canvas.height = board_size;
+    canvas.width = board_size;
+
+    for (var i=0; i <=board_size; i+=34) {
+        for (var j=0; j <= board_size; j+=34) {
+            ctx.drawImage(grass, i, j);
+            open_positions.push([i, j])
+        }
+    }
+
+    for (i=0; i<mice_count; i++) {
         var index = Math.floor(Math.random() * open_positions.length);
         var coords = open_positions[index];
         open_positions.splice(index, 1);
@@ -145,7 +192,7 @@ function drawImage(generation) {
         image_storage[generation]["mice"].push([x, y]);
     }
 
-    for (i=0; i<=coyote_count; i++){
+    for (i=0; i<coyote_count; i++){
         var index = Math.floor(Math.random() * open_positions.length);
         var coords = open_positions[index];
         open_positions.splice(index, 1);
@@ -154,6 +201,18 @@ function drawImage(generation) {
         ctx.drawImage(coyote, x, y);
         image_storage[generation]["coyotes"].push([x, y]);
     }
+
+    var w = canvas.width,
+        h = canvas.height,
+        url = canvas.toDataURL();
+
+    var southWest = map.unproject([0, h], map.getMaxZoom()-1);
+    var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
+    var bounds = new L.LatLngBounds(southWest, northEast);
+
+    L.imageOverlay(url, bounds).addTo(map);
+
+    map.setMaxBounds(bounds);
 
     localStorage.setItem("image_data", JSON.stringify(image_storage));
 }
@@ -331,6 +390,14 @@ function initialize() {
         localStorage.setItem('simulated_generations', '[]');
     }
 
+    map = L.map("image-map", {
+        minZoom: 1,
+        maxZoom: 3,
+        center: [0, 0],
+        zoom: 0.1,
+        crs: L.CRS.Simple
+    });
+
     generation_array = JSON.parse(localStorage.getItem('sim_data'));
     simulated_generations = JSON.parse(localStorage.getItem('simulated_generations'));
 
@@ -393,6 +460,9 @@ function initialize() {
         playing_status = false;
         play_b.innerHTML = 'Play';
         drawChart();
+        map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
     };
     button.onclick = function () {
         if (generation_array.length === 0) {
