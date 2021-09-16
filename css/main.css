@@ -3,7 +3,8 @@ body, html {
     height: 100%;
     width: 100%;
     font-family: 'Muli', sans-serif;
-    background: #6d6d6d;
+    background-color: #6d6d6d;
+    transition: background-color 1000ms linear;
 }
 
 #main {
@@ -33,10 +34,15 @@ img {
     color: white;
 }
 
-#description {
-    margin-top: 5px;
+#descriptionHeader {
+    margin-top: 0;
+}
+
+#descriptionHeader > span {
     margin-bottom: 15px;
     font-weight: normal;
     text-shadow: 1px 1px 1px #000;
     color: white;
+    border-bottom: dashed 1px white;
+    user-select: none;
 }

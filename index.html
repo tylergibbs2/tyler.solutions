@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <title>Tyler Gibbs</title>
 
-    <meta name="google-site-verification" content="Q4QsFt4o2xAchSpftSQru51vRL6ysHGCwkzCDZZ0RD8" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
     <!-- FONTS
@@ -18,21 +17,62 @@
     <!-- JS
     ---------------------------- -->
     <script type="text/javascript">
-        function colorize() {
-            document.body.style.background = Math.floor(Math.random() * 16777215).toString(16);
+        var seenIndices = [];
+        let subtitles = [
+            "Pioneer of writing subtitles",
+            "Creator of Coyote/Mouse Simulation",
+            "Ex-user of jQuery 😔",
+            "<i>is feeling great!</i>",
+            "Web Developer (not designer 😳)",
+            "Definitely doesn't make floating-point errors",
+            "Pythonista",
+            "React > Angular",
+            "<i>undefined</i>"
+        ];
+
+        function refreshSubtitle () {
+            let subtitle = document.getElementById("description");
+
+            if (seenIndices.length === subtitles.length)
+                seenIndices = [];
+
+            let randomIdx = Math.floor(Math.random() * subtitles.length);;
+            while (seenIndices.includes(randomIdx))
+                randomIdx = Math.floor(Math.random() * subtitles.length);
+            seenIndices.push(randomIdx);
+
+            subtitle.innerHTML = subtitles[randomIdx];
+        }
+
+        window.onload = function () {
+            let pic = document.getElementById("profilePic");
+            pic.onclick = () => {
+                document.body.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+            }
+
+            let description = document.getElementById("description");
+            description.onclick = () => {
+                refreshSubtitle();
+            }
+
+            refreshSubtitle();
         }
     </script>
 
 </head>
 <div id="main">
-    <img onclick="colorize();" src="https://avatars3.githubusercontent.com/u/1884865?s=460&v=4" width="192"
+    <img id="profilePic" src="https://avatars3.githubusercontent.com/u/1884865?s=460&v=4" width="192"
         height="192" />
 
     <h1 id="name">Tyler Gibbs</h1>
-    <h3 id="description">Jack of all trades, master of <s>none</s> one.</h3>
+    <h3 id="descriptionHeader">
+        <span
+            id="description"
+            title="The funny quips displayed here are just that -- quips. They are meant to appeal to a fellow programmer's sense of humor, and do not necessarily reflect my personal views or beliefs.">
+        </span>
+    </h3>
     <a href="https://github.com/tylergibbs2"><img src="img/github.ico" /></a>
     <a href="https://www.linkedin.com/in/tyler-gibbs/"><img src="img/linkedin.png" /></a>
-    <a href="https://www.paypal.me/tylergibbs2"><img src="img/paypal.png" /></a>
 
     <div id="projects">
         <h2>Projects</h2>
