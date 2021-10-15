@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Page Meta -->
+    <meta charset="UTF-8">
+    <title>Battle Royalley: Year 2</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/chota@latest" />
+
+    <link rel="stylesheet" href="css/index.css" />
+
+    <!-- JS -->
+    <script src="js/index.js"></script>
+
+</head>
+
+
+<body class="dark">
+    <nav class="toc">
+        <ul>
+            <li><a href="#Info">Info</a></li>
+            <li>
+                <a href="#Credits">Credits</a>
+                <ul>
+                    <li><a href="#Ilyaki">Ilyaki</a></li>
+                    <li><a href="#Underscore76">Underscore76</a></li>
+                    <li><a href="#TheHaboo">TheHaboo</a></li>
+                    <li><a href="#Stardew_Discord">Stardew Valley Discord</a></li>
+                </ul>
+            </li>
+            <li><a href="#Changelog">Changelog</a></li>
+            <li>
+                <a href="#New_Features">New Features</a>
+                <ul>
+                    <li><a href="#Ginger_Island">Ginger Island</a></li>
+                    <li><a href="#Leaderboard">Leaderboard</a></li>
+                    <li><a href="#New_Lobby">New Lobby</a></li>
+                    <li><a href="#Victory_Royale">Victory Royale Effects</a></li>
+                    <li><a href="#Equipment_Chests">Equipment Chests</a></li>
+                    <li><a href="#In-game_Commands">In-game Commands</a></li>
+                    <li><a href="#Player_Nametags">Player Nametags</a></li>
+                    <li><a href="#Death_Animations">Death Animations</a></li>
+                    <li><a href="#Spectate_Follow_Mode">Spectate Follow Mode</a></li>
+                    <li><a href="#Special_Rounds">Special Rounds</a></li>
+                    <li><a href="#Storm_Endings">Storm Endings</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#Changes">Changes</a>
+                <ul>
+                    <li><a href="#Chest_Rebalancing">Chest Rebalancing</a></li>
+                    <li><a href="#Inventory_Size">Inventory Size</a></li>
+                    <li><a href="#Town_Shortcuts">Town Shortcuts</a></li>
+                    <li><a href="#Time_and_Season">Time & Season</a></li>
+                    <li><a href="#All_Player_Spectate">Spectate for All</a></li>
+                    <li><a href="#Damage_Source_Tracking">Damage Source Tracking</a></li>
+                    <li><a href="#Bomb_Damage_Buff">Bomb Damage Buff</a></li>
+                    <li><a href="#Remove_Club_Nerf">Remove Club Nerf</a></li>
+                    <li><a href="#Forced_Save">Forced Save</a></li>
+                    <li><a href="#Storm_Indoor_Locations">Storm Indoor Locations</a></li>
+                    <li><a href="#Storm_Color">Storm Color</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#Bug_Fixes">Bug Fixes</a>
+            </li>
+        </ul>
+      <svg class="toc-marker" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+        <path stroke="#fff" stroke-width="3" fill="transparent" stroke-dasharray="0, 0, 0, 1000" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.5, -0.5)" />
+      </svg>
+    </nav>
+
+    <div style="width: 75%; margin: 0 auto;">
+        <div class="row is-full-width" style="margin-top: 2em;">
+            <div class="col"></div>
+            <div class="col-6">
+                <img src="img/title.png" class="is-full-width" />
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <h1 id="Info">Info</h1>
+
+        <p>
+            <b>Battle Royalley: Year 2</b> is an update to the original Battle Royalley mod for Stardew Valley. With this update, we bring
+            new features, cool changes, and bug fixes. The inspiration comes from Ilyaki's original Battle Royalley mod, of which the code
+            is extended from.
+        </p>
+
+        <p>Downloads are available on <a href="https://github.com/tylergibbs2/BattleRoyalley-Year2">GitHub</a>.</p>
+
+        <h1 id="Credits">Credits</h1>
+
+        <h3 id="Ilyaki">Ilyaki <span class="tag is-small"><a href="https://github.com/Ilyaki" target="_blank">github</a></span></h3>
+
+        <p>
+            Big thanks to Ilyaki for creating the original mod. For without it, this project would not exist.
+        </p>
+
+        <h3 id="Underscore76">Underscore76 <span class="tag is-small"><a href="https://github.com/Underscore76/" target="_blank">github</a></span> <span class="tag is-small"><a href="https://youtube.com/user/TheUnderscore76" target="_blank">youtube</a></span></h3>
+
+        <p>
+            Thanks to Underscore for updating the original mod to the latest version of Stardew Valley, SMAPI, and Harmony.
+            This undoubtedly saved me hours of work, as I am far less experienced with C# and the Stardew codebase as a whole.
+        </p>
+
+        <h3 id="TheHaboo">TheHaboo <span class="tag is-small"><a href="https://www.twitch.tv/TheHaboo" target="_blank">twitch</a></span> <span class="tag is-small"><a href="https://www.youtube.com/c/TheHaboo" target="_blank">youtube</a></span></h3>
+
+        <p>
+            Thanks to Haboo for putting in almost as many hours as I have in providing feedback, answering my Stardew questions,
+            testing dev builds, and playing Bloons. Also for making me stop adding features and to finally release the mod.
+        </p>
+
+        <p>
+            Haboo also built the entirety of the new lobby and did all of the respriting work required.
+        </p>
+
+        <h3 id="Stardew_Discord">Stardew Valley Discord <span class="tag is-small"><a href="https://discord.gg/stardewvalley" target="_blank">join</a></span></h3>
+
+        <p>
+            Special shoutout to the <code>#making-mods</code> channel of the Stardew Valley Discord server.
+            Everyone in there has great knowledge of things that break in mysterious ways for mysterious reasons.
+        </p>
+
+        <h1 id="Changelog">Changelog</h1>
+
+        <h2 id="New_Features">New Features</h2>
+
+        <h3 id="Ginger_Island">Ginger Island</h3>
+        <p>
+            Ginger Island has been added as a fully playable map, with all of the new features and changes made to the original Stardew Valley map.
+        </p>
+
+        <img src="img/volcano.png" alt="The Ginger Island volcano" />
+
+        <h3 id="Leaderboard">Leaderboard</h3>
+        <p>The leaderboard is used to keep track of each player's statistics. It can be opened with the <span class="tag">TAB</span> key.</p>
+        <p>Each player has their kills, deaths, and wins tallied on the leaderboard. Each one of these statistics is sortable by clicking on the column header.</p>
+        <p>Even upon leaving and rejoining, player statistics are retained until the host exits the game.</p>
+
+        <h3 id="New_Lobby">New Lobby</h3>
+
+        <p>
+            Marnie's Ranch just got a huge upgrade! And by Marnie's Ranch, I mean the Quarry. And by upgrade, I mean completely built from scratch.
+        </p>
+
+        <p>
+            The new lobby is better suited for killing time than being penned up with the cows ever was. Thanks to Haboo, players are able to
+            better spend their downtime by practicing their Junimo Kart or even JOTPK.
+        </p>
+
+        <img src="img/lobby.png" alt="The Mountain Quarry, upgraded to be a proper area for players to wait." />
+
+        <h3 id="Victory_Royale">Victory Royale Effects</h3>
+
+        <p>
+            Upon round victory, the winner will be prominantly displayed on the screen of every player. At this time, the player is free to
+            emote to their heart's content, for all to see.
+        </p>
+
+        <p>
+            Alongside the display, a sound effect is played to further cement the victor's
+            domination.
+        </p>
+
+        <h3 id="Equipment_Chests">Equipment Chests</h3>
+
+        <p>
+            Equipment chests are random drops left by the characters of Stardew Valley and Ginger Island.
+            Each equipment chest contains two items.
+        </p>
+
+        <p>
+            The spawn times of these equipment chests are fixed. There are four spawn times: 25 seconds, 50 seconds,
+            70 seconds, and 90 seconds into the round.
+        </p>
+
+        <p>Click below for the loot table. Chests do not have a grade, but a random grade is chosen for each item in the chest.</p>
+
+        <details>
+            <summary>Equipment Chest Loot Table</summary>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item Grade</th>
+                        <th>Spawn Chance</th>
+                        <th>Possible Items</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A Tier</td>
+                        <td>20%</td>
+                        <td>Dragonscale Boots, Ring of Yoba, Phoenix Ring, Crabshell Ring, Protection Ring</td>
+                    </tr>
+                    <tr>
+                        <td>B Tier</td>
+                        <td>80%</td>
+                        <td>Combat Boots, Thorns Ring, Emerald Ring, Ruby Ring, Amethyst Ring</td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <h3 id="In-game_Commands">In-game Commands</h3>
+
+        <p>
+            The in-game commands are an excellent addition for the de-complication of playing. Having these commands in-game,
+            rather than in the SMAPI console, ensures that players are able to quickly and easily perform the actions that they want.
+        </p>
+
+        <p>Below is a list of the new commands.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>/kill</td>
+                    <td>Kills yourself.</td>
+                </tr>
+                <tr>
+                    <td>/spectate</td>
+                    <td>Places yourself into spectate mode. You will remain in spectate mode until you use /play.</td>
+                </tr>
+                <tr>
+                    <td>/play</td>
+                    <td>Removes yourself from spectator mode.</td>
+                </tr>
+                <tr>
+                    <td>/name [name]</td>
+                    <td>Rename yourself.</td>
+                </tr>
+                <tr>
+                    <td>/character</td>
+                    <td>Re-opens the character customization menu.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag">HOST ONLY</span> /start</td>
+                    <td>Starts the game.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag">HOST ONLY</span> /lobby</td>
+                    <td>Returns the game to the lobby.</td>
+                </tr>
+                <tr>
+                    <td><span class="tag">HOST ONLY</span> /specialround</td>
+                    <td>Forces the next round to be a special round.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 id="Player_Nametags">Player Nametags</h3>
+        <p>
+            Sometimes you want to know who's who. To solve that problem, we've added nametags above all players.
+        </p>
+
+        <p>
+            These nametags should follow players behind whatever they can already hide behind, so no worries: you
+            can still hide behind Pierre's and sneakily kill someone as they're coming down.
+        </p>
+
+        <p>Visibility of nametags can be toggled (client-side) with the <span class="tag">F1</span> key.</p>
+
+        <img src="img/sneak.gif" alt="Demonstration of killing someone sneakily." />
+
+        <h3 id="Death_Animations">Death Animations</h3>
+
+        <p>
+            When a player reaches zero health, they feel the need to take a nap. Right where they're standing...
+        </p>
+
+        <h3 id="Spectate_Follow_Mode">Spectate Follow Mode</h3>
+        <p>For better game watchability, spectator mode has been enhanced to include a follow mode.</p>
+
+        <p>
+            With spectate follow mode, spectators have the ability to rotate through the alive players, and automatically follow them wherever they go.
+            While following a player, that player's toolbar will be overlayed on the screen.
+        </p>
+        <p>Standard spectate mode still exists, and can be accessed by simply using any of the movement keys when following a player.</p>
+
+        <h3 id="Special_Rounds">Special Rounds</h3>
+
+        <p>Special rounds are like standard rounds but each with a slight twist. These types of rounds take place every three rounds.</p>
+
+        <h4>Special Round: Slugfest</h4>
+
+        <p>
+            In Slugfest, all of the players are placed into a small arena in town square. Everyone only receives the default axe, and
+            invulnerability frames are removed.
+        </p>
+
+        <img src="img/slugfest.gif" alt="Demonstration of the Slugfest special round." />
+
+        <h4>Special Round: Poor Harvest</h4>
+
+        <p>
+            In Poor Harvest, the farmers of Stardew Valley were unable to harvest enough food for the season. None of the chests will spawn
+            with any food.
+        </p>
+
+        <h4>Special Round: Bombs Only</h4>
+
+        <p>
+            In Bombs Only, no chests will spawn but each player starts with 50 bombs.
+        </p>
+
+        <h4>Special Round: Teams</h4>
+
+        <p>
+            In Teams, all of the alive players will be split into three teams equally. Team colors (red, green, and blue) are denoted by
+            party hats.
+        </p>
+
+        <img src="img/teams.png" alt="A visualization of two of the three teams." />
+
+        <h4>Special Round: Monsters</h4>
+
+        <p>
+            In Monsters, various monsters have escaped from the mines. The round will continue at night, but with monsters spawning around
+            players occasionally. Click below to see the spawn table.
+        </p>
+
+        <details>
+            <summary>Monster Spawn Table</summary>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Monster</th>
+                        <th>Spawn Chance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Frost Jelly</td>
+                        <td>18%</td>
+                    </tr>
+                    <tr>
+                        <td>Lava Bat</td>
+                        <td>18%</td>
+                    </tr>
+                    <tr>
+                        <td>Shadow Shaman</td>
+                        <td>13%</td>
+                    </tr>
+                    <tr>
+                        <td>Metal Head</td>
+                        <td>13%</td>
+                    </tr>
+                    <tr>
+                        <td>Lava Crab</td>
+                        <td>13%</td>
+                    </tr>
+                    <tr>
+                        <td>Sludge</td>
+                        <td>7.5%</td>
+                    </tr>
+                    <tr>
+                        <td>Shadow Brute</td>
+                        <td>7.5%</td>
+                    </tr>
+                    <tr>
+                        <td>Squid Kid</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Serpent</td>
+                        <td>2.5%</td>
+                    </tr>
+                    <tr>
+                        <td>Haunted Skull</td>
+                        <td>2.5%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <h4>Special Round: Slingshots Only</h4>
+
+        <p>
+            In Slingshots Only, no chests will spawn but each player will start with a slingshot, 100 wood, 50 stone, and 20 copper. Players must
+            choose which ammo type to use to take down their opponents.
+        </p>
+
+        <h4>Special Round: Travelling Cart</h4>
+
+        <p>
+            In Travelling Cart, no chests will spawn and no equipment chests will spawn. Players will start with a random melee weapon, random food,
+            random ring, and a random pair of boots. Click below to see the spawn table.
+        </p>
+
+        <details>
+            <summary>Travelling Cart Spawn Table</summary>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item Type</th>
+                        <th>Possible Items</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Melee Weapon</td>
+                        <td>Rusty Sword, Silver Saber, Forest Sword, Insect Head, Bone Sword, Claymore, Templar's Blade, Dark Sword, Ossified Blade, The Slammer, Iron Dirk, Wind Spire, Burglar's Shank, Crystal Dagger, Shadow Dagger, Broken Trident, Wicked Kris, Galaxy Dagger, Dwarf Dagger, Femur, Wood Club, Wood Mallet, Lead Rod, Kudgel</td>
+                    </tr>
+                    <tr>
+                        <td>Food</td>
+                        <td>Fried Egg, Salad, Baked Fish, Vegetable Medley, Fried Calamari, Strange Bun, Lucky Lunch, Pizza, Fish Taco, Spaghetti, Hashbrowns, Crispy Bass, Chocolate Cake, Pink Cake, Cookie, Fried Eel, Eggplant Parmesan, Blueberry Tart, Pumpkin Soup, Cranberry Sauce, Error Item, Crab Cakes, Mango Sticky Rice, Escargot, Blackberry Cobbler, Artichoke Dip, Farmer's Lunch, Stuffing</td>
+                    </tr>
+                    <tr>
+                        <td>Rings</td>
+                        <td>Ring of Yoba, Crabshell Ring, Protection Ring, Phoenix Ring, Amethyst Ring, Emerald Ring, Ruby Ring, Thorns Ring</td>
+                    </tr>
+                    <tr>
+                        <td>Boots</td>
+                        <td>Sneakers, Rubber Boots, Leather Boots, Work Boots, Combat Boots, Tundra Boots, Thermal Boots, Dark Boots, Firewalker Boots, Genie Shoes, Space Boots, Cowboy Boots, Emily's Magic Boots, Leprechaun Shoes, Cinderclown Shoes, Mermaid Boots, Dragonscale Boots, Crystal Shoes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <h3 id="Storm_Endings">Storm Endings</h3>
+
+        <p>
+            You may or may not have realized it, but in the original Battle Royalley,
+            there were only four different ending locations for the storm. Having only
+            for different endings is something that you can get used to pretty fast.
+        </p>
+
+        <p>
+            We've added 13 new ending locations, bringing the total number of possible
+            endings to 17. Click below if you would like to see where all of the endings are.
+        </p>
+
+        <details>
+            <summary>All Storm Ending Locations</summary>
+                <ul>
+                    <li>Stardew Valley: South of Marnie's</li>
+                    <li>Stardew Valley: Robin's House</li>
+                    <li>Stardew Valley: Mine</li>
+                    <li>Stardew Valley: Beach</li>
+                    <li>Stardew Valley: Railroad</li>
+                    <li>Stardew Valley: Marnie's Ranch</li>
+                    <li>Stardew Valley: Community Center</li>
+                    <li>Stardew Valley: Desert</li>
+                    <li>Stardew Valley: Town Square</li>
+                    <li>Stardew Valley: Secret Woods</li>
+                    <li>Stardew Valley: Mutant Bug Lair</li>
+                    <li>Ginger Island: Northern Island Digsite</li>
+                    <li>Ginger Island: Southeastern Island Star</li>
+                    <li>Ginger Island: Resort</li>
+                    <li>Ginger Island: Western Island Tiger Slimes</li>
+                    <li>Ginger Island: Western Island Farm</li>
+                    <li>Ginger Island: Volcano</li>
+                </ul>
+        </details>
+
+        <h2 id="Changes">Changes</h2>
+
+        <h3 id="Chest_Rebalancing">Chest Rebalancing</h3>
+
+        <p>With the help of Haboo, chests (weapons, food, and their quantities) have been rebalanced for a better and more fair experience.</p>
+
+        <p>
+            In addition to the balance changes, the color of the chests has changed as well to reflect each chest's grade.
+            Click the dropdown below to view the loot tables and percentages for each chest grade.
+        </p>
+
+        <p>
+            Each chest will spawn with a primary item (chest grade dependent) and a secondary item (chest grade independent).
+        </p>
+
+        <details>
+            <summary>View Loot Tables</summary>
+            <h4>Primary Item</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Grade</th>
+                        <th>Spawn Chance</th>
+                        <th>Loot Pool</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Legendary</td>
+                        <td>10%</td>
+                        <td>Dark Sword, Yeti Tooth, Galaxy Dagger, Kudgel,  Slingshot (copper ore)</td>
+                    </tr>
+                    <tr>
+                        <td>Rare</td>
+                        <td>50%</td>
+                        <td>Bone Sword, Templar's Blade, Wicked Kris, Lead Rod, Slingshot (stone)</td>
+                    </tr>
+                    <tr>
+                        <td>Common</td>
+                        <td>40%</td>
+                        <td>Holy Blade, Rapier, Broken Trident, Slingshot (wood)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>Secondary Item</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Grade</th>
+                        <th>Spawn Chance</th>
+                        <th>Loot Pool</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Greater Food (1 quantity)</td>
+                        <td>25%</td>
+                        <td>Pink Cake, Rhubarb Pie, Fiddlehead Risotto</td>
+                    </tr>
+                    <tr>
+                        <td>Lesser Food (3 quantity)</td>
+                        <td>40%</td>
+                        <td>Bread, Baked Fish, Algae Soup</td>
+                    </tr>
+                    <tr>
+                        <td>Food Buffs (1 quantity)</td>
+                        <td>20%</td>
+                        <td>Triple Shot Espresso, Roots Platter, Eggplant Parmesan</td>
+                    </tr>
+                    <tr>
+                        <td>Cherry Bombs (3 quantity)</td>
+                        <td>15%</td>
+                        <td>Cherry Bombs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </details>
+
+        <h3 id="Inventory_Size">Inventory Size</h3>
+
+        <p>
+            Player inventory size has been reduced from the original 36 slots to a total of 12 slots.
+            That's one full hotbar of items, so you have to be more careful deciding which items you keep,
+            and which you discard.
+        </p>
+
+        <h3 id="Town_Shortcuts">Town Shortcuts</h3>
+
+        <p>
+            The town shortcuts from the Community Upgrades have all been unlocked. We hope that these
+            paths around Pelican Town will create a new and interesting play dynamic.
+        </p>
+
+        <div class="row">
+            <div class="col">
+                <img style="display: inline" src="img/shortcuts.png" alt="A display of shortcuts around the town." />
+            </div>
+            <div class="col">
+                <img style="display: inline" src="img/shortcuts2.png" alt="A display of shortcuts around the town." />
+            </div>
+            <div class="col">
+                <img style="display: inline" src="img/shortcuts3.png" alt="A display of shortcuts around the town." />
+            </div>
+        </div>
+
+
+        <h3 id="Time_and_Season">Time & Season</h3>
+
+        <p>
+            With the start of each round, the time and season of the map will be randomized. All of the
+            seasons are possible, and the times will either be: early morning, mid-afternoon, dusk, or midnight.
+        </p>
+
+        <p>We found that the random times and seasons add a little bit of extra variety to each round.</p>
+
+        <h3 id="All_Player_Spectate">Spectate for All</h3>
+
+        <p>
+            In the prior iteration of Battle Royalley, only the host was able to spectate rounds.
+            That limitation has been removed, and now all players are free to spectate.
+        </p>
+
+        <p>
+            See the <a href="#In-game_Commands">In-game Commands</a> for information on how to enter spectator mode.
+        </p>
+
+        <h3 id="Damage_Source_Tracking">Damage Source Tracking</h3>
+
+        <p>
+            When a player dies (whether it's via monster, storm, or other reasons), the reason
+            for their death will be accurately tracked and reported via the in-game chatbox.
+        </p>
+
+        <h3 id="Bomb_Damage_Buff">Bomb Damage Buff</h3>
+
+        <p>
+            Bomb damage has been buffed to make them viable for use. All bombs (cherry, regular, and mega) will now do
+            40 - 60 damage.
+        </p>
+
+        <h3 id="Remove_Club_Nerf">Remove Club Nerf</h3>
+
+        <p>
+            In the original iteration of Battle Royalley, the cooldown on the club was increased from the base cooldown
+            by a couple of seconds. This nerf has been removed.
+        </p>
+
+        <h3 id="Forced_Save">Forced Save</h3>
+
+        <p>
+            In order to prevent anybody from accidentally ruining their farms, and to provide a better in-game experience
+            for hosts and players, we have removed the ability for players to use their own farms for Battle Royalley.
+        </p>
+
+        <p>
+            What this change means is that the title screen now only has two buttons, "Coop" and "Exit". Players will not
+            have the option to host their own farms, nor can they create new farms. <b>Battle Royalley: Year 2</b> is
+            automatically bundled with the world file, so no additional action (aside from downloading the mod) is needed.
+        </p>
+
+        <h3 id="Storm_Indoor_Locations">Storm Indoor Locations</h3>
+
+        <p>
+            Rather than indoor locations being filled with the storm at random periods of time,
+            we have made it so that the storm fills indoor locations as each indoor location is reached.
+        </p>
+
+        <p>
+            Every indoor location begins to be filled as soon as the storm reaches any entrance to that
+            location. Each location takes 10 seconds to fill completely.
+        </p>
+
+        <h3 id="Storm_Color">Storm Color</h3>
+
+        <p>Yellow storm was bad. Storm is now purple.</p>
+
+        <h2 id="Bug_Fixes">Bug Fixes</h2>
+
+        <ul>
+            <li>Fix food movespeed debuff affecting all players in the location</li>
+            <li>Fix sewer entry causing game to crash</li>
+            <li>Fix melee special attack being stuck on cooldown after first use</li>
+            <li>Fix ring and boots not being removed upon death</li>
+            <li>Fix players from gaining permanent invincibility on first successful parry</li>
+            <li>Fix Thorns Ring to actually affect attacking players</li>
+            <li>Fix Desert bus cutscene from happening for players spawned in the Desert</li>
+            <li>Fix when players die in the Desert, stop them from instantly respawning</li>
+            <li>Fix holding an item with the mouse in your inventory to bring it to the next round</li>
+            <li>Fix original Battle Royalley UI elements not being rendered properly at various zoom and UI scale levels</li>
+            <li>Fix spring onions from spawning near Marnie's Ranch</li>
+        </ul>
+    </div>
+</body>
+
+</html>
