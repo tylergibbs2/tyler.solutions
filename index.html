@@ -6,58 +6,14 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-    <!-- FONTS
-    ---------------------------- -->
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 
-    <!-- CSS
-    ---------------------------- -->
+    <!-- CSS -->
     <link rel="stylesheet" href="css/main.css" />
 
-    <!-- JS
-    ---------------------------- -->
-    <script type="text/javascript">
-        var seenIndices = [];
-        let subtitles = [
-            "Pioneer of writing subtitles",
-            "Creator of Coyote/Mouse Simulation",
-            "Ex-user of jQuery 😔",
-            "<i>is feeling great!</i>",
-            "Web Developer (not designer 😳)",
-            "Definitely doesn't make floating-point errors",
-            "Pythonista",
-            "React > Angular",
-            "<i>undefined</i>"
-        ];
-
-        function refreshSubtitle () {
-            let subtitle = document.getElementById("description");
-
-            if (seenIndices.length === subtitles.length)
-                seenIndices = [];
-
-            let randomIdx = Math.floor(Math.random() * subtitles.length);;
-            while (seenIndices.includes(randomIdx))
-                randomIdx = Math.floor(Math.random() * subtitles.length);
-            seenIndices.push(randomIdx);
-
-            subtitle.innerHTML = subtitles[randomIdx];
-        }
-
-        window.onload = function () {
-            let pic = document.getElementById("profilePic");
-            pic.onclick = () => {
-                document.body.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-            }
-
-            let description = document.getElementById("description");
-            description.onclick = () => {
-                refreshSubtitle();
-            }
-
-            refreshSubtitle();
-        }
-    </script>
+    <!-- JS -->
+    <script type="text/javascript" src="js/index.js"></script>
 
 </head>
 <div id="main">
