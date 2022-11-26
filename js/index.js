@@ -29,7 +29,8 @@ function randomizeSubtitle() {
 }
 
 function randomizeBackgroundColor() {
-    document.body.style.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    let randomColor = Math.floor(Math.random() * 16777215);
+    document.body.style.backgroundColor = `#${randomColor.toString(16)}`;
 }
 
 window.onload = function () {
