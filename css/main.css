@@ -1,65 +1,67 @@
 body, html {
-    margin: 0px;
-    height: 100%;
-    width: 100%;
-    font-family: 'Muli', sans-serif;
+    font-size: large;
+    font-family: monospace;
     font-weight: normal;
-    transition: background-color 1000ms linear;
     color: white;
-    text-shadow: 1px 1px 1px #000;
 }
 
 body {
-    background-color: #6d6d6d;
+    background-color: #000;
 }
 
-#main {
+a, a:visited {
+    color: #9c9c9c; /* Bright color for links */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease, border-bottom 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Link Hover State */
+a:hover,
+a:focus {
+    color: #63a4ff; /* Lighter color on hover/focus */
+    border-bottom: 2px solid #63a4ff; /* Underline on hover/focus */
+}
+
+ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+ul > li {
+    padding-bottom: 1em;
+}
+
+div#main {
+    padding-top: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+    display: inline-block;
     position: relative;
-    top: 30%;
-    transform: translateY(-15%);
-    text-align: center;
 }
 
-#projects {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    flex-basis: auto;
-    gap: 10px;
-    width: 75%;
-    margin: 0 auto;
-    padding-bottom: 25px;
+#ascii-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: pre;
+    pointer-events: none;
 }
 
-img {
-    border-radius: 50%;
-    cursor: pointer;
+p#name {
+    font-size: x-large;
 }
 
-#name {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-size: 50px;
-    font-weight: normal;
-}
-
-#descriptionHeader {
-    margin-top: 5px;
-}
-
-#descriptionHeader > span {
-    margin-bottom: 15px;
-    font-weight: normal;
-    border-bottom: dashed 1px white;
+p#description {
+    margin-top: -0.5em;
+    -webkit-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     cursor: pointer;
 }
 
-.card {
-    flex: 0 1 25%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: background-color 1000ms linear;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.3);
+.char-measure {
+    position: absolute;
+    visibility: hidden;
+    white-space: nowrap;
 }
