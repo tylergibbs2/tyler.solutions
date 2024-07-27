@@ -146,7 +146,7 @@ async function displayTopLanguages() {
     const languageBarContainer = document.getElementById('language-bar');
 
     // Total width of the ASCII bar
-    const barWidth = 50;
+    const barWidth = 35;
 
     const typeBar = (barKey, numChars, color, index) => {
         const barSpan = document.createElement("span");
@@ -186,6 +186,11 @@ window.addEventListener('resize', () => {
     drawAsciiBox();
     updateCursorPosition();
 });
+
+window.addEventListener('scroll', () => {
+    updateCursorPosition();
+})
+
 window.onload = function () {
     document.getElementById("description").onclick = randomizeSubtitle;
     drawAsciiBox();
