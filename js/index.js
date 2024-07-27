@@ -133,6 +133,55 @@ function drawAsciiBox() {
     asciiBox.style.marginRight = '3px';
 }
 
+async function displayTopLanguages() {
+    let resp = await fetch("/language-stats.json");
+    const languageStats = await resp.json();
+
+    const sortedLanguages = languageStats.sort((a, b) => b.percentage - a.percentage);
+
+    // Get the top 5 languages
+    const topLanguages = sortedLanguages.slice(0, 5);
+
+    // Get the language-bar container
+    const languageBarContainer = document.getElementById('language-bar');
+
+    // Total width of the ASCII bar
+    const barWidth = 50;
+
+    const typeBar = (barKey, numChars, color, index) => {
+        const barSpan = document.createElement("span");
+        barSpan.style.color = color;
+
+        const div = document.createElement('div');
+        div.className = 'language-bar';
+        div.innerText = barKey;
+        div.appendChild(barSpan);
+        languageBarContainer.appendChild(div);
+
+        let currentLength = 0;
+
+        const type = () => {
+            if (currentLength < numChars) {
+                barSpan.innerText = '|' + '='.repeat(currentLength + 1);
+                currentLength++;
+                setTimeout(type, 30);
+            }
+        };
+
+        setTimeout(type, 400 * index);
+    };
+
+    topLanguages.forEach((language, index) => {
+        const langName = language.language;
+        const percentage = language.percentage;
+
+        const numChars = Math.max(Math.floor((percentage / 100) * barWidth), 1);
+        const barKey = langName.slice(0, 10) + ' '.repeat(10 - langName.length);
+
+        typeBar(barKey, numChars, language.color.color, index);
+    });
+}
+
 window.addEventListener('resize', () => {
     drawAsciiBox();
     updateCursorPosition();
@@ -141,6 +190,7 @@ window.onload = function () {
     document.getElementById("description").onclick = randomizeSubtitle;
     drawAsciiBox();
     randomizeSubtitle();
+    displayTopLanguages();
 }
 
 document.addEventListener('keydown', function(event) {
