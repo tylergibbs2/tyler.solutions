@@ -132,6 +132,7 @@ p#name {
     width: 100%;
     font-family: monospace;
     white-space: pre;
+    padding-bottom: 2em;
 }
 
 .language-bar {
