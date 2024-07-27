@@ -1,0 +1,38 @@
+name: Fetch Language Stats
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Run fetch script
+      run: python scripts/fetch_language_stats.py
+
+    - name: Commit and push data file
+      uses: EndBug/add-and-commit@v9
+      with:
+        add: 'language-stats.json'
+        message: 'Update language-stats.json with new API data'
+        author_name: 'github-actions'
+        author_email: 'actions@github.com'
+        push: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
