@@ -91,6 +91,14 @@ p#name {
     position: relative;
 } */
 
+noscript {
+    display: inline;
+    font-size: inherit; /* Match the surrounding text size */
+    margin: 0;         /* Remove any margin */
+    padding: 0;        /* Remove any padding */
+    color: inherit;
+}
+
 #description-container {
     display: block;
     position: relative;
