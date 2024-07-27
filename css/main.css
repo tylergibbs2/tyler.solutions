@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 div#main {
-    padding-top: 2em;
+    padding-top: 1.5em;
     padding-left: 2em;
     padding-right: 2em;
     display: block;
@@ -88,7 +88,7 @@ div#main {
 #ascii-box {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 4px;
     white-space: pre;
     pointer-events: none;
 }

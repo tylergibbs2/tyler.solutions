@@ -166,9 +166,6 @@ function drawMainContentBorder() {
     const mainDivRect = mainDiv.getBoundingClientRect();
 
     asciiBox.textContent = drawAsciiBox(mainDivRect.width, mainDivRect.height);
-    asciiBox.style.top = mainDivRect.top + 'px';
-    asciiBox.style.left = mainDivRect.left + 'px';
-    asciiBox.style.marginRight = '3px';
 }
 
 
