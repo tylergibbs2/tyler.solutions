@@ -27,7 +27,7 @@ def get_language_colors() -> dict:
 def get_repo_names(username: str) -> list[str]:
     resp = requests.get(REPOS_URL.format(username=username))
     all_repo_data = resp.json()
-    return [repo["name"] for repo in all_repo_data if not repo.get("fork")]
+    return [repo["name"] for repo in all_repo_data if (not repo.get("fork") and not repo.get("private"))]
 
 
 def main() -> None:
