@@ -4,6 +4,7 @@ var BOX_CORNER_CHAR = "+"
 var isTyping = false;
 var isFirstLoad = true;
 var konamiCodePosition = 0;
+var languageStats = [];
 
 
 var seenIndices = [];
@@ -62,7 +63,7 @@ function typeEffect(element, text, callback) {
             let newText = currentText.slice(0, -1) + `<span id="last">${lastChar}</span>`;
             element.innerHTML = newText;
             i++;
-            drawAsciiBox();
+            drawMainContentBorder();
             updateCursorPosition();
             setTimeout(type, Math.floor(Math.random() * 40) + 25);
         } else {
@@ -120,16 +121,9 @@ function getCharacterDimensions(char) {
     return { width, height };
 }
 
-function drawAsciiBox() {
-    const mainDiv = document.getElementById('main');
-    const asciiBox = document.getElementById('ascii-box');
-    const mainDivRect = mainDiv.getBoundingClientRect();
-
-    const width = Math.round(mainDivRect.width);
-    const height = Math.round(mainDivRect.height);
-
-    let topCharCount = width / getCharacterDimensions(BOX_HORIZONTAL_CHAR).width;
-    let sideCharCount = height / getCharacterDimensions(BOX_VERTICAL_CHAR).height - 3;
+function drawAsciiBox(width, height) {
+    let topCharCount = Math.round(width / getCharacterDimensions(BOX_HORIZONTAL_CHAR).width);
+    let sideCharCount = Math.round(height / getCharacterDimensions(BOX_VERTICAL_CHAR).height) - 2;
 
     const topBottomBorder = `${BOX_CORNER_CHAR}${BOX_HORIZONTAL_CHAR.repeat(topCharCount)}${BOX_CORNER_CHAR}\n`;
     let middleRows = '';
@@ -137,49 +131,63 @@ function drawAsciiBox() {
         middleRows += `${BOX_VERTICAL_CHAR}${' '.repeat(topCharCount)}${BOX_VERTICAL_CHAR}\n`;
     }
 
-    const box = topBottomBorder + middleRows + topBottomBorder;
-    asciiBox.textContent = box;
+    return topBottomBorder + middleRows + topBottomBorder;
+}
 
+function drawMainContentBorder() {
+    const mainDiv = document.getElementById('main');
+    const asciiBox = document.getElementById('ascii-box');
+    const mainDivRect = mainDiv.getBoundingClientRect();
+
+    asciiBox.textContent = drawAsciiBox(mainDivRect.width, mainDivRect.height);
     asciiBox.style.top = mainDivRect.top + 'px';
     asciiBox.style.left = mainDivRect.left + 'px';
     asciiBox.style.marginRight = '3px';
 }
 
-async function displayTopLanguages() {
+
+async function fetchTopLanguages() {
     let resp = await fetch("/language-stats.json");
-    const languageStats = await resp.json();
-    // const languageStats = JSON.parse(`[{"language": "C#", "percentage": 61.94081575948944, "color": {"color": "#178600", "url": "https://github.com/trending?l=Csharp"}}, {"language": "Python", "percentage": 20.74364767736641, "color": {"color": "#3572A5", "url": "https://github.com/trending?l=Python"}}, {"language": "TypeScript", "percentage": 9.171037242692433, "color": {"color": "#3178c6", "url": "https://github.com/trending?l=TypeScript"}}, {"language": "JavaScript", "percentage": 2.6794664415146925, "color": {"color": "#f1e05a", "url": "https://github.com/trending?l=JavaScript"}}, {"language": "HTML", "percentage": 2.2224567555284644, "color": {"color": "#e34c26", "url": "https://github.com/trending?l=HTML"}}, {"language": "Fluent", "percentage": 1.663353285416743, "color": {"color": "#ffcc33", "url": "https://github.com/trending?l=Fluent"}}, {"language": "Batchfile", "percentage": 0.6639972947301084, "color": {"color": "#C1F12E", "url": "https://github.com/trending?l=Batchfile"}}, {"language": "CSS", "percentage": 0.5151212956002748, "color": {"color": "#563d7c", "url": "https://github.com/trending?l=CSS"}}, {"language": "Shell", "percentage": 0.20629836800716808, "color": {"color": "#89e051", "url": "https://github.com/trending?l=Shell"}}, {"language": "SCSS", "percentage": 0.13155882561993973, "color": {"color": "#c6538c", "url": "https://github.com/trending?l=SCSS"}}, {"language": "Dockerfile", "percentage": 0.034634347019787674, "color": {"color": "#384d54", "url": "https://github.com/trending?l=Dockerfile"}}, {"language": "PLpgSQL", "percentage": 0.02761270701453221, "color": {"color": "#336790", "url": "https://github.com/trending?l=PLpgSQL"}}]`);
+    languageStats = await resp.json();
+    // languageStats = JSON.parse(`[{"language": "C#", "percentage": 61.94081575948944, "color": {"color": "#178600", "url": "https://github.com/trending?l=Csharp"}}, {"language": "Python", "percentage": 20.74364767736641, "color": {"color": "#3572A5", "url": "https://github.com/trending?l=Python"}}, {"language": "TypeScript", "percentage": 9.171037242692433, "color": {"color": "#3178c6", "url": "https://github.com/trending?l=TypeScript"}}, {"language": "JavaScript", "percentage": 2.6794664415146925, "color": {"color": "#f1e05a", "url": "https://github.com/trending?l=JavaScript"}}, {"language": "HTML", "percentage": 2.2224567555284644, "color": {"color": "#e34c26", "url": "https://github.com/trending?l=HTML"}}, {"language": "Fluent", "percentage": 1.663353285416743, "color": {"color": "#ffcc33", "url": "https://github.com/trending?l=Fluent"}}, {"language": "Batchfile", "percentage": 0.6639972947301084, "color": {"color": "#C1F12E", "url": "https://github.com/trending?l=Batchfile"}}, {"language": "CSS", "percentage": 0.5151212956002748, "color": {"color": "#563d7c", "url": "https://github.com/trending?l=CSS"}}, {"language": "Shell", "percentage": 0.20629836800716808, "color": {"color": "#89e051", "url": "https://github.com/trending?l=Shell"}}, {"language": "SCSS", "percentage": 0.13155882561993973, "color": {"color": "#c6538c", "url": "https://github.com/trending?l=SCSS"}}, {"language": "Dockerfile", "percentage": 0.034634347019787674, "color": {"color": "#384d54", "url": "https://github.com/trending?l=Dockerfile"}}, {"language": "PLpgSQL", "percentage": 0.02761270701453221, "color": {"color": "#336790", "url": "https://github.com/trending?l=PLpgSQL"}}]`);
+    drawTopLanguages({doDrawDelay: true});
+}
 
-    const sortedLanguages = languageStats.sort((a, b) => b.percentage - a.percentage);
+async function drawTopLanguages({doDrawDelay}) {
+    const topLanguages = languageStats.slice(0, 5);
 
-    const topLanguages = sortedLanguages.slice(0, 5);
-
-    const languageBarContainer = document.getElementById('language-bar');
-
-    const barWidth = 40;
+    const languageBarContainer = document.getElementById('language-bar-container');
+    const barElements = document.querySelectorAll("#language-bar-container > .language-bar");
 
     const typeBar = (barKey, numChars, color, index) => {
         const barSpan = document.createElement("span");
         barSpan.style.color = color;
 
-        const div = document.createElement('div');
-        div.className = 'language-bar';
+        const div = barElements[index];
         div.innerText = barKey;
         div.appendChild(barSpan);
-        languageBarContainer.appendChild(div);
 
         let currentLength = 0;
-
         const type = () => {
             if (currentLength < numChars) {
                 barSpan.innerText = '|' + '='.repeat(currentLength + 1);
                 currentLength++;
-                setTimeout(type, 30);
+                if (doDrawDelay)
+                    setTimeout(type, 25);
+                else
+                    type();
             }
         };
 
-        setTimeout(type, 450 * index);
+        if (doDrawDelay)
+            setTimeout(type, 450 * index);
+        else
+            type();
     };
+
+    const barCharWidth = getCharacterDimensions("=").width;
+    const prefixWidth = getCharacterDimensions("-".repeat(10)).width;
+    const barWidth = Math.floor((languageBarContainer.getBoundingClientRect().width - prefixWidth) / barCharWidth);
 
     topLanguages.forEach((language, index) => {
         const langName = language.language;
@@ -198,8 +206,9 @@ function onKonamiCodeDetected() {
   }
 
 window.addEventListener('resize', () => {
-    drawAsciiBox();
+    drawMainContentBorder();
     updateCursorPosition();
+    drawTopLanguages({doDrawDelay: false});
 });
 
 window.addEventListener('scroll', () => {
@@ -208,9 +217,9 @@ window.addEventListener('scroll', () => {
 
 window.onload = function () {
     document.getElementById("description").onclick = randomizeSubtitle;
-    drawAsciiBox();
+    drawMainContentBorder();
     randomizeSubtitle();
-    displayTopLanguages();
+    fetchTopLanguages();
 }
 
 document.addEventListener('keydown', function(event) {

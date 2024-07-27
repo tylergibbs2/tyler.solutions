@@ -154,15 +154,16 @@ noscript {
     white-space: nowrap;
 }
 
-.language-bar-container {
+#language-bar-container {
     width: 100%;
+    height: min-content;
     font-family: monospace;
-    white-space: pre;
-    padding-bottom: 2em;
+    margin-bottom: 2em;
 }
 
 .language-bar {
     margin-bottom: 5px;
+    white-space: pre;
 }
 
 @keyframes rainbow {
