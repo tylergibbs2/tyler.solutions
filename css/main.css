@@ -30,14 +30,17 @@ ul {
 
 ul > li {
     padding-bottom: 1em;
+    padding-right: 1em;
 }
 
 div#main {
     padding-top: 2em;
     padding-left: 2em;
     padding-right: 2em;
-    display: inline-block;
+    display: block;
     position: relative;
+    overflow: hidden;
+    width: fit-content;
 }
 
 #ascii-box {
@@ -52,12 +55,39 @@ p#name {
     font-size: x-large;
 }
 
+#description-container {
+    display: block;
+    position: relative;
+    overflow-wrap: break-word;
+}
+
 p#description {
     margin-top: -0.5em;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
     cursor: pointer;
+    white-space: pre-wrap;
+    position: relative;
+    z-index: 1;
+    line-height: 1.2em;
+}
+
+.cursor {
+    display: inline-block;
+    width: 1ch; /* Width of one character */
+    height: 1em; /* Height of the line */
+    background-color: white;
+    animation: blink 1s step-end infinite;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(1ch);
+}
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 .char-measure {
