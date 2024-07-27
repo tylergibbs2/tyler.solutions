@@ -3,6 +3,7 @@ var BOX_VERTICAL_CHAR = "|";
 var BOX_CORNER_CHAR = "+"
 var isTyping = false;
 var isFirstLoad = true;
+var konamiCodePosition = 0;
 
 
 var seenIndices = [];
@@ -23,6 +24,15 @@ let subtitles = [
     "Fintech Enthusiast",
     "Software Sorcerer"
 ];
+
+const konamiCode = [
+    'ArrowUp', 'ArrowUp',
+    'ArrowDown', 'ArrowDown',
+    'ArrowLeft', 'ArrowRight',
+    'ArrowLeft', 'ArrowRight',
+    'KeyB', 'KeyA'
+  ];
+
 
 function updateCursorPosition() {
     const last = document.querySelector('#last');
@@ -136,6 +146,7 @@ function drawAsciiBox() {
 async function displayTopLanguages() {
     let resp = await fetch("/language-stats.json");
     const languageStats = await resp.json();
+    // const languageStats = JSON.parse(`[{"language": "C#", "percentage": 61.94081575948944, "color": {"color": "#178600", "url": "https://github.com/trending?l=Csharp"}}, {"language": "Python", "percentage": 20.74364767736641, "color": {"color": "#3572A5", "url": "https://github.com/trending?l=Python"}}, {"language": "TypeScript", "percentage": 9.171037242692433, "color": {"color": "#3178c6", "url": "https://github.com/trending?l=TypeScript"}}, {"language": "JavaScript", "percentage": 2.6794664415146925, "color": {"color": "#f1e05a", "url": "https://github.com/trending?l=JavaScript"}}, {"language": "HTML", "percentage": 2.2224567555284644, "color": {"color": "#e34c26", "url": "https://github.com/trending?l=HTML"}}, {"language": "Fluent", "percentage": 1.663353285416743, "color": {"color": "#ffcc33", "url": "https://github.com/trending?l=Fluent"}}, {"language": "Batchfile", "percentage": 0.6639972947301084, "color": {"color": "#C1F12E", "url": "https://github.com/trending?l=Batchfile"}}, {"language": "CSS", "percentage": 0.5151212956002748, "color": {"color": "#563d7c", "url": "https://github.com/trending?l=CSS"}}, {"language": "Shell", "percentage": 0.20629836800716808, "color": {"color": "#89e051", "url": "https://github.com/trending?l=Shell"}}, {"language": "SCSS", "percentage": 0.13155882561993973, "color": {"color": "#c6538c", "url": "https://github.com/trending?l=SCSS"}}, {"language": "Dockerfile", "percentage": 0.034634347019787674, "color": {"color": "#384d54", "url": "https://github.com/trending?l=Dockerfile"}}, {"language": "PLpgSQL", "percentage": 0.02761270701453221, "color": {"color": "#336790", "url": "https://github.com/trending?l=PLpgSQL"}}]`);
 
     const sortedLanguages = languageStats.sort((a, b) => b.percentage - a.percentage);
 
@@ -182,6 +193,11 @@ async function displayTopLanguages() {
     });
 }
 
+function onKonamiCodeDetected() {
+    let box = document.querySelector("#ascii-box");
+    box.classList.add("rainbow");
+  }
+
 window.addEventListener('resize', () => {
     drawAsciiBox();
     updateCursorPosition();
@@ -199,7 +215,21 @@ window.onload = function () {
 }
 
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
+    const key = event.code;
+
+    if (key === 'Enter') {
         randomizeSubtitle();
+        return;
+    }
+
+    if (key === konamiCode[konamiCodePosition]) {
+      konamiCodePosition++;
+
+      if (konamiCodePosition === konamiCode.length) {
+        onKonamiCodeDetected();
+        konamiCodePosition = 0; // Reset the position for another detection
+      }
+    } else {
+      konamiCodePosition = 0; // Reset if the sequence is broken
     }
 });
