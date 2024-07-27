@@ -21,8 +21,7 @@ let subtitles = [
     "Stardew Valley modder",
     "Simple is better!",
     "Fintech Enthusiast",
-    "Software Sorcerer",
-    "'Turning coffee into code!'"
+    "Software Sorcerer"
 ];
 
 function updateCursorPosition() {
