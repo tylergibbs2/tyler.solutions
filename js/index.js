@@ -22,7 +22,9 @@ let subtitles = [
     "Stardew Valley modder",
     "Simple is better!",
     "Fintech Enthusiast",
-    "Software Sorcerer"
+    "Software Sorcerer",
+    "The only winning move is not to play",
+    "Would you like to play a game?"
 ];
 
 const konamiCode = [
@@ -150,14 +152,11 @@ async function displayTopLanguages() {
 
     const sortedLanguages = languageStats.sort((a, b) => b.percentage - a.percentage);
 
-    // Get the top 5 languages
     const topLanguages = sortedLanguages.slice(0, 5);
 
-    // Get the language-bar container
     const languageBarContainer = document.getElementById('language-bar');
 
-    // Total width of the ASCII bar
-    const barWidth = 35;
+    const barWidth = 40;
 
     const typeBar = (barKey, numChars, color, index) => {
         const barSpan = document.createElement("span");
@@ -179,7 +178,7 @@ async function displayTopLanguages() {
             }
         };
 
-        setTimeout(type, 400 * index);
+        setTimeout(type, 450 * index);
     };
 
     topLanguages.forEach((language, index) => {
