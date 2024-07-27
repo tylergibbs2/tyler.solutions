@@ -25,7 +25,30 @@ let subtitles = [
     "Fintech Enthusiast",
     "Software Sorcerer",
     "The only winning move is not to play",
-    "Would you like to play a game?"
+    "Would you like to play a game?",
+    "Can you make a ticket for that?",
+    "https://xkcd.com/353",
+    "The great thing about standards is that there's so many to choose from",
+    "Hacker",
+    "Robin Hood of the Laundromat",
+    "Bugs are merely a form of artistic expression",
+    "Everything is configurable, just modify the source",
+    "Try Pydantic!",
+    "Red pill or blue pill?",
+    "Hello, Friend",
+    "Are you a one or a zero?",
+    "Good news, everyone!",
+    "Shut up and take my money!",
+    "Not hot dog",
+    "The bear is sticky with honey!",
+    "AI-driven",
+    "VS Code is my preferred editor",
+    "https://xkcd.com/1425",
+    "If I'm not back in five minutes, just wait longer",
+    "'tis but a scratch!",
+    "It's just a flesh wound",
+    "I'll be back",
+    "May the force be with you"
 ];
 
 const konamiCode = [
@@ -70,7 +93,10 @@ function typeEffect(element, text, callback) {
             if (text.length > 0) {
                 let lastChar = text.charAt(text.length - 1);
                 let fullTextWithSpan = text.slice(0, -1) + `<span id="last">${lastChar}</span>`;
-                element.innerHTML = fullTextWithSpan;
+                if (fullTextWithSpan.startsWith("https://"))
+                    element.innerHTML = `<a href=${text} target="_blank">${fullTextWithSpan}</a>`;
+                else
+                    element.innerHTML = fullTextWithSpan;
             } else {
                 element.innerHTML = '';
             }
