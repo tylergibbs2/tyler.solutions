@@ -1,9 +1,9 @@
-name: Fetch Language Stats
+name: Fetch Divvy Stats
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 20 * *'
 
 jobs:
   fetch-data:
@@ -21,16 +21,16 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests
+        pip install requests pandas
 
     - name: Run fetch script
-      run: python scripts/fetch_language_stats.py
+      run: python scripts/fetch_divvy_stats.py
 
     - name: Commit and push data file
       uses: EndBug/add-and-commit@v9
       with:
-        add: 'language-stats.json'
-        message: 'Update language-stats.json with new API data'
+        add: 'divvy-stats.json'
+        message: 'Update divvy-stats.json with new API data'
         author_name: 'github-actions'
         author_email: 'actions@github.com'
         push: true
