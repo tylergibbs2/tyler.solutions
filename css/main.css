@@ -23,7 +23,7 @@ a:focus {
 }
 
 
-ul {
+ul, ol {
     list-style-type: none;
     padding-left: 0;
     columns: 2;
@@ -36,11 +36,18 @@ li {
 }
 
 li::before {
-    content: '>';
     position: absolute;
     left: 0;
     color: #9c9c9c;
     font-size: 1em;
+}
+
+ul > li::before {
+    content: '>';
+}
+
+ol > li::before {
+    content: counter(list-item) '.';
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -93,6 +100,16 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.flex-row > div {
+    flex: 1;
+}
+
 p#name {
     font-size: x-large;
 }
@@ -128,9 +145,12 @@ noscript {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    cursor: pointer;
     white-space: pre-wrap;
     position: relative;
+}
+
+#description:not(.no-refresh) {
+    cursor: pointer;
 }
 
 .cursor {
@@ -179,4 +199,23 @@ noscript {
 
 .rainbow {
 animation: rainbow 7s linear infinite;
+}
+
+
+table {
+    border: 1px solid white;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #444;
 }

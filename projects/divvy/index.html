@@ -1,0 +1,151 @@
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tyler Gibbs</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <!-- JS -->
+    <script type="text/javascript" src="/js/base.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <noscript>
+        <style>
+            #main {
+                display: none;
+            }
+        </style>
+    </noscript>
+
+</head>
+
+<body>
+    <noscript>
+        <p>Sorry, this page requires JavaScript.</p>
+        <p><a href="/">Back</a></p>
+    </noscript>
+    <div id="main">
+        <p id="name">Chicago Bikesharing Stats (Divvy)</p>
+        <div id="description-container">
+            <p id="description" class="no-refresh">-</p>
+            <div id="cursor" class="cursor"></div>
+        </div>
+
+        <div>
+            <a href="https://divvybikes.com/system-data" target="_blank">Data Source</a>
+        </div>
+
+        <h4>About</h4>
+        <p>
+            Divvy provides a monthly data dump of all completed trips, which presents a unique opportunity for detailed
+            analysis. Please note that cost calculations are based on estimated fees for each trip.</p>
+        <p>This page is updated every month on the 20th, using data from the previous month. All monetary values are
+            represented in USD.</p>
+
+        <div>
+            <h4>Top 5 Stations (by activity)</h4>
+            <div class="wrap">
+                <ol>
+                    <li id="top-station-0">Station 1</li>
+                    <li id="top-station-1">Station 2</li>
+                    <li id="top-station-2">Station 3</li>
+                    <li id="top-station-3">Station 4</li>
+                    <li id="top-station-4">Station 5</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <div>
+                <h4>Trip Count</h4>
+                <p>Total: <span id="total-trips">-</span></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>group</th>
+                            <th>% total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>member</td>
+                            <td id="counttable-member-percent">-</td>
+                        </tr>
+                        <tr>
+                            <td>non-member</td>
+                            <td id="counttable-casual-percent">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h4>Trip Cost</h4>
+                <p>Total: <span id="total-revenue">-</span></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>group</th>
+                            <th>avg</th>
+                            <th>% total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>member</td>
+                            <td id="revtable-member-avg">-</td>
+                            <td id="revtable-member-percent">-</td>
+                        </tr>
+                        <tr>
+                            <td>non-member</td>
+                            <td id="revtable-casual-avg">-</td>
+                            <td id="revtable-casual-percent">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h4>Activity by Time of Day</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>time of day</th>
+                    <th>% trips</th>
+                    <th>% trip cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>morning</td>
+                    <td id="timetable-morning-trips">-</td>
+                    <td id="timetable-morning-cost">-</td>
+                </tr>
+                <tr>
+                    <td>afternoon</td>
+                    <td id="timetable-afternoon-trips">-</td>
+                    <td id="timetable-afternoon-cost">-</td>
+                </tr>
+                <tr>
+                    <td>evening</td>
+                    <td id="timetable-evening-trips">-</td>
+                    <td id="timetable-evening-cost">-</td>
+                </tr>
+                <tr>
+                    <td>night</td>
+                    <td id="timetable-night-trips">-</td>
+                    <td id="timetable-night-cost">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <pre id="ascii-box"></pre>
+</body>
+
+</html>
