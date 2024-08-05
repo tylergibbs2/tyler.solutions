@@ -8,7 +8,7 @@ async function fetchDivvyStats() {
     let resp = await fetch("/divvy-stats.json");
     divvyStats = await resp.json();
 
-    subtitles = [`Last Updated: ${divvyStats.meta.as_of}`]
+    subtitles = [`Data Month: ${divvyStats.meta.as_of}`]
     randomizeSubtitle();
 }
 
