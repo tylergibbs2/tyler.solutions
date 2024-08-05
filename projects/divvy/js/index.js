@@ -66,8 +66,18 @@ function loadStats() {
     for (let i = 0; i < topStations.length; i++) {
         let id = `top-station-${i}`;
         let station = topStations[i];
-        let ridePercent = formatPercentValue(station.total_ride_percent)
-        setElemText(id, `${station.station_name} (${ridePercent})`)
+        let ridePercent = formatPercentValue(station.total_ride_percent);
+        let listItem = document.getElementById(id);
+        listItem.innerHTML = `${station.station_name} <span class="percent">(${ridePercent})</span>`;
+    }
+
+    let topNeighborhoods = divvyStats.stats.neighborhood_activity.splice(0, 5);
+    for (let i = 0; i < topNeighborhoods.length; i++) {
+        let id = `top-neighborhood-${i}`;
+        let neighborhood = topNeighborhoods[i];
+        let ridePercent = formatPercentValue(neighborhood.ride_percent);
+        let listItem = document.getElementById(id);
+        listItem.innerHTML = `${neighborhood.start_neighborhood} <span class="percent">(${ridePercent})</span>`;
     }
 
     let memberTrips = getStatItemByKeyValue("rides_by_membership", "member_casual", "member");

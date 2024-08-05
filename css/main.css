@@ -29,6 +29,10 @@ ul, ol {
     columns: 2;
 }
 
+.one-column {
+    columns: 1;
+}
+
 li {
     position: relative;
     padding-left: 1.5em;
@@ -42,11 +46,11 @@ li::before {
     font-size: 1em;
 }
 
-ul > li::before {
+ul > li:not(.no-counter)::before {
     content: '>';
 }
 
-ol > li::before {
+ol > li:not(.no-counter)::before {
     content: counter(list-item) '.';
 }
 
@@ -114,23 +118,11 @@ p#name {
     font-size: x-large;
 }
 
-/* .wrap {
-    display: block;
-    position: relative;
-    overflow-wrap: break-word;
-    max-width: 40%;
-}
-
-.wrap p {
-    white-space: pre-wrap;
-    position: relative;
-} */
-
 noscript {
     display: inline;
-    font-size: inherit; /* Match the surrounding text size */
-    margin: 0;         /* Remove any margin */
-    padding: 0;        /* Remove any padding */
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
     color: inherit;
 }
 
@@ -218,4 +210,17 @@ th, td {
 
 th {
     background-color: #444;
+}
+
+
+.justified-list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.justified-list-item .percent {
+    font-weight: bold;
 }
