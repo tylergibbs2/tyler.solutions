@@ -12,10 +12,7 @@ COLORS_URL = "https://raw.githubusercontent.com/ozh/github-colors/master/colors.
 
 
 def get_language_stats(username: str, repo_name: str) -> dict:
-    resp = requests.get(LANGUAGES_URL.format(
-        username=username,
-        repo_name=repo_name
-    ))
+    resp = requests.get(LANGUAGES_URL.format(username=username, repo_name=repo_name))
     return resp.json()
 
 
@@ -27,7 +24,11 @@ def get_language_colors() -> dict:
 def get_repo_names(username: str) -> list[str]:
     resp = requests.get(REPOS_URL.format(username=username))
     all_repo_data = resp.json()
-    return [repo["name"] for repo in all_repo_data if (not repo.get("fork") and not repo.get("private"))]
+    return [
+        repo["name"]
+        for repo in all_repo_data
+        if (not repo.get("fork") and not repo.get("private"))
+    ]
 
 
 def main() -> None:
@@ -39,9 +40,11 @@ def main() -> None:
         for k, v in repo_stats.items():
             global_stats[k] += v
 
-
     total = sum(global_stats.values())
-    result = [{"language": key, "percentage": (value / total) * 100} for key, value in global_stats.items()]
+    result = [
+        {"language": key, "percentage": (value / total) * 100}
+        for key, value in global_stats.items()
+    ]
     result = sorted(result, key=lambda r: r["percentage"], reverse=True)
 
     colors_map = get_language_colors()
