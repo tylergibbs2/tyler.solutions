@@ -99,7 +99,7 @@ def categorize_time_of_day(hour):
 def calculate_station_activity(df: pd.DataFrame) -> pd.DataFrame:
     total_rides = len(df)
 
-    start_station_counts = df['start_station_name'].fillna('No Station').value_counts().head(10)
+    start_station_counts = df['start_station_name'].value_counts().head(10)
     start_station_percentages = (start_station_counts / total_rides) * 100
 
     start_station_stats = pd.DataFrame({
@@ -108,7 +108,7 @@ def calculate_station_activity(df: pd.DataFrame) -> pd.DataFrame:
         'start_ride_percent': start_station_percentages.values
     })
 
-    end_station_counts = df['end_station_name'].fillna('No Station').value_counts().head(10)
+    end_station_counts = df['end_station_name'].value_counts().head(10)
     end_station_percentages = (end_station_counts / total_rides) * 100
 
     end_station_stats = pd.DataFrame({
