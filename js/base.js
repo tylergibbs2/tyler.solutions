@@ -72,10 +72,7 @@ function updateCursorPosition() {
 }
 
 
-function typeEffect(element, text, callback) {
-    if (isTyping) return;
-
-    isTyping = true;
+function typeEffect(element, text, callback, includeSpan = false) {
     let i = 0;
     element.innerHTML = '';
 
@@ -83,7 +80,7 @@ function typeEffect(element, text, callback) {
         if (i < text.length) {
             let currentText = text.substring(0, i + 1);
             let lastChar = currentText.charAt(currentText.length - 1);
-            let newText = currentText.slice(0, -1) + `<span id="last">${lastChar}</span>`;
+            let newText = includeSpan ? currentText.slice(0, -1) + `<span id="last">${lastChar}</span>` : currentText;
             element.innerHTML = newText;
             i++;
             drawMainContentBorder();
@@ -92,11 +89,12 @@ function typeEffect(element, text, callback) {
         } else {
             if (text.length > 0) {
                 let lastChar = text.charAt(text.length - 1);
-                let fullTextWithSpan = text.slice(0, -1) + `<span id="last">${lastChar}</span>`;
-                if (fullTextWithSpan.startsWith("https://"))
+                let fullTextWithSpan = includeSpan ? text.slice(0, -1) + `<span id="last">${lastChar}</span>` : text;
+                if (fullTextWithSpan.startsWith("https://")) {
                     element.innerHTML = `<a href=${text} target="_blank">${fullTextWithSpan}</a>`;
-                else
+                } else {
                     element.innerHTML = fullTextWithSpan;
+                }
             } else {
                 element.innerHTML = '';
             }
@@ -113,7 +111,7 @@ function typeEffect(element, text, callback) {
 
 function randomizeSubtitle() {
     let subtitle = document.getElementById("description");
-    if (!subtitle)
+    if (!subtitle || isTyping)
         return;
 
     // if (!subtitles || subtitles.length === 0) {
@@ -137,7 +135,8 @@ function randomizeSubtitle() {
     seenIndices.push(randomIdx);
 
     const newSubtitle = subtitles[randomIdx];
-    typeEffect(subtitle, newSubtitle, () => isTyping = false);
+    isTyping = true;
+    typeEffect(subtitle, newSubtitle, () => isTyping = false, true);
 }
 
 function getCharacterDimensions(char) {

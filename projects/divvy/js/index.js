@@ -53,7 +53,8 @@ function setElemText(elem_id, text) {
         return;
     }
 
-    elem.innerText = text;
+    typeEffect(elem, text);
+    // elem.innerText = text;
 }
 
 
@@ -68,7 +69,7 @@ function loadStats() {
         let station = topStations[i];
         let ridePercent = formatPercentValue(station.total_ride_percent);
         let listItem = document.getElementById(id);
-        listItem.innerHTML = `${station.station_name} <span class="percent">(${ridePercent})</span>`;
+        typeEffect(listItem, `${station.station_name} <span class="percent">(${ridePercent})</span>`);
     }
 
     let topNeighborhoods = divvyStats.stats.neighborhood_activity.splice(0, 5);
@@ -77,7 +78,7 @@ function loadStats() {
         let neighborhood = topNeighborhoods[i];
         let ridePercent = formatPercentValue(neighborhood.ride_percent);
         let listItem = document.getElementById(id);
-        listItem.innerHTML = `${neighborhood.start_neighborhood} <span class="percent">(${ridePercent})</span>`;
+        typeEffect(listItem, `${neighborhood.start_neighborhood} <span class="percent">(${ridePercent})</span>`);
     }
 
     let memberTrips = getStatItemByKeyValue("rides_by_membership", "member_casual", "member");
