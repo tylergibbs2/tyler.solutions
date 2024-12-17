@@ -15,7 +15,7 @@ import requests
 
 DIVVY_BUCKET_NAME = "divvy-tripdata"
 DIVVY_TABLE_NAME = "trips"
-NEIGHBORHOOD_SHAPEFILE_LINK = "https://data.cityofchicago.org/api/geospatial/bbvz-uum9?method=export&format=Shapefile"
+NEIGHBORHOOD_SHAPEFILE_LINK = "https://github.com/tylergibbs2/tyler.solutions/raw/refs/heads/master/scripts/Neighborhoods_2012b_20241217.zip"
 FILENAME_PATTERN = re.compile(r"\d{6}-divvy-tripdata\.zip")
 OUTFILE_NAME = "divvy-stats.json"
 
@@ -33,6 +33,8 @@ def download_monthly_zipfile(name: str) -> Optional[Path]:
 
 def download_neighborhood_shapefile() -> Optional[Path]:
     resp = requests.get(NEIGHBORHOOD_SHAPEFILE_LINK)
+    if resp.status_code != 200:
+        raise Exception("Error downloading City of Chicago neighborhood data")
     with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
         shapefile_fp = None
         for zf_fp in zf.filelist:
