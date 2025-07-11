@@ -29,6 +29,48 @@ var isLoadingWordList = false;
 var isGameStarted = false;
 var isFindingWords = false;
 
+// Web Worker for word search
+var wordhuntWorker = null;
+var workerReady = false;
+var workerQueue = [];
+
+function initWorker() {
+    if (wordhuntWorker) return;
+    wordhuntWorker = new Worker('js/wordhunt_worker.js');
+    wordhuntWorker.onmessage = function(e) {
+        const { type, success, words, error } = e.data;
+        if (type === 'init') {
+            workerReady = true;
+            // Process any queued board searches
+            while (workerQueue.length > 0) {
+                const board = workerQueue.shift();
+                sendBoardToWorker(board);
+            }
+        } else if (type === 'search') {
+            isFindingWords = false;
+            if (error) {
+                updateStatus('Worker error: ' + error);
+                foundWordsWithPaths = [];
+                displayWordAtIndex(0);
+                return;
+            }
+            foundWordsWithPaths = words;
+            currentWordIndex = 0;
+            displayWordAtIndex(currentWordIndex);
+            updateStatus(`Found ${foundWordsWithPaths.length} words`);
+        }
+    };
+}
+
+function sendBoardToWorker(boardString) {
+    if (!workerReady) {
+        workerQueue.push(boardString);
+        return;
+    }
+    isFindingWords = true;
+    wordhuntWorker.postMessage({ type: 'search', data: boardString });
+}
+
 // Trie functions
 function createTrieNode() {
     return {
@@ -243,75 +285,8 @@ function showNextWord() {
 
 function findWordsInBoard() {
     if (!isWordListLoaded || isFindingWords) return;
-    isFindingWords = true;
-    const BOARD_SIZE = 4;
-    const MIN_WORD_LENGTH = 3;
-
-    prettyPrintBoard(BOARD);
-
-    // Convert BOARD string to 2D array
-    const board = [];
-    for (let i = 0; i < BOARD_SIZE; i++) {
-        board[i] = [];
-        for (let j = 0; j < BOARD_SIZE; j++) {
-            board[i][j] = BOARD[i * BOARD_SIZE + j];
-        }
-    }
-
-    const found = new Map(); // word -> path
-    const directions = [
-        [-1, -1], [-1, 0], [-1, 1],
-        [0, -1],           [0, 1],
-        [1, -1],  [1, 0],  [1, 1]
-    ];
-
-    function isValidPosition(row, col) {
-        return row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE;
-    }
-
-    function recurse(row, col, word, visited, path, depth) {
-        if (depth > 16) return; // Prevent stack overflow
-        if (!isValidPosition(row, col) || visited[row][col]) return;
-        const currentWord = word + board[row][col];
-        if (!isPrefix(TRIE_ROOT, currentWord)) return;
-        visited[row][col] = true;
-        path.push([row, col]);
-        if (currentWord.length >= MIN_WORD_LENGTH && isWord(TRIE_ROOT, currentWord)) {
-            // Only store the first path found for each word
-            if (!found.has(currentWord)) {
-                found.set(currentWord, path.slice());
-            }
-        }
-        for (const [dr, dc] of directions) {
-            recurse(row + dr, col + dc, currentWord, visited, path, depth + 1);
-        }
-        visited[row][col] = false;
-        path.pop();
-    }
-
-    for (let row = 0; row < BOARD_SIZE; row++) {
-        for (let col = 0; col < BOARD_SIZE; col++) {
-            const visited = Array(BOARD_SIZE).fill().map(() => Array(BOARD_SIZE).fill(false));
-            recurse(row, col, "", visited, [], 1);
-        }
-    }
-
-    // Prepare the found words and paths for navigation
-    foundWordsWithPaths = Array.from(found.entries()).map(([word, path]) => ({ word, path }));
-    foundWordsWithPaths.sort((a, b) => {
-        if (b.word.length !== a.word.length) return b.word.length - a.word.length;
-        return a.word.localeCompare(b.word);
-    });
-    currentWordIndex = 0;
-    displayWordAtIndex(currentWordIndex);
-    if (WORDS.length === 0) {
-        // Don't update status if no words loaded
-        isFindingWords = false;
-        return foundWordsWithPaths;
-    }
-    updateStatus(`Found ${foundWordsWithPaths.length} words`);
-    isFindingWords = false;
-    return foundWordsWithPaths;
+    // Send the board to the worker for searching
+    sendBoardToWorker(BOARD);
 }
 
 function clearWordList() {
@@ -354,40 +329,21 @@ async function loadWordList() {
     isLoadingWordList = true;
     try {
         updateStatus('Loading word list...');
-
         const response = await fetch('/words.txt');
-
-        if (!response.ok) {
-            throw new Error(`Failed to load word list: ${response.status} ${response.statusText}`);
-        }
-
+        if (!response.ok) throw new Error(`Failed to load word list: ${response.status} ${response.statusText}`);
         const text = await response.text();
-
-        // Split by newlines and filter out empty lines and whitespace
-        // This handles both Unix (\n) and Windows (\r\n) line endings
         const lines = text.split(/\r?\n/);
-
-        // Filter out empty lines and trim whitespace
-        const filteredWords = lines
-            .map(line => line.trim())
-            .filter(word => word.length > 0);
-
+        const filteredWords = lines.map(line => line.trim()).filter(word => word.length > 0);
         WORDS.push(...filteredWords);
-
-        // Build Trie for efficient lookup
-        TRIE_ROOT = buildTrie(filteredWords);
-
-        console.log(`Loaded ${filteredWords.length} words successfully`);
-        if (filteredWords.length === 0) {
-            updateStatus('No words loaded. Check your word list.');
-        }
-
+        // Initialize the worker and send the word list
+        initWorker();
+        wordhuntWorker.postMessage({ type: 'init', data: filteredWords });
+        // No longer build Trie in main thread
+        if (filteredWords.length === 0) updateStatus('No words loaded. Check your word list.');
     } catch (error) {
         console.error('Error loading word list:', error);
         updateStatus('Error loading word list');
-        // Fallback to empty array or some default words
         WORDS = [];
-        TRIE_ROOT = createTrieNode();
     } finally {
         isWordListLoaded = true;
         isLoadingWordList = false;
