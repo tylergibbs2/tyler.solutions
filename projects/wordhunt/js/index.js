@@ -109,6 +109,17 @@ function createBoardGrid() {
     console.log(`Created ${grid.children.length} cells`);
 }
 
+var cellInput = null;
+var isTouchDevice = false;
+
+function isProbablyTouchDevice() {
+    return (
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        navigator.msMaxTouchPoints > 0
+    );
+}
+
 function startEditingCell(cell) {
     // Clear previous editing state
     if (currentEditingCell) {
@@ -118,32 +129,47 @@ function startEditingCell(cell) {
     currentEditingCell = cell;
     cell.classList.add('editing');
 
-    // Focus on the cell for keyboard input
-    cell.focus();
+    if (isTouchDevice && cellInput) {
+        // Move the input near the cell (optional, for accessibility)
+        const rect = cell.getBoundingClientRect();
+        cellInput.style.top = rect.top + window.scrollY + 'px';
+        cellInput.style.left = rect.left + window.scrollX + 'px';
+        cellInput.value = '';
+        cellInput.focus();
+    } else {
+        // Focus on the cell for keyboard input (desktop)
+        cell.focus();
+    }
 
     console.log('Editing cell:', cell.dataset.row, cell.dataset.col);
 }
 
+function handleCellInput(e) {
+    if (!currentEditingCell) return;
+    const val = e.target.value.toUpperCase();
+    if (val.length === 1 && /[A-Z]/.test(val)) {
+        currentEditingCell.textContent = val;
+        currentEditingCell.classList.remove('editing');
+        currentEditingCell = null;
+        updateBoardString();
+        clearWordList();
+        findWordsInBoard();
+        cellInput.value = '';
+    }
+}
+
 function handleKeyPress(event) {
     if (!currentEditingCell) return;
-
+    if (isTouchDevice) return; // Don't handle on-screen keyboard events
     const key = event.key.toUpperCase();
-
     // Only allow single letters A-Z
     if (key.length === 1 && /[A-Z]/.test(key)) {
         currentEditingCell.textContent = key;
         currentEditingCell.classList.remove('editing');
         currentEditingCell = null;
-
-        // Update the board string
         updateBoardString();
-
-        // Clear word list since board changed
         clearWordList();
-
-        // Automatically find words
         findWordsInBoard();
-
         event.preventDefault();
     } else if (event.key === 'Escape') {
         // Cancel editing
@@ -360,6 +386,8 @@ function initializeFrontend() {
     prevWordBtn = document.getElementById('prev-word');
     nextWordBtn = document.getElementById('next-word');
     currentWordElement = document.getElementById('current-word');
+    cellInput = document.getElementById('cell-input');
+    isTouchDevice = isProbablyTouchDevice();
 
     console.log('Board grid element:', boardGrid);
     console.log('Status element:', statusElement);
@@ -379,6 +407,9 @@ function initializeFrontend() {
     // if (findWordsBtn) findWordsBtn.addEventListener('click', findWordsInBoard);
     if (prevWordBtn) prevWordBtn.addEventListener('click', showPrevWord);
     if (nextWordBtn) nextWordBtn.addEventListener('click', showNextWord);
+    if (cellInput) {
+        cellInput.addEventListener('input', handleCellInput);
+    }
 
     // Add keyboard event listener
     document.addEventListener('keydown', handleKeyPress);
