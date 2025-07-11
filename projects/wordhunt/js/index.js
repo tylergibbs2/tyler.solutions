@@ -261,7 +261,8 @@ function findWordsInBoard() {
         return row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE;
     }
 
-    function recurse(row, col, word, visited, path) {
+    function recurse(row, col, word, visited, path, depth) {
+        if (depth > 16) return; // Prevent stack overflow
         if (!isValidPosition(row, col) || visited[row][col]) return;
         const currentWord = word + board[row][col];
         if (!isPrefix(TRIE_ROOT, currentWord)) return;
@@ -274,7 +275,7 @@ function findWordsInBoard() {
             }
         }
         for (const [dr, dc] of directions) {
-            recurse(row + dr, col + dc, currentWord, visited, path);
+            recurse(row + dr, col + dc, currentWord, visited, path, depth + 1);
         }
         visited[row][col] = false;
         path.pop();
@@ -283,7 +284,7 @@ function findWordsInBoard() {
     for (let row = 0; row < BOARD_SIZE; row++) {
         for (let col = 0; col < BOARD_SIZE; col++) {
             const visited = Array(BOARD_SIZE).fill().map(() => Array(BOARD_SIZE).fill(false));
-            recurse(row, col, "", visited, []);
+            recurse(row, col, "", visited, [], 1);
         }
     }
 
