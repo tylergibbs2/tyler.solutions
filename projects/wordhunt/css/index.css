@@ -102,6 +102,12 @@
     overflow: hidden;
 }
 
+#disclaimer {
+    color: #ff746c;
+    margin-top: 0.75em;
+    font-family: monospace;
+}
+
 #status {
     color: #9c9c9c;
     margin-bottom: 0.5em;

@@ -294,8 +294,11 @@ function findWordsInBoard() {
         return a.word.localeCompare(b.word);
     });
     currentWordIndex = 0;
-    // updateWordCount(foundWordsWithPaths.length); // removed
     displayWordAtIndex(currentWordIndex);
+    if (WORDS.length === 0) {
+        // Don't update status if no words loaded
+        return foundWordsWithPaths;
+    }
     updateStatus(`Found ${foundWordsWithPaths.length} words`);
     return foundWordsWithPaths;
 }
@@ -362,7 +365,9 @@ async function loadWordList() {
         TRIE_ROOT = buildTrie(filteredWords);
 
         console.log(`Loaded ${filteredWords.length} words successfully`);
-        updateStatus('Ready - Click cells to edit, then "Find Words"');
+        if (filteredWords.length === 0) {
+            updateStatus('No words loaded. Check your word list.');
+        }
 
     } catch (error) {
         console.error('Error loading word list:', error);
@@ -440,8 +445,10 @@ async function startGame() {
     console.log('Starting game...');
     // Load word list and find words
     await loadWordList();
-    // Automatically reset to default and show words
-    resetBoard();
+    // Only reset if words loaded successfully
+    if (WORDS.length > 0) {
+        resetBoard();
+    }
 }
 
 window.addEventListener('load', async () => {
