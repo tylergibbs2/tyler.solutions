@@ -342,7 +342,13 @@ async function loadWordList() {
         if (filteredWords.length === 0) updateStatus('No words loaded. Check your word list.');
     } catch (error) {
         console.error('Error loading word list:', error);
-        updateStatus('Error loading word list');
+        let message = 'Error loading word list';
+        if (error && error.stack) {
+            message += ':\n' + error.stack;
+        } else if (error && error.message) {
+            message += ':\n' + error.message;
+        }
+        updateStatus(message);
         WORDS = [];
     } finally {
         isWordListLoaded = true;
