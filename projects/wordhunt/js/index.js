@@ -72,23 +72,6 @@ function buildTrie(words) {
     return root;
 }
 
-async function buildTrieAsync(words, chunkSize = 1000) {
-    const root = createTrieNode();
-    let i = 0;
-    function processChunk(resolve) {
-        const end = Math.min(i + chunkSize, words.length);
-        for (; i < end; i++) {
-            insertWord(root, words[i]);
-        }
-        if (i < words.length) {
-            setTimeout(() => processChunk(resolve), 0);
-        } else {
-            resolve(root);
-        }
-    }
-    return new Promise(resolve => processChunk(resolve));
-}
-
 function updateBoardString() {
     const cells = boardGrid.querySelectorAll('.board-cell');
     BOARD = '';
@@ -359,21 +342,38 @@ function prettyPrintBoard(boardString) {
 async function loadWordList() {
     try {
         updateStatus('Loading word list...');
+
         const response = await fetch('/words.txt');
-        if (!response.ok) throw new Error(`Failed to load word list: ${response.status} ${response.statusText}`);
+
+        if (!response.ok) {
+            throw new Error(`Failed to load word list: ${response.status} ${response.statusText}`);
+        }
+
         const text = await response.text();
+
+        // Split by newlines and filter out empty lines and whitespace
+        // This handles both Unix (\n) and Windows (\r\n) line endings
         const lines = text.split(/\r?\n/);
-        const filteredWords = lines.map(line => line.trim()).filter(word => word.length > 0);
+
+        // Filter out empty lines and trim whitespace
+        const filteredWords = lines
+            .map(line => line.trim())
+            .filter(word => word.length > 0);
+
         WORDS.push(...filteredWords);
 
-        // Use async chunked Trie builder
-        TRIE_ROOT = await buildTrieAsync(filteredWords);
+        // Build Trie for efficient lookup
+        TRIE_ROOT = buildTrie(filteredWords);
 
         console.log(`Loaded ${filteredWords.length} words successfully`);
-        if (filteredWords.length === 0) updateStatus('No words loaded. Check your word list.');
+        if (filteredWords.length === 0) {
+            updateStatus('No words loaded. Check your word list.');
+        }
+
     } catch (error) {
         console.error('Error loading word list:', error);
         updateStatus('Error loading word list');
+        // Fallback to empty array or some default words
         WORDS = [];
         TRIE_ROOT = createTrieNode();
     }
