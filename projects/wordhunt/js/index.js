@@ -23,6 +23,12 @@ var prevWordBtn = null;
 var nextWordBtn = null;
 var currentWordElement = null;
 
+// Add flags to prevent duplicate or premature calls
+var isWordListLoaded = false;
+var isLoadingWordList = false;
+var isGameStarted = false;
+var isFindingWords = false;
+
 // Trie functions
 function createTrieNode() {
     return {
@@ -236,6 +242,8 @@ function showNextWord() {
 }
 
 function findWordsInBoard() {
+    if (!isWordListLoaded || isFindingWords) return;
+    isFindingWords = true;
     const BOARD_SIZE = 4;
     const MIN_WORD_LENGTH = 3;
 
@@ -298,9 +306,11 @@ function findWordsInBoard() {
     displayWordAtIndex(currentWordIndex);
     if (WORDS.length === 0) {
         // Don't update status if no words loaded
+        isFindingWords = false;
         return foundWordsWithPaths;
     }
     updateStatus(`Found ${foundWordsWithPaths.length} words`);
+    isFindingWords = false;
     return foundWordsWithPaths;
 }
 
@@ -340,6 +350,8 @@ function prettyPrintBoard(boardString) {
 }
 
 async function loadWordList() {
+    if (isWordListLoaded || isLoadingWordList) return;
+    isLoadingWordList = true;
     try {
         updateStatus('Loading word list...');
 
@@ -376,6 +388,9 @@ async function loadWordList() {
         // Fallback to empty array or some default words
         WORDS = [];
         TRIE_ROOT = createTrieNode();
+    } finally {
+        isWordListLoaded = true;
+        isLoadingWordList = false;
     }
 }
 
@@ -443,6 +458,8 @@ function tryInitialize() {
 }
 
 async function startGame() {
+    if (isGameStarted) return;
+    isGameStarted = true;
     console.log('Starting game...');
     // Load word list and find words
     await loadWordList();
