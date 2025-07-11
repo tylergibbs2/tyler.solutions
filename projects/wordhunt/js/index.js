@@ -1,8 +1,8 @@
 var WORDS = [];
 var TRIE_ROOT = null;
 
-var BOARD = "OATRIHPSHTNRENEI";
-var DEFAULT_BOARD = "OATRIHPSHTNRENEI";
+var BOARD = "PEYBEHLRAIOPIRAO";
+var DEFAULT_BOARD = "PEYBEHLRAIOPIRAO";
 
 // Frontend elements
 var boardGrid = null;
