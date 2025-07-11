@@ -338,63 +338,39 @@ function prettyPrintBoard(boardString) {
     console.log("└───┴───┴───┴───┘");
 }
 
-function logToDom(msg) {
-    var logEl = document.getElementById('debug-log');
-    if (logEl) {
-        logEl.textContent += msg + '\n';
-        logEl.scrollTop = logEl.scrollHeight;
-    }
-}
-
 async function loadWordList() {
     try {
         updateStatus('Loading word list...');
-        logToDom('[WordHunt] Fetching word list from /words.txt ...');
-        console.log('[WordHunt] Fetching word list from /words.txt ...');
 
         const response = await fetch('/words.txt');
-        logToDom('[WordHunt] Fetch response: ' + response.status + ' ' + response.statusText);
-        console.log('[WordHunt] Fetch response:', response);
 
         if (!response.ok) {
-            logToDom('[WordHunt] Fetch failed with status: ' + response.status + ' ' + response.statusText);
-            console.error('[WordHunt] Fetch failed with status:', response.status, response.statusText);
             throw new Error(`Failed to load word list: ${response.status} ${response.statusText}`);
         }
 
         const text = await response.text();
-        logToDom('[WordHunt] Word list loaded, length: ' + text.length);
-        logToDom('[WordHunt] First 100 chars: ' + text.slice(0, 100));
-        console.log('[WordHunt] Word list loaded, length:', text.length);
-        console.log('[WordHunt] First 100 chars:', text.slice(0, 100));
 
         // Split by newlines and filter out empty lines and whitespace
         // This handles both Unix (\n) and Windows (\r\n) line endings
         const lines = text.split(/\r?\n/);
-        logToDom('[WordHunt] Number of lines: ' + lines.length);
-        console.log('[WordHunt] Number of lines:', lines.length);
 
         // Filter out empty lines and trim whitespace
         const filteredWords = lines
             .map(line => line.trim())
             .filter(word => word.length > 0);
-        logToDom('[WordHunt] Number of filtered words: ' + filteredWords.length);
-        console.log('[WordHunt] Number of filtered words:', filteredWords.length);
 
         WORDS.push(...filteredWords);
 
         // Build Trie for efficient lookup
         TRIE_ROOT = buildTrie(filteredWords);
 
-        logToDom('[WordHunt] Trie built.');
-        console.log('[WordHunt] Trie built.');
+        console.log(`Loaded ${filteredWords.length} words successfully`);
         if (filteredWords.length === 0) {
             updateStatus('No words loaded. Check your word list.');
         }
 
     } catch (error) {
-        logToDom('[WordHunt] Error loading word list: ' + error);
-        console.error('[WordHunt] Error loading word list:', error);
+        console.error('Error loading word list:', error);
         updateStatus('Error loading word list');
         // Fallback to empty array or some default words
         WORDS = [];
