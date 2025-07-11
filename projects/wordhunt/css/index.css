@@ -1,0 +1,219 @@
+#game-container {
+    margin-top: 2em;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#board-container {
+    margin-bottom: 0.5em;
+}
+
+#board-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2px;
+    width: fit-content;
+    margin: 0 auto;
+    border: 2px solid #63a4ff;
+    padding: 8px;
+    background-color: #000;
+    min-width: 280px;
+    min-height: 280px;
+}
+
+.board-cell {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    border: 1px solid #9c9c9c;
+    color: white;
+    font-family: monospace;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 60px;
+    min-height: 60px;
+    user-select: none;
+}
+
+.board-cell:hover {
+    background-color: #1a1a1a;
+    border-color: #63a4ff;
+    box-shadow: 0 0 5px #63a4ff;
+}
+
+.board-cell.selected {
+    background-color: #63a4ff;
+    color: #000;
+    border-color: #63a4ff;
+}
+
+.board-cell.visited {
+    background-color: #333;
+    border-color: #666;
+}
+
+.board-cell.editing {
+    background-color: #1a1a1a;
+    border-color: #63a4ff;
+    box-shadow: 0 0 8px #63a4ff;
+}
+
+#board-controls {
+    margin-top: 1em;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    background-color: #000;
+    border: 1px solid #9c9c9c;
+    color: white;
+    font-family: monospace;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9em;
+}
+
+.control-btn:hover {
+    background-color: #1a1a1a;
+    border-color: #63a4ff;
+    box-shadow: 0 0 5px #63a4ff;
+}
+
+.control-btn:active {
+    background-color: #63a4ff;
+    color: #000;
+}
+
+#game-info {
+    margin-top: 0.5em;
+    text-align: center;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#status {
+    color: #9c9c9c;
+    margin-bottom: 0.5em;
+    font-family: monospace;
+}
+
+#word-count {
+    color: #63a4ff;
+    font-family: monospace;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+#word-viewer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    font-family: monospace;
+    background: #000;
+    border: 1px solid #9c9c9c;
+    padding: 0.7em 1em;
+    max-width: 100%;
+    min-height: 2.5em;
+    box-sizing: border-box;
+}
+
+.arrow-btn {
+    background: #000;
+    color: #63a4ff;
+    border: 1px solid #63a4ff;
+    font-family: monospace;
+    font-size: 1.2em;
+    padding: 0.2em 0.7em;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+}
+
+.arrow-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #9c9c9c;
+}
+
+.current-word {
+    color: #fff;
+    font-size: 1.1em;
+    font-family: monospace;
+    min-width: 5ch;
+    letter-spacing: 0.1em;
+    text-align: center;
+    display: inline-block;
+}
+
+.word-item {
+    display: none;
+}
+
+/* Responsive design */
+@media only screen and (max-width: 600px) {
+    .board-cell {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        min-height: 50px;
+        font-size: 1.2em;
+    }
+
+    #board-grid {
+        min-width: 220px;
+        min-height: 220px;
+    }
+
+    #board-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .control-btn {
+        width: 200px;
+    }
+
+    #word-viewer {
+        font-size: 0.9em;
+        padding: 0.5em 0.5em;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .board-cell {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        font-size: 1em;
+    }
+
+    #board-grid {
+        min-width: 180px;
+        min-height: 180px;
+    }
+
+    .control-btn {
+        width: 150px;
+        font-size: 0.8em;
+    }
+
+    #word-viewer {
+        font-size: 0.8em;
+        padding: 0.3em 0.2em;
+    }
+}
