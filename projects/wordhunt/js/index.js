@@ -334,7 +334,7 @@ async function loadWordList() {
         const text = await response.text();
         const lines = text.split(/\r?\n/);
         const filteredWords = lines.map(line => line.trim()).filter(word => word.length > 0);
-        WORDS.push(...filteredWords);
+        WORDS = filteredWords;
         // Initialize the worker and send the word list
         initWorker();
         wordhuntWorker.postMessage({ type: 'init', data: filteredWords });
@@ -342,13 +342,7 @@ async function loadWordList() {
         if (filteredWords.length === 0) updateStatus('No words loaded. Check your word list.');
     } catch (error) {
         console.error('Error loading word list:', error);
-        let message = 'Error loading word list';
-        if (error && error.stack) {
-            message += ':\n' + error.stack;
-        } else if (error && error.message) {
-            message += ':\n' + error.message;
-        }
-        updateStatus(message);
+        updateStatus('Error loading word list');
         WORDS = [];
     } finally {
         isWordListLoaded = true;
