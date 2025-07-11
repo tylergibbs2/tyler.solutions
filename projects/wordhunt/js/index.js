@@ -342,7 +342,7 @@ async function loadWordList() {
     try {
         updateStatus('Loading word list...');
 
-        const response = await fetch('/projects/wordhunt/words.txt');
+        const response = await fetch('/words.txt');
 
         if (!response.ok) {
             throw new Error(`Failed to load word list: ${response.status} ${response.statusText}`);
