@@ -321,6 +321,7 @@ function createNeighborhoodMap() {
                 if (!('ontouchstart' in window)) hideTooltip();
             });
             // Mobile touch
+            let touchStart = null;
             path.addEventListener('touchstart', function(e) {
                 e.stopPropagation();
                 e.preventDefault();
@@ -328,6 +329,20 @@ function createNeighborhoodMap() {
                 showTooltip(path.getAttribute('data-neighborhood'), touch.clientX, touch.clientY);
                 clearTimeout(tooltipTimeout);
                 tooltipTimeout = setTimeout(hideTooltip, 1800);
+                touchStart = { x: touch.clientX, y: touch.clientY, time: Date.now() };
+            });
+            path.addEventListener('touchend', function(e) {
+                if (!touchStart) return;
+                const touch = e.changedTouches[0];
+                const dx = Math.abs(touch.clientX - touchStart.x);
+                const dy = Math.abs(touch.clientY - touchStart.y);
+                const dt = Date.now() - touchStart.time;
+                // If tap (not drag/pan): small movement, short duration
+                if (dx < 10 && dy < 10 && dt < 500) {
+                    // Simulate click: show details for this neighborhood
+                    path.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+                }
+                touchStart = null;
             });
         });
         // Hide tooltip on tap elsewhere
