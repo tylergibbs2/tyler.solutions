@@ -269,32 +269,70 @@ function createNeighborhoodMap() {
     tooltip.style.background = '#111';
     tooltip.style.color = '#63a4ff';
     tooltip.style.fontFamily = 'monospace';
-    tooltip.style.fontSize = '12px';
-    tooltip.style.padding = '2px 8px';
+    tooltip.style.fontSize = window.matchMedia('(max-width: 768px)').matches ? '16px' : '12px';
+    tooltip.style.padding = '4px 12px';
     tooltip.style.border = '1px solid #63a4ff';
     tooltip.style.borderRadius = '4px';
     tooltip.style.zIndex = 100;
     tooltip.style.display = 'none';
     mapContainer.style.position = 'relative'; // Ensure mapContainer is positioned
     mapContainer.appendChild(tooltip);
+    let tooltipTimeout = null;
+
+    function showTooltip(text, x, y) {
+        tooltip.textContent = text;
+        tooltip.style.display = 'block';
+        // Prevent tooltip from going off the right/bottom edge
+        const rect = mapContainer.getBoundingClientRect();
+        let left = x - rect.left + 12;
+        let top = y - rect.top + 12;
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + 'px';
+        // Adjust if off right/bottom
+        setTimeout(() => {
+            const tipRect = tooltip.getBoundingClientRect();
+            if (tipRect.right > rect.right) {
+                tooltip.style.left = Math.max(4, left - (tipRect.right - rect.right)) + 'px';
+            }
+            if (tipRect.bottom > rect.bottom) {
+                tooltip.style.top = Math.max(4, top - (tipRect.bottom - rect.bottom)) + 'px';
+            }
+        }, 0);
+    }
+    function hideTooltip() {
+        tooltip.style.display = 'none';
+    }
 
     if (svg) {
+        // Desktop: hover and mousemove
         svg.addEventListener('mousemove', function(e) {
-            if (tooltip.style.display === 'block') {
-                // Position tooltip relative to mapContainer
-                const rect = mapContainer.getBoundingClientRect();
-                tooltip.style.left = (e.clientX - rect.left + 12) + 'px';
-                tooltip.style.top = (e.clientY - rect.top + 12) + 'px';
+            if (tooltip.style.display === 'block' && !('ontouchstart' in window)) {
+                showTooltip(tooltip.textContent, e.clientX, e.clientY);
             }
         });
         svg.querySelectorAll('.neighborhood').forEach(path => {
+            // Desktop hover
             path.addEventListener('mouseenter', function(e) {
-                tooltip.textContent = path.getAttribute('data-neighborhood');
-                tooltip.style.display = 'block';
+                if (!('ontouchstart' in window)) {
+                    showTooltip(path.getAttribute('data-neighborhood'), e.clientX, e.clientY);
+                }
             });
             path.addEventListener('mouseleave', function(e) {
-                tooltip.style.display = 'none';
+                if (!('ontouchstart' in window)) hideTooltip();
             });
+            // Mobile touch
+            path.addEventListener('touchstart', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                const touch = e.touches[0];
+                showTooltip(path.getAttribute('data-neighborhood'), touch.clientX, touch.clientY);
+                clearTimeout(tooltipTimeout);
+                tooltipTimeout = setTimeout(hideTooltip, 1800);
+            });
+        });
+        // Hide tooltip on tap elsewhere
+        svg.addEventListener('touchstart', function(e) {
+            if (!e.target.classList.contains('neighborhood')) hideTooltip();
         });
     }
     // --- END TOOLTIP ---
@@ -337,6 +375,8 @@ function createNeighborhoodMap() {
         let startPoint = { x: 0, y: 0 };
         let panOrigin = { x: 0, y: 0 };
         let zoomFactor = 1.1;
+        let lastTouchDist = null;
+        let lastTouchMid = null;
 
         // Convert screen coords to SVG coords
         function clientToSvg(x, y) {
@@ -346,13 +386,13 @@ function createNeighborhoodMap() {
             return { x: svgX, y: svgY };
         }
 
+        // Desktop mouse pan/zoom (existing)
         svg.addEventListener('wheel', function(e) {
             e.preventDefault();
             const { x, y } = clientToSvg(e.clientX, e.clientY);
             let scale = e.deltaY < 0 ? 1 / zoomFactor : zoomFactor;
             let newW = viewBox[2] * scale;
             let newH = viewBox[3] * scale;
-            // Center zoom on mouse
             let newX = x - (x - viewBox[0]) * scale;
             let newY = y - (y - viewBox[1]) * scale;
             viewBox = [newX, newY, newW, newH];
@@ -383,6 +423,63 @@ function createNeighborhoodMap() {
         svg.addEventListener('dblclick', function(e) {
             viewBox = [...originalViewBox];
             svg.setAttribute('viewBox', viewBox.join(' '));
+        });
+
+        // --- MOBILE TOUCH PAN/ZOOM ---
+        svg.addEventListener('touchstart', function(e) {
+            if (e.touches.length === 1) {
+                isPanning = true;
+                startPoint = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                panOrigin = { x: viewBox[0], y: viewBox[1] };
+                lastTouchDist = null;
+            } else if (e.touches.length === 2) {
+                isPanning = false;
+                // Pinch start
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                lastTouchDist = Math.sqrt(dx*dx + dy*dy);
+                lastTouchMid = {
+                    x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
+                    y: (e.touches[0].clientY + e.touches[1].clientY) / 2
+                };
+            }
+            e.preventDefault();
+        }, { passive: false });
+        svg.addEventListener('touchmove', function(e) {
+            if (e.touches.length === 1 && isPanning) {
+                const dx = (e.touches[0].clientX - startPoint.x) * (viewBox[2] / svg.clientWidth);
+                const dy = (e.touches[0].clientY - startPoint.y) * (viewBox[3] / svg.clientHeight);
+                viewBox[0] = panOrigin.x - dx;
+                viewBox[1] = panOrigin.y + dy;
+                svg.setAttribute('viewBox', viewBox.join(' '));
+            } else if (e.touches.length === 2) {
+                // Pinch zoom
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                if (lastTouchDist) {
+                    let scale = lastTouchDist / dist;
+                    // Center on midpoint
+                    const mid = {
+                        x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
+                        y: (e.touches[0].clientY + e.touches[1].clientY) / 2
+                    };
+                    const { x, y } = clientToSvg(mid.x, mid.y);
+                    let newW = viewBox[2] * scale;
+                    let newH = viewBox[3] * scale;
+                    let newX = x - (x - viewBox[0]) * scale;
+                    let newY = y - (y - viewBox[1]) * scale;
+                    viewBox = [newX, newY, newW, newH];
+                    svg.setAttribute('viewBox', viewBox.join(' '));
+                }
+                lastTouchDist = dist;
+            }
+            e.preventDefault();
+        }, { passive: false });
+        svg.addEventListener('touchend', function(e) {
+            isPanning = false;
+            lastTouchDist = null;
+            lastTouchMid = null;
         });
     }
     // --- END PAN & ZOOM ---
