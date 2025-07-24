@@ -63,7 +63,7 @@ function loadStats() {
         return;
     }
 
-    loadNeighborhoodStats();
+    // Removed loadNeighborhoodStats();
     loadPopularRoutes();
     loadPeakHours();
     loadMembershipStats();
@@ -71,18 +71,6 @@ function loadStats() {
     loadTimeOfDayStats();
     loadStationEfficiency();
     createNeighborhoodMap();
-}
-
-
-function loadNeighborhoodStats() {
-    let topNeighborhoods = divvyStats.stats.neighborhood_activity.splice(0, 5);
-    for (let i = 0; i < topNeighborhoods.length; i++) {
-        let id = `top-neighborhood-${i}`;
-        let neighborhood = topNeighborhoods[i];
-        let ridePercent = formatPercentValue(neighborhood.ride_percent);
-        let listItem = document.getElementById(id);
-        typeEffect(listItem, `${neighborhood.start_neighborhood} <span class="percent">(${ridePercent})</span>`);
-    }
 }
 
 
@@ -260,6 +248,39 @@ function createNeighborhoodMap() {
 
     // Get the SVG element once
     const svg = mapContainer.querySelector('svg');
+
+    // --- DRAW-IN ANIMATION FOR MAP ---
+    if (svg) {
+        // Order paths by ride_percent descending
+        const paths = Array.from(svg.querySelectorAll('.neighborhood'));
+        const pathsByFreq = paths.slice().sort((a, b) => {
+            const nA = a.getAttribute('data-neighborhood');
+            const nB = b.getAttribute('data-neighborhood');
+            const pA = stationData[nA] ? stationData[nA].ride_percent || 0 : 0;
+            const pB = stationData[nB] ? stationData[nB].ride_percent || 0 : 0;
+            return pB - pA;
+        });
+        pathsByFreq.forEach((path, i) => {
+            const len = path.getTotalLength();
+            path.style.strokeDasharray = len;
+            path.style.strokeDashoffset = len;
+            path.style.transition = 'none';
+            path.style.fillOpacity = 0;
+        });
+        // Animate each path in order of frequency, faster
+        setTimeout(() => {
+            pathsByFreq.forEach((path, i) => {
+                setTimeout(() => {
+                    path.style.transition = 'stroke-dashoffset 0.35s linear, fill-opacity 0.3s linear 0.35s';
+                    path.style.strokeDashoffset = 0;
+                    setTimeout(() => {
+                        path.style.fillOpacity = '';
+                    }, 350);
+                }, i * 30); // faster stagger
+            });
+        }, 50);
+    }
+    // --- END DRAW-IN ANIMATION ---
 
     // --- TOOLTIP FOR NEIGHBORHOOD NAMES ---
     // Create tooltip div
