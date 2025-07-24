@@ -1,0 +1,206 @@
+/* Peak Hours Bar Chart Styles */
+.peak-hours-chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 120px;
+    margin: 10px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #63a4ff;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    max-width: 100%;
+}
+
+.hour-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    margin: 0 1px;
+    min-width: 20px;
+}
+
+.bar {
+    width: 80%;
+    background: #63a4ff;
+    border: 1px solid #63a4ff;
+    min-height: 5px;
+    transition: height 0.3s ease;
+}
+
+.hour-label {
+    font-size: 8px;
+    margin-top: 5px;
+    color: #9c9c9c;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+.hour-percent {
+    font-size: 7px;
+    margin-top: 2px;
+    color: #9c9c9c;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+}
+
+/* Popular Routes Styles */
+.one-column li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.4;
+    margin-bottom: 0.5em;
+}
+
+.one-column li .percent {
+    white-space: nowrap;
+    margin-left: 0.5em;
+}
+
+/* Trip Counter Styles */
+#trip-counter-container {
+    margin: 20px 0;
+    padding: 5px 15px 10px 15px;
+    border: 1px solid #63a4ff;
+    background: rgba(99, 164, 255, 0.05);
+}
+
+#trip-counter {
+    color: #63a4ff;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Neighborhood Map Styles */
+#neighborhood-map-container {
+    margin: 20px 0;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+#neighborhood-map {
+    flex: 1;
+    height: 300px;
+    border: 1px solid #63a4ff;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+}
+
+#neighborhood-map svg {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#neighborhood-details {
+    flex: 1;
+    max-width: 300px;
+    padding: 15px;
+    border: 1px solid #63a4ff;
+    background: rgba(99, 164, 255, 0.05);
+}
+
+#neighborhood-details.hidden {
+    display: none;
+}
+
+#neighborhood-stations-list {
+    margin-top: 10px;
+    font-size: 0.9em;
+    list-style: none;
+    padding-left: 0;
+    column-count: 1;
+}
+
+#neighborhood-stations-list li {
+    margin-bottom: 5px;
+    padding-left: 1.5em;
+    white-space: normal;
+    display: block;
+    word-break: break-word;
+}
+
+#neighborhood-stations-list li::before {
+    content: '>';
+    color: #63a4ff;
+    margin-right: 8px;
+}
+
+/* Add styles for fullscreen details takeover */
+#neighborhood-map-container.details-fullscreen {
+    position: relative;
+    display: block;
+    min-height: 300px;
+    height: 300px;
+}
+
+#neighborhood-map-container.details-fullscreen #neighborhood-map {
+    display: none !important;
+}
+
+#neighborhood-map-container.details-fullscreen #neighborhood-details {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    background: rgba(99, 164, 255, 0.05);
+    border: 1px solid #63a4ff;
+    z-index: 10;
+    overflow-y: auto;
+    box-sizing: border-box;
+    min-height: 300px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .peak-hours-chart {
+        height: 100px;
+    }
+    
+    .hour-label {
+        font-size: 6px;
+    }
+    
+    .hour-percent {
+        font-size: 5px;
+    }
+    
+    .one-column li {
+        font-size: 0.9em;
+    }
+
+    #trip-counter-container {
+        margin: 15px 0;
+        padding: 10px;
+    }
+    
+    #trip-counter {
+        font-size: 1em;
+    }
+
+    #neighborhood-map-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #neighborhood-map {
+        height: 200px;
+    }
+    
+    #neighborhood-details {
+        max-width: none;
+    }
+
+    #neighborhood-map-container.details-fullscreen #neighborhood-details {
+        height: auto;
+        min-height: 200px;
+        position: static;
+    }
+}

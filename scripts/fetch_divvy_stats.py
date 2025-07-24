@@ -7,6 +7,7 @@ import sqlite3
 from typing import Optional, Union, Any
 import xml.etree.ElementTree as ET
 import zipfile
+import time
 
 import geopandas as gpd
 import pandas as pd
@@ -85,61 +86,69 @@ def load_csv_files_to_sqlite(conn: sqlite3.Connection, raw_data_fp: Path) -> Non
 def get_neighborhoods(df: pd.DataFrame, shapefile_fp: Path) -> pd.DataFrame:
     neighborhoods = gpd.read_file(shapefile_fp)
 
-    gdf_start = gpd.GeoDataFrame(
-        df,
-        geometry=gpd.points_from_xy(df.start_lng, df.start_lat),
+    # Prepare unique start points
+    start_points = df[["start_lat", "start_lng"]].drop_duplicates().copy()
+    start_gdf = gpd.GeoDataFrame(
+        start_points,
+        geometry=gpd.points_from_xy(start_points.start_lng, start_points.start_lat),
         crs=neighborhoods.crs,
-    )  # type: ignore
-    gdf_end = gpd.GeoDataFrame(
-        df, geometry=gpd.points_from_xy(df.end_lng, df.end_lat), crs=neighborhoods.crs
-    )  # type: ignore
-
-    # Perform spatial join to find neighborhoods for start and end points
-    start_neighborhoods = gpd.sjoin(
-        gdf_start,
+    )
+    start_neigh = gpd.sjoin(
+        start_gdf,
         neighborhoods[["pri_neigh", "geometry"]],
         how="left",
         predicate="within",
+    )[["start_lat", "start_lng", "pri_neigh"]]
+    start_neigh = start_neigh.rename(columns={"pri_neigh": "start_neighborhood"})
+
+    # Prepare unique end points
+    end_points = df[["end_lat", "end_lng"]].drop_duplicates().copy()
+    end_gdf = gpd.GeoDataFrame(
+        end_points,
+        geometry=gpd.points_from_xy(end_points.end_lng, end_points.end_lat),
+        crs=neighborhoods.crs,
     )
-    end_neighborhoods = gpd.sjoin(
-        gdf_end,
+    end_neigh = gpd.sjoin(
+        end_gdf,
         neighborhoods[["pri_neigh", "geometry"]],
         how="left",
         predicate="within",
-    )
+    )[["end_lat", "end_lng", "pri_neigh"]]
+    end_neigh = end_neigh.rename(columns={"pri_neigh": "end_neighborhood"})
 
-    # Extract neighborhood names
-    df["start_neighborhood"] = start_neighborhoods["pri_neigh"]
-    df["end_neighborhood"] = end_neighborhoods["pri_neigh"]
-
+    # Merge back to main DataFrame
+    df = df.merge(start_neigh, on=["start_lat", "start_lng"], how="left")
+    df = df.merge(end_neigh, on=["end_lat", "end_lng"], how="left")
     return df
 
 
-def calculate_revenue(row):
-    base_rate = 0
-    minute_rate = 0
-    ride_duration = row["ride_duration"]
+def calculate_revenue_vectorized(df: pd.DataFrame) -> pd.Series:
+    # Base rates and minute rates
+    base_rate = pd.Series(0, index=df.index, dtype=float)
+    minute_rate = pd.Series(0, index=df.index, dtype=float)
+    ride_duration = df["ride_duration"].copy()
 
-    if row["member_casual"] == "member":
-        if row["rideable_type"] == "electric_bike":
-            minute_rate = 0.18
-        elif row["rideable_type"] == "classic_bike":
-            if ride_duration > 45:
-                ride_duration -= 45
-                minute_rate = 0.18
-    elif row["member_casual"] == "casual":
-        base_rate = 1
-        if row["rideable_type"] == "electric_bike":
-            minute_rate = 0.44
-        elif row["rideable_type"] == "classic_bike":
-            minute_rate = 0.18
+    # Member logic
+    is_member = df["member_casual"] == "member"
+    is_electric = df["rideable_type"] == "electric_bike"
+    is_classic = df["rideable_type"] == "classic_bike"
+
+    # Member, electric
+    minute_rate.loc[is_member & is_electric] = 0.18
+    # Member, classic, over 45 min
+    classic_long = is_member & is_classic & (ride_duration > 45)
+    minute_rate.loc[classic_long] = 0.18
+    ride_duration.loc[classic_long] = ride_duration.loc[classic_long] - 45
+
+    # Casual logic
+    is_casual = df["member_casual"] == "casual"
+    base_rate.loc[is_casual] = 1
+    minute_rate.loc[is_casual & is_electric] = 0.44
+    minute_rate.loc[is_casual & is_classic] = 0.18
 
     revenue = base_rate + (minute_rate * ride_duration)
-
     # Add $1.20 if end_station_name is NA
-    if pd.isna(row["end_station_name"]):
-        revenue += 1.20
-
+    revenue = revenue + df["end_station_name"].isna() * 1.20
     return revenue
 
 
@@ -201,6 +210,181 @@ def calculate_station_activity(df: pd.DataFrame) -> pd.DataFrame:
     return combined_stats
 
 
+def calculate_popular_routes(df: pd.DataFrame) -> pd.DataFrame:
+    """Calculate the most popular routes (start station -> end station pairs)"""
+    # Filter out round trips (start station == end station)
+    df_filtered = df[df["start_station_name"] != df["end_station_name"]].copy()
+    
+    # Create route column
+    df_filtered["route"] = df_filtered["start_station_name"] + " → " + df_filtered["end_station_name"]
+    
+    # Count routes and calculate percentages
+    route_counts = df_filtered["route"].value_counts().head(10)
+    total_rides = len(df_filtered)
+    route_percentages = (route_counts / total_rides) * 100
+    
+    return pd.DataFrame({
+        "route": route_counts.index,
+        "ride_count": route_counts.values,
+        "ride_percent": route_percentages.values
+    })
+
+
+def calculate_peak_hours(df: pd.DataFrame) -> pd.DataFrame:
+    """Calculate hourly usage patterns"""
+    # Extract hour from started_at
+    df["hour"] = df["started_at"].dt.hour
+    
+    # Count rides by hour
+    hourly_counts = df["hour"].value_counts().sort_index()
+    total_rides = len(df)
+    hourly_percentages = (hourly_counts / total_rides) * 100
+    
+    # Calculate average revenue by hour
+    hourly_revenue = df.groupby("hour")["estimated_revenue"].mean()
+    
+    return pd.DataFrame({
+        "hour": hourly_counts.index,
+        "ride_count": hourly_counts.values,
+        "ride_percent": hourly_percentages.values,
+        "avg_revenue": hourly_revenue.values
+    })
+
+
+def calculate_station_efficiency(df: pd.DataFrame) -> pd.DataFrame:
+    """Calculate station efficiency metrics including turnover rates"""
+    total_rides = len(df)
+    
+    # Calculate start and end counts for each station
+    start_counts = df["start_station_name"].value_counts()
+    end_counts = df["end_station_name"].value_counts()
+    
+    # Combine into efficiency dataframe
+    efficiency_df = pd.DataFrame({
+        "station_name": start_counts.index,
+        "start_count": start_counts.values,
+        "end_count": end_counts.reindex(start_counts.index).fillna(0).values
+    })
+    
+    # Calculate efficiency metrics
+    efficiency_df["total_activity"] = efficiency_df["start_count"] + efficiency_df["end_count"]
+    efficiency_df["net_flow"] = efficiency_df["end_count"] - efficiency_df["start_count"]
+    efficiency_df["turnover_rate"] = efficiency_df["total_activity"] / total_rides * 100
+    
+    # Calculate utilization (how balanced start/end activity is)
+    efficiency_df["utilization_score"] = 1 - abs(efficiency_df["net_flow"]) / efficiency_df["total_activity"]
+    
+    # Sort by total activity and get top 10
+    efficiency_df = efficiency_df.sort_values("total_activity", ascending=False).head(10)
+    
+    return efficiency_df[["station_name", "total_activity", "net_flow", "turnover_rate", "utilization_score"]]
+
+
+def calculate_neighborhood_stations(df: pd.DataFrame) -> dict:
+    """Calculate top stations per neighborhood and prepare map data for ALL neighborhoods"""
+    # Get all neighborhoods by activity (not just top 10)
+    neighborhood_activity = calculate_rides_by_neighborhood(df)
+    
+    # For each neighborhood, get top stations
+    neighborhood_stations = {}
+    
+    for neighborhood in neighborhood_activity.index:
+        # Filter trips starting in this neighborhood
+        neighborhood_trips = df[df["start_neighborhood"] == neighborhood]
+        
+        if len(neighborhood_trips) > 0:
+            # Get top stations in this neighborhood
+            top_stations = neighborhood_trips["start_station_name"].value_counts().head(3)
+            
+            neighborhood_stations[neighborhood] = {
+                "total_rides": int(neighborhood_activity.loc[neighborhood, "ride_count"]),
+                "ride_percent": float(neighborhood_activity.loc[neighborhood, "ride_percent"]),
+                "top_stations": [
+                    {
+                        "station_name": station,
+                        "ride_count": int(count),
+                        "ride_percent": round((count / len(neighborhood_trips) * 100), 2)
+                    }
+                    for station, count in top_stations.items()
+                ]
+            }
+        else:
+            # Still include neighborhoods with no trips
+            neighborhood_stations[neighborhood] = {
+                "total_rides": 0,
+                "ride_percent": 0.0,
+                "top_stations": []
+            }
+    
+    return neighborhood_stations
+
+
+def generate_svg_map_data(shapefile_fp: Path, neighborhood_stations: dict) -> str:
+    """Generate SVG map data from shapefile"""
+    import geopandas as gpd
+    
+    # Read the shapefile
+    neighborhoods = gpd.read_file(shapefile_fp)
+    
+    # Convert to Web Mercator for consistent projection
+    neighborhoods_web = neighborhoods.to_crs(epsg=3857)
+    
+    # Get the bounding box
+    bounds = neighborhoods_web.total_bounds
+    width = bounds[2] - bounds[0]
+    height = bounds[3] - bounds[1]
+    
+    # Scale to fit in a reasonable SVG size (800x600)
+    scale = min(800 / width, 600 / height)
+    
+    # Generate SVG
+    svg_parts = []
+    svg_parts.append(
+        f'<svg width="800" height="600" viewBox="{bounds[0]} {bounds[1]} {width} {height}" '
+        'xmlns="http://www.w3.org/2000/svg" '
+        'style="transform: scaleY(-1); transform-origin: center;">'
+    )
+    svg_parts.append('<defs>')
+    svg_parts.append('<style>')
+    svg_parts.append('.neighborhood { fill: #1a1a1a; stroke: #63a4ff; stroke-width: 1; cursor: pointer; }')
+    svg_parts.append('.neighborhood:hover { fill: #2a2a2a; }')
+    svg_parts.append('.neighborhood.active { fill: #63a4ff; }')
+    svg_parts.append('.neighborhood-label { font-family: monospace; font-size: 8px; fill: #9c9c9c; pointer-events: none; }')
+    svg_parts.append('</style>')
+    svg_parts.append('</defs>')
+    # Add each neighborhood
+    for idx, row in neighborhoods_web.iterrows():
+        neighborhood_name = row['pri_neigh']
+        
+        # Get the geometry
+        geom = row.geometry
+        
+        if geom.geom_type == 'Polygon':
+            coords = list(geom.exterior.coords)
+            path_data = "M " + " L ".join([f"{x} {y}" for x, y in coords]) + " Z"
+        elif geom.geom_type == 'MultiPolygon':
+            paths = []
+            for poly in geom.geoms:
+                coords = list(poly.exterior.coords)
+                path_data = "M " + " L ".join([f"{x} {y}" for x, y in coords]) + " Z"
+                paths.append(path_data)
+            path_data = " ".join(paths)
+        else:
+            continue
+        
+        # Add the neighborhood polygon
+        svg_parts.append(f'<path class="neighborhood" d="{path_data}" data-neighborhood="{neighborhood_name}"/>')
+        
+        # Add label for neighborhoods with activity
+        if neighborhood_name in neighborhood_stations and neighborhood_stations[neighborhood_name]["total_rides"] > 0:
+            centroid = geom.centroid
+            svg_parts.append(f'<text x="{centroid.x}" y="{centroid.y}" class="neighborhood-label" text-anchor="middle">{neighborhood_name}</text>')
+    # Close the group before closing SVG
+    svg_parts.append('</svg>')
+    
+    return "\n".join(svg_parts)
+
+
 def calculate_rides_by_membership(df: pd.DataFrame) -> pd.DataFrame:
     total_rides = len(df)
     member_casual_counts = df["member_casual"].value_counts()
@@ -239,28 +423,72 @@ def df_to_json(df: Union[pd.DataFrame, pd.Series]) -> Any:
 def generate_analysis_json(
     conn: sqlite3.Connection, as_of_month: str, shapefile_fp: Path
 ) -> Path:
+    print("Reading trips from SQLite...")
     result = {"meta": {"as_of": as_of_month}, "stats": {}}
 
     df = pd.read_sql("SELECT * FROM trips", conn)
 
+    print("Processing trip data...")
     df["started_at"] = pd.to_datetime(df["started_at"], errors="coerce")
     df["ended_at"] = pd.to_datetime(df["ended_at"], errors="coerce")
     df["ride_duration"] = (df["ended_at"] - df["started_at"]).dt.total_seconds() / 60
     df["time_of_day"] = df["started_at"].dt.hour.apply(categorize_time_of_day)
-    df["estimated_revenue"] = df.apply(calculate_revenue, axis=1)
+    df["estimated_revenue"] = calculate_revenue_vectorized(df)
     total_rides = len(df)
 
+    print("Assigning neighborhoods to trips...")
     df = get_neighborhoods(df, shapefile_fp)
 
+    # Timed stat calculations
+    t0 = time.time()
+    print("Calculating neighborhood activity...")
     result["stats"]["neighborhood_activity"] = df_to_json(
         calculate_rides_by_neighborhood(df).head(10)
     )
+    print(f"  Done in {time.time() - t0:.2f}s")
 
+    t0 = time.time()
+    print("Calculating station activity...")
     station_activity = calculate_station_activity(df)
     result["stats"]["station_activity"] = json.loads(
         station_activity.to_json(orient="records")
     )
+    print(f"  Done in {time.time() - t0:.2f}s")
 
+    t0 = time.time()
+    print("Calculating popular routes...")
+    popular_routes = calculate_popular_routes(df)
+    result["stats"]["popular_routes"] = json.loads(
+        popular_routes.to_json(orient="records")
+    )
+    print(f"  Done in {time.time() - t0:.2f}s")
+
+    t0 = time.time()
+    print("Calculating peak hours...")
+    peak_hours = calculate_peak_hours(df)
+    result["stats"]["peak_hours"] = json.loads(
+        peak_hours.to_json(orient="records")
+    )
+    print(f"  Done in {time.time() - t0:.2f}s")
+
+    t0 = time.time()
+    print("Calculating station efficiency...")
+    station_efficiency = calculate_station_efficiency(df)
+    result["stats"]["station_efficiency"] = json.loads(
+        station_efficiency.to_json(orient="records")
+    )
+    print(f"  Done in {time.time() - t0:.2f}s")
+
+    t0 = time.time()
+    print("Calculating neighborhood stations and generating SVG map...")
+    neighborhood_stations = calculate_neighborhood_stations(df)
+    result["stats"]["neighborhood_stations"] = neighborhood_stations
+    svg_map = generate_svg_map_data(shapefile_fp, neighborhood_stations)
+    result["stats"]["neighborhood_svg_map"] = svg_map
+    print(f"  Done in {time.time() - t0:.2f}s")
+
+    t0 = time.time()
+    print("Calculating ride duration and revenue stats...")
     average_ride_duration = df.groupby("member_casual")["ride_duration"].mean()
     result["stats"]["average_ride_duration"] = df_to_json(average_ride_duration)
 
@@ -286,7 +514,10 @@ def generate_analysis_json(
         }
     )
     result["stats"]["revenue_by_membership"] = df_to_json(revenue_stats)
+    print(f"  Done in {time.time() - t0:.2f}s")
 
+    t0 = time.time()
+    print("Calculating time of day stats...")
     trip_counts_by_time_of_day = df["time_of_day"].value_counts()
 
     trip_percentage_by_time_of_day = (trip_counts_by_time_of_day / total_rides) * 100
@@ -309,15 +540,19 @@ def generate_analysis_json(
         }
     )
     result["stats"]["revenue_by_time_of_date"] = df_to_json(revenue_stats)
+    print(f"  Done in {time.time() - t0:.2f}s")
 
     outfile = Path(OUTFILE_NAME)
+    print(f"Writing output to {outfile}...")
     with open(outfile, "w") as fd:
         fd.write(json.dumps(result))
 
+    print("Done writing output.")
     return outfile
 
 
 def main() -> None:
+    print("Finding most recent Divvy data file...")
     filename = get_most_recent_filename()
     if not filename:
         raise Exception("Could not find most recent filename")
@@ -327,28 +562,33 @@ def main() -> None:
     date_section, *_ = filename.split("-", maxsplit=1)
     file_date = datetime.strptime(date_section, "%Y%m")
 
+    print("Downloading monthly data file...")
     fp = download_monthly_zipfile(filename)
     if not fp:
         raise Exception(f"Failed to download most recent datafile, '{filename}'")
 
     print("Downloaded monthly data file")
 
+    print("Downloading neighborhood shapefile...")
     shapefile_fp = download_neighborhood_shapefile()
     if not shapefile_fp:
         raise Exception(
             f"Failed to download neighboorhood shapefile map, '{NEIGHBORHOOD_SHAPEFILE_LINK}'"
         )
 
+    print("Loading data into SQLite...")
     conn = sqlite3.connect(f"divvy_data_{date_section}.db")
     load_csv_files_to_sqlite(conn, fp)
 
     print("Data loaded to sqlite")
 
+    print("Generating analysis JSON...")
     generate_analysis_json(conn, file_date.strftime("%b %Y"), shapefile_fp)
 
     print("Analysis generated")
 
     conn.close()
+    print("Done.")
 
 
 if __name__ == "__main__":

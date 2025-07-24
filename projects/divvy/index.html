@@ -42,6 +42,10 @@
             <a href="https://divvybikes.com/system-data" target="_blank">Data Source</a>
         </div>
 
+        <div id="trip-counter-container">
+            <p>Approximately <span id="trip-counter">0</span> trips taken since you loaded this page.</p>
+        </div>
+
         <h4>About</h4>
         <p>
             Divvy provides a monthly data dump of all completed trips, which presents a unique opportunity for detailed
@@ -58,15 +62,61 @@
             <li id="top-neighborhood-4" class="justified-list-item no-counter">-</li>
         </ol>
 
-        <h4>Top 5 Stations (by activity)</h4>
-        <ol class="one-column">
-            <li id="top-station-0" class="justified-list-item no-counter">-</li>
-            <li id="top-station-1" class="justified-list-item no-counter">-</li>
-            <li id="top-station-2" class="justified-list-item no-counter">-</li>
-            <li id="top-station-3" class="justified-list-item no-counter">-</li>
-            <li id="top-station-4" class="justified-list-item no-counter">-</li>
-        </ol>
+        <h4>Neighborhood Activity Map</h4>
+        <div id="neighborhood-map-container">
+            <div id="neighborhood-map"></div>
+            <div id="neighborhood-details" class="hidden">
+                <a href="#" id="neighborhood-back" style="display:block;margin-bottom:10px;">&lt; back to map</a>
+                <h5 id="selected-neighborhood">-</h5>
+                <p id="neighborhood-stats">-</p>
+                <h6>Top Stations:</h6>
+                <ol id="neighborhood-stations-list"></ol>
+            </div>
+        </div>
 
+        <h4>Station Efficiency (Top 5)</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>station</th>
+                    <th>total activity</th>
+                    <th>net flow</th>
+                    <th>utilization</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="efficiency-station-0">-</td>
+                    <td id="efficiency-activity-0">-</td>
+                    <td id="efficiency-flow-0">-</td>
+                    <td id="efficiency-utilization-0">-</td>
+                </tr>
+                <tr>
+                    <td id="efficiency-station-1">-</td>
+                    <td id="efficiency-activity-1">-</td>
+                    <td id="efficiency-flow-1">-</td>
+                    <td id="efficiency-utilization-1">-</td>
+                </tr>
+                <tr>
+                    <td id="efficiency-station-2">-</td>
+                    <td id="efficiency-activity-2">-</td>
+                    <td id="efficiency-flow-2">-</td>
+                    <td id="efficiency-utilization-2">-</td>
+                </tr>
+                <tr>
+                    <td id="efficiency-station-3">-</td>
+                    <td id="efficiency-activity-3">-</td>
+                    <td id="efficiency-flow-3">-</td>
+                    <td id="efficiency-utilization-3">-</td>
+                </tr>
+                <tr>
+                    <td id="efficiency-station-4">-</td>
+                    <td id="efficiency-activity-4">-</td>
+                    <td id="efficiency-flow-4">-</td>
+                    <td id="efficiency-utilization-4">-</td>
+                </tr>
+            </tbody>
+        </table>
 
         <div class="flex-row">
             <div>
@@ -151,6 +201,20 @@
                 </tr>
             </tbody>
         </table>
+
+        <h4>Peak Hours (Hourly Usage)</h4>
+        <div id="peak-hours-container">
+            <div id="peak-hours-chart"></div>
+        </div>
+
+        <h4>Most Popular Routes</h4>
+        <ol class="one-column">
+            <li id="popular-route-0" class="justified-list-item no-counter">-</li>
+            <li id="popular-route-1" class="justified-list-item no-counter">-</li>
+            <li id="popular-route-2" class="justified-list-item no-counter">-</li>
+            <li id="popular-route-3" class="justified-list-item no-counter">-</li>
+            <li id="popular-route-4" class="justified-list-item no-counter">-</li>
+        </ol>
     </div>
     <pre id="ascii-box"></pre>
 </body>
