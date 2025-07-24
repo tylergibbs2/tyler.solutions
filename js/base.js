@@ -169,7 +169,14 @@ function drawAsciiBox(width, height) {
 function drawMainContentBorder() {
     const mainDiv = document.getElementById('main');
     const asciiBox = document.getElementById('ascii-box');
+    const backContainer = document.getElementById('back-container');
     const mainDivRect = mainDiv.getBoundingClientRect();
+
+    if (backContainer && backContainer.offsetHeight > 0) {
+        asciiBox.style.top = '2em';
+    } else {
+        asciiBox.style.top = '0';
+    }
 
     asciiBox.textContent = drawAsciiBox(mainDivRect.width, mainDivRect.height);
 }
@@ -249,6 +256,10 @@ window.addEventListener('scroll', () => {
 
 window.addEventListener('load', () => {
     drawMainContentBorder();
+    // Also adjust positioning after a short delay to ensure all elements are rendered
+    setTimeout(() => {
+        drawMainContentBorder();
+    }, 100);
 });
 
 

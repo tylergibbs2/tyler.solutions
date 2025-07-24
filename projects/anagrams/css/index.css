@@ -4,25 +4,24 @@
     overflow: hidden;
 }
 
-#board-container {
+#letters-container {
     margin-bottom: 0.5em;
 }
 
-#board-grid {
+#letters-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 2px;
     width: fit-content;
     margin: 0 auto;
     border: 2px solid #63a4ff;
     padding: 8px;
     background-color: #000;
-    min-width: 280px;
-    min-height: 280px;
+    min-width: 420px;
+    min-height: 70px;
 }
 
-.board-cell {
+.letter-cell {
     width: 60px;
     height: 60px;
     display: flex;
@@ -41,30 +40,31 @@
     user-select: none;
 }
 
-.board-cell:hover {
+.letter-cell:hover {
     background-color: #1a1a1a;
     border-color: #63a4ff;
     box-shadow: 0 0 5px #63a4ff;
 }
 
-.board-cell.selected {
+.letter-cell.selected {
     background-color: #63a4ff;
     color: #000;
     border-color: #63a4ff;
 }
 
-.board-cell.visited {
+.letter-cell.used {
     background-color: #333;
     border-color: #666;
+    color: #666;
 }
 
-.board-cell.editing {
+.letter-cell.editing {
     background-color: #1a1a1a;
     border-color: #63a4ff;
     box-shadow: 0 0 8px #63a4ff;
 }
 
-#board-controls {
+#letters-controls {
     margin-top: 1em;
     text-align: center;
     display: flex;
@@ -116,13 +116,6 @@
     font-family: monospace;
 }
 
-#word-count {
-    color: #63a4ff;
-    font-family: monospace;
-    font-weight: bold;
-    margin-bottom: 1em;
-}
-
 #word-viewer {
     display: flex;
     align-items: center;
@@ -167,10 +160,6 @@
     display: inline-block;
 }
 
-.word-item {
-    display: none;
-}
-
 #back-container {
     position: fixed;
     top: 1em;
@@ -196,7 +185,7 @@
 
 /* Responsive design */
 @media only screen and (max-width: 600px) {
-    .board-cell {
+    .letter-cell {
         width: 50px;
         height: 50px;
         min-width: 50px;
@@ -204,12 +193,12 @@
         font-size: 1.2em;
     }
 
-    #board-grid {
-        min-width: 220px;
-        min-height: 220px;
+    #letters-grid {
+        min-width: 350px;
+        min-height: 60px;
     }
 
-    #board-controls {
+    #letters-controls {
         flex-direction: column;
         align-items: center;
     }
@@ -225,7 +214,7 @@
 }
 
 @media only screen and (max-width: 400px) {
-    .board-cell {
+    .letter-cell {
         width: 40px;
         height: 40px;
         min-width: 40px;
@@ -233,9 +222,9 @@
         font-size: 1em;
     }
 
-    #board-grid {
-        min-width: 180px;
-        min-height: 180px;
+    #letters-grid {
+        min-width: 280px;
+        min-height: 50px;
     }
 
     .control-btn {
@@ -247,4 +236,4 @@
         font-size: 0.8em;
         padding: 0.3em 0.2em;
     }
-}
+} 
