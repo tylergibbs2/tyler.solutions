@@ -418,8 +418,54 @@ function createNeighborhoodMap() {
         function clientToSvg(x, y) {
             const rect = svg.getBoundingClientRect();
             const svgX = viewBox[0] + (x - rect.left) * (viewBox[2] / rect.width);
-            const svgY = viewBox[1] + (y - rect.top) * (viewBox[3] / rect.height);
+            // Check if SVG is vertically flipped via CSS transform
+            const computedStyle = window.getComputedStyle(svg);
+            const transform = computedStyle.transform;
+            let svgY;
+            if (transform && transform.includes('scaleY(-1)')) {
+                // If vertically flipped, invert the Y coordinate
+                svgY = viewBox[1] + viewBox[3] - (y - rect.top) * (viewBox[3] / rect.height);
+            } else {
+                svgY = viewBox[1] + (y - rect.top) * (viewBox[3] / rect.height);
+            }
             return { x: svgX, y: svgY };
+        }
+
+        // Shared panning function
+        function handlePan(deltaX, deltaY) {
+            // Use consistent scaling for both X and Y panning
+            const scaleX = viewBox[2] / svg.clientWidth;
+            const scaleY = viewBox[3] / svg.clientHeight;
+            const dx = deltaX * scaleX;
+            const dy = deltaY * scaleY;
+            let newX = panOrigin.x - dx;
+            let newY = panOrigin.y + dy;
+            
+            // Calculate bounds based on actual SVG content
+            const paths = svg.querySelectorAll('.neighborhood');
+            if (paths.length > 0) {
+                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+                
+                paths.forEach(path => {
+                    const bbox = path.getBBox();
+                    minX = Math.min(minX, bbox.x);
+                    minY = Math.min(minY, bbox.y);
+                    maxX = Math.max(maxX, bbox.x + bbox.width);
+                    maxY = Math.max(maxY, bbox.y + bbox.height);
+                });
+                
+                // Add some padding to the content bounds
+                const paddingX = (maxX - minX) * 0.1; // 10% padding
+                const paddingY = (maxY - minY) * 0.1; // 10% padding
+                
+                // Apply constraints based on content bounds
+                newX = Math.max(minX - paddingX, Math.min(maxX + paddingX, newX));
+                newY = Math.max(minY - paddingY, Math.min(maxY + paddingY, newY));
+            }
+            
+            viewBox[0] = newX;
+            viewBox[1] = newY;
+            svg.setAttribute('viewBox', viewBox.join(' '));
         }
 
         // Desktop mouse pan/zoom (existing)
@@ -431,6 +477,14 @@ function createNeighborhoodMap() {
             let newH = viewBox[3] * scale;
             let newX = x - (x - viewBox[0]) * scale;
             let newY = y - (y - viewBox[1]) * scale;
+            
+            // Constrain zoom to reasonable bounds
+            const minZoom = 0.1;
+            const maxZoom = 10;
+            if (newW / originalViewBox[2] < minZoom || newW / originalViewBox[2] > maxZoom) {
+                return;
+            }
+            
             viewBox = [newX, newY, newW, newH];
             svg.setAttribute('viewBox', viewBox.join(' '));
         }, { passive: false });
@@ -444,11 +498,9 @@ function createNeighborhoodMap() {
         });
         window.addEventListener('mousemove', function(e) {
             if (!isPanning) return;
-            const dx = (e.clientX - startPoint.x) * (viewBox[2] / svg.clientWidth);
-            const dy = (e.clientY - startPoint.y) * (viewBox[3] / svg.clientHeight);
-            viewBox[0] = panOrigin.x - dx;
-            viewBox[1] = panOrigin.y + dy;
-            svg.setAttribute('viewBox', viewBox.join(' '));
+            const deltaX = e.clientX - startPoint.x;
+            const deltaY = e.clientY - startPoint.y;
+            handlePan(deltaX, deltaY);
         });
         window.addEventListener('mouseup', function(e) {
             if (isPanning) {
@@ -483,11 +535,9 @@ function createNeighborhoodMap() {
         }, { passive: false });
         svg.addEventListener('touchmove', function(e) {
             if (e.touches.length === 1 && isPanning) {
-                const dx = (e.touches[0].clientX - startPoint.x) * (viewBox[2] / svg.clientWidth);
-                const dy = (e.touches[0].clientY - startPoint.y) * (viewBox[3] / svg.clientHeight);
-                viewBox[0] = panOrigin.x - dx;
-                viewBox[1] = panOrigin.y + dy;
-                svg.setAttribute('viewBox', viewBox.join(' '));
+                const deltaX = e.touches[0].clientX - startPoint.x;
+                const deltaY = e.touches[0].clientY - startPoint.y;
+                handlePan(deltaX, deltaY);
             } else if (e.touches.length === 2) {
                 // Pinch zoom
                 const dx = e.touches[0].clientX - e.touches[1].clientX;
@@ -495,6 +545,14 @@ function createNeighborhoodMap() {
                 const dist = Math.sqrt(dx*dx + dy*dy);
                 if (lastTouchDist) {
                     let scale = lastTouchDist / dist;
+                    
+                    // Constrain zoom to reasonable bounds
+                    const minZoom = 0.1;
+                    const maxZoom = 10;
+                    if (viewBox[2] * scale / originalViewBox[2] < minZoom || viewBox[2] * scale / originalViewBox[2] > maxZoom) {
+                        return;
+                    }
+                    
                     // Center on midpoint
                     const mid = {
                         x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
