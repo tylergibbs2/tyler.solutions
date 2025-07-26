@@ -1,0 +1,378 @@
+{
+  "last_updated": "2025-07-25T20:32:12.942065",
+  "total_taps": 62,
+  "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Addison",
+      "date": "2025-07-22T22:39:27",
+      "location_route": "Red-Addison"
+    },
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2025-07-22T17:56:44",
+      "location_route": "Red-SS-Lake-Randolph"
+    },
+    {
+      "line": "Red",
+      "station": "Cermak/Chinatown",
+      "date": "2025-07-19T09:00:41",
+      "location_route": "Red-Cermak/Chinatown"
+    },
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2025-07-19T06:59:02",
+      "location_route": "Red-SS-Lake-Randolph"
+    },
+    {
+      "line": "Blue",
+      "station": "Division O'Hare",
+      "date": "2025-07-17T19:53:34",
+      "location_route": "Blue-Division_O'Hare"
+    },
+    {
+      "line": "Orange",
+      "station": "Roosevelt",
+      "date": "2025-07-17T17:37:22",
+      "location_route": "Orange_Roosevelt"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-07-11T16:23:47",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-07-10T18:29:37",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-07-07T18:08:05",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "Damen O'Hare",
+      "date": "2025-07-06T14:04:11",
+      "location_route": "Blue-Damen_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-07-06T11:24:06",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-07-06T11:23:55",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-07-05T19:49:56",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-07-05T12:10:26",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-07-03T19:13:19",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Red",
+      "station": "Belmont",
+      "date": "2025-07-01T17:55:54",
+      "location_route": "Red-Belmont"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-07-01T16:37:22",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-06-28T00:05:34",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-06-26T19:02:05",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-06-25T08:28:48",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Western O'Hare",
+      "date": "2025-06-24T00:45:27",
+      "location_route": "Blue-Western_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-06-23T21:35:22",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Loop",
+      "station": "Quincy/Wells",
+      "date": "2025-06-22T11:54:47",
+      "location_route": "Loop-Quincy/Wells"
+    },
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2025-06-21T19:54:24",
+      "location_route": "Red-SS-Lake-Randolph"
+    },
+    {
+      "line": "Blue",
+      "station": "DB Randolph-Washington",
+      "date": "2025-06-21T12:40:21",
+      "location_route": "Blue-DB Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-06-20T13:57:19",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-06-18T07:48:10",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Division O'Hare",
+      "date": "2025-06-16T22:46:22",
+      "location_route": "Blue-Division_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-06-16T17:53:06",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Western O'Hare",
+      "date": "2025-06-13T17:06:48",
+      "location_route": "Blue-Western_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-06-13T13:33:33",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-06-11T18:06:30",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Brown",
+      "station": "Washington/Wells",
+      "date": "2025-06-06T18:22:22",
+      "location_route": "Brown-Washington/Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-06-04T18:41:32",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-06-01T19:37:25",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Damen O'Hare",
+      "date": "2025-05-25T16:35:49",
+      "location_route": "Blue-Damen_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-05-25T12:36:12",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-05-24T20:27:41",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Green",
+      "station": "Morgan Lake",
+      "date": "2025-05-23T13:24:47",
+      "location_route": "Green-Morgan_Lake"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-05-19T17:29:55",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-05-16T11:54:48",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-05-11T10:57:46",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Brown",
+      "station": "Sedgwick",
+      "date": "2025-05-06T21:53:10",
+      "location_route": "Brown-Sedgwick"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-05-06T18:04:02",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-05-02T07:13:01",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-05-02T07:12:26",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2025-04-30T17:23:16",
+      "location_route": "Red-SS-Lake-Randolph"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-04-22T17:23:48",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Green_Lake",
+      "station": "Clinton",
+      "date": "2025-04-20T13:01:42",
+      "location_route": "Green_Lake-Clinton"
+    },
+    {
+      "line": "Blue",
+      "station": "Western O'Hare",
+      "date": "2025-04-19T12:12:09",
+      "location_route": "Blue-Western_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-04-19T09:22:35",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2025-04-13T10:46:25",
+      "location_route": "Red-SS-Lake-Randolph"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-04-11T21:30:24",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Green",
+      "station": "Morgan Lake",
+      "date": "2025-04-09T20:13:34",
+      "location_route": "Green-Morgan_Lake"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-04-09T18:06:26",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-04-01T18:17:49",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-03-29T18:11:34",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-03-29T11:42:44",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-03-28T16:40:55",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-03-19T16:56:59",
+      "location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Division O'Hare",
+      "date": "2025-03-18T20:16:57",
+      "location_route": "Blue-Division_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "LaSalle Congress",
+      "date": "2025-03-18T17:34:13",
+      "location_route": "Blue-LaSalle_Congress"
+    }
+  ]
+}
