@@ -8,7 +8,14 @@ window.addEventListener('load', () => {
         desc.onclick = randomizeSubtitle;
     }
     randomizeSubtitle();
-    fetchTopLanguages();
+    
+    // Execute both fetch functions concurrently
+    Promise.all([
+        fetchTopLanguages(),
+        fetchCtaTapData()
+    ]).catch(error => {
+        console.error("Error loading data:", error);
+    });
 });
 
 document.addEventListener('keydown', function(event) {

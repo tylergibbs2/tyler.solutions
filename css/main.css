@@ -224,3 +224,27 @@ th {
 .justified-list-item .percent {
     font-weight: bold;
 }
+
+#cta-tap-container {
+    margin-bottom: 1em;
+}
+
+#cta-tap-display {
+    font-family: monospace;
+    color: #9c9c9c;
+    line-height: 1.5;
+}
+
+#cta-tap-display .line-name {
+    color: #63a4ff;
+    font-weight: bold;
+}
+
+#cta-tap-display .station-name {
+    color: white;
+}
+
+#cta-tap-display .tap-date {
+    color: #9c9c9c;
+    font-size: 0.9em;
+}

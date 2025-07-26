@@ -277,3 +277,37 @@ document.addEventListener('keydown', function(event) {
       konamiCodePosition = 0; // Reset if the sequence is broken
     }
 });
+
+async function fetchCtaTapData() {
+    try {
+        let resp = await fetch("/cta-rail-taps.json");
+        const ctaData = await resp.json();
+        displayCtaTap(ctaData);
+    } catch (error) {
+        console.error("Failed to fetch CTA tap data:", error);
+        const ctaDisplay = document.getElementById('cta-tap-display');
+        if (ctaDisplay) {
+            ctaDisplay.innerHTML = '<span style="color: #9c9c9c;">No recent CTA data available</span>';
+        }
+    }
+}
+
+function displayCtaTap(ctaData) {
+    const ctaDisplay = document.getElementById('cta-tap-display');
+    if (!ctaDisplay || !ctaData.rail_taps || ctaData.rail_taps.length === 0) {
+        return;
+    }
+
+    const mostRecentTap = ctaData.rail_taps[0]; // First entry is most recent
+    const tapDate = new Date(mostRecentTap.date);
+    const formattedDate = tapDate.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    const displayText = `Last 'L' tap: <span class="line-name">${mostRecentTap.line}</span> Line at <span class="station-name">${mostRecentTap.station}</span> (${formattedDate})`;
+    
+    typeEffect(ctaDisplay, displayText, null, false);
+}
