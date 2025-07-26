@@ -73,23 +73,58 @@ function updateCursorPosition() {
 
 
 function typeEffect(element, text, callback, includeSpan = false) {
-    let i = 0;
+    let visibleCharIndex = 0;
     element.innerHTML = '';
 
+    // Helper function to count visible characters (excluding HTML tags)
+    function countVisibleChars(str) {
+        return str.replace(/<[^>]*>/g, '').length;
+    }
+
+    // Helper function to get text up to a certain number of visible characters
+    function getTextUpToVisibleChars(text, targetVisibleChars) {
+        let visibleCount = 0;
+        let result = '';
+        let inTag = false;
+        
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            
+            if (char === '<') {
+                inTag = true;
+            }
+            
+            if (!inTag) {
+                visibleCount++;
+                if (visibleCount > targetVisibleChars) {
+                    break;
+                }
+            }
+            
+            result += char;
+            
+            if (char === '>') {
+                inTag = false;
+            }
+        }
+        
+        return result;
+    }
+
     function type() {
-        if (i < text.length) {
-            let currentText = text.substring(0, i + 1);
-            let lastChar = currentText.charAt(currentText.length - 1);
-            let newText = includeSpan ? currentText.slice(0, -1) + `<span id="last">${lastChar}</span>` : currentText;
+        const totalVisibleChars = countVisibleChars(text);
+        
+        if (visibleCharIndex < totalVisibleChars) {
+            visibleCharIndex++;
+            let currentText = getTextUpToVisibleChars(text, visibleCharIndex);
+            let newText = includeSpan ? currentText.slice(0, -1) + `<span id="last">${currentText.slice(-1)}</span>` : currentText;
             element.innerHTML = newText;
-            i++;
             drawMainContentBorder();
             updateCursorPosition();
             setTimeout(type, Math.floor(Math.random() * 40) + 25);
         } else {
             if (text.length > 0) {
-                let lastChar = text.charAt(text.length - 1);
-                let fullTextWithSpan = includeSpan ? text.slice(0, -1) + `<span id="last">${lastChar}</span>` : text;
+                let fullTextWithSpan = includeSpan ? text.slice(0, -1) + `<span id="last">${text.slice(-1)}</span>` : text;
                 if (fullTextWithSpan.startsWith("https://")) {
                     element.innerHTML = `<a href=${text} target="_blank">${fullTextWithSpan}</a>`;
                 } else {
