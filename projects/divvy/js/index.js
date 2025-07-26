@@ -471,6 +471,7 @@ function createNeighborhoodMap() {
         // Desktop mouse pan/zoom (existing)
         svg.addEventListener('wheel', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             const { x, y } = clientToSvg(e.clientX, e.clientY);
             let scale = e.deltaY < 0 ? 1 / zoomFactor : zoomFactor;
             let newW = viewBox[2] * scale;
@@ -491,6 +492,8 @@ function createNeighborhoodMap() {
 
         svg.addEventListener('mousedown', function(e) {
             if (e.button !== 0) return;
+            e.preventDefault();
+            e.stopPropagation();
             isPanning = true;
             startPoint = { x: e.clientX, y: e.clientY };
             panOrigin = { x: viewBox[0], y: viewBox[1] };
@@ -498,12 +501,14 @@ function createNeighborhoodMap() {
         });
         window.addEventListener('mousemove', function(e) {
             if (!isPanning) return;
+            e.preventDefault();
             const deltaX = e.clientX - startPoint.x;
             const deltaY = e.clientY - startPoint.y;
             handlePan(deltaX, deltaY);
         });
         window.addEventListener('mouseup', function(e) {
             if (isPanning) {
+                e.preventDefault();
                 isPanning = false;
                 svg.style.cursor = '';
             }
@@ -532,6 +537,7 @@ function createNeighborhoodMap() {
                 };
             }
             e.preventDefault();
+            e.stopPropagation();
         }, { passive: false });
         svg.addEventListener('touchmove', function(e) {
             if (e.touches.length === 1 && isPanning) {
@@ -569,8 +575,11 @@ function createNeighborhoodMap() {
                 lastTouchDist = dist;
             }
             e.preventDefault();
+            e.stopPropagation();
         }, { passive: false });
         svg.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             isPanning = false;
             lastTouchDist = null;
             lastTouchMid = null;
