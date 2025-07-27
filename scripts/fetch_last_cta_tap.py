@@ -243,7 +243,7 @@ def get_rail_tap_history(transaction_data: dict[str, Any]) -> list[dict[str, str
         # Find all "Use" transactions for "CTA Rail"
         for transaction in transactions:
             if (
-                transaction["TransactionType"] == "Use"
+                transaction["TransactionType"] in ("Use", "Transfer")
                 and transaction["OperatorDesc"] == "CTA Rail"
             ):
                 location_route = transaction["LocationRoute"]
