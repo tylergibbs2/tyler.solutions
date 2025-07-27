@@ -64,11 +64,14 @@ function updateCursorPosition() {
     const last = document.querySelector('#last');
     if (!last)
         return;
+    
+    const descriptionContainer = document.querySelector('#description-container');
     const lastRect = last.getBoundingClientRect();
+    const containerRect = descriptionContainer.getBoundingClientRect();
 
     const cursor = document.querySelector('#cursor');
-    cursor.style.left = `${lastRect.x}px`;
-    cursor.style.top = `${lastRect.y}px`;
+    cursor.style.left = `${lastRect.left - containerRect.left}px`;
+    cursor.style.top = `${lastRect.top - containerRect.top}px`;
 }
 
 

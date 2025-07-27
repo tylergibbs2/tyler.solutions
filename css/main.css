@@ -151,7 +151,7 @@ noscript {
     height: 1em;
     background-color: white;
     animation: blink 1s step-end infinite;
-    position: fixed;
+    position: absolute;
     transform: translateX(1ch);
 }
 @keyframes blink {
