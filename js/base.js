@@ -13,7 +13,7 @@ let subtitles = [
     "Pioneer of writing subtitles",
     "Creator of Coyote/Mouse Simulation",
     "Ex-user of jQuery",
-    "is feeling great!",
+    "<i>is feeling great!</i>",
     "Backend Engineer",
     "Frontend Engineer",
     "Definitely doesn't make floating-point errors",
@@ -23,7 +23,6 @@ let subtitles = [
     "Stardew Valley modder",
     "Simple is better!",
     "Fintech Enthusiast",
-    "Software Sorcerer",
     "The only winning move is not to play",
     "Would you like to play a game?",
     "Can you make a ticket for that?",
@@ -48,7 +47,13 @@ let subtitles = [
     "'tis but a scratch!",
     "It's just a flesh wound",
     "I'll be back",
-    "May the force be with you"
+    "May the force be with you",
+    "Try uv!",
+    "Type hints or bust!",
+    "FastAPI enthusiast",
+    "uv > pip",
+    "Bug hunter extraordinaire",
+    "One day I'll start a blog... maybe"
 ];
 
 const konamiCode = [
@@ -127,7 +132,17 @@ function typeEffect(element, text, callback, includeSpan = false) {
             setTimeout(type, Math.floor(Math.random() * 40) + 25);
         } else {
             if (text.length > 0) {
-                let fullTextWithSpan = includeSpan ? text.slice(0, -1) + `<span id="last">${text.slice(-1)}</span>` : text;
+                let fullTextWithSpan;
+                if (includeSpan) {
+                    // Find the last visible character for the span
+                    const visibleChars = text.replace(/<[^>]*>/g, '');
+                    const lastVisibleChar = visibleChars.slice(-1);
+                    const lastVisibleCharIndex = text.lastIndexOf(lastVisibleChar);
+                    fullTextWithSpan = text.slice(0, lastVisibleCharIndex) + `<span id="last">${lastVisibleChar}</span>` + text.slice(lastVisibleCharIndex + 1);
+                } else {
+                    fullTextWithSpan = text;
+                }
+                
                 if (fullTextWithSpan.startsWith("https://")) {
                     element.innerHTML = `<a href=${text} target="_blank">${fullTextWithSpan}</a>`;
                 } else {
