@@ -129,7 +129,7 @@ def get_transaction_history(
         }
     )
 
-    # Prepare the request data
+    # Prepare the request data - only fetch fields we need for rail tap processing
     data = {
         "s": 1,
         "MaxNumberOfRows": "100",
@@ -140,13 +140,6 @@ def get_transaction_history(
         "Props": {
             "draw": 1,
             "columns": [
-                {
-                    "data": "TransactionDate",
-                    "name": "",
-                    "searchable": True,
-                    "orderable": True,
-                    "search": {"value": "", "regex": False},
-                },
                 {
                     "data": "TransactionDateFormatted",
                     "name": "",
@@ -170,27 +163,6 @@ def get_transaction_history(
                 },
                 {
                     "data": "LocationRoute",
-                    "name": "",
-                    "searchable": True,
-                    "orderable": True,
-                    "search": {"value": "", "regex": False},
-                },
-                {
-                    "data": "ProductDesc",
-                    "name": "",
-                    "searchable": True,
-                    "orderable": True,
-                    "search": {"value": "", "regex": False},
-                },
-                {
-                    "data": "Amount",
-                    "name": "",
-                    "searchable": True,
-                    "orderable": True,
-                    "search": {"value": "", "regex": False},
-                },
-                {
-                    "data": "AmountFormatted",
                     "name": "",
                     "searchable": True,
                     "orderable": True,
