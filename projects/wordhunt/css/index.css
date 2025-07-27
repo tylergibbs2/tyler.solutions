@@ -106,7 +106,6 @@
 
 #disclaimer {
     color: #ff746c;
-    margin-top: 0.75em;
     font-family: monospace;
 }
 
@@ -192,6 +191,7 @@
 
 #main {
     margin-top: 2em;
+    margin-bottom: 1.5em;
 }
 
 /* Responsive design */
