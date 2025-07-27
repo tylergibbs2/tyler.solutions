@@ -248,3 +248,18 @@ th {
     color: #9c9c9c;
     font-size: 0.9em;
 }
+
+.clickable-tap {
+    color: #63a4ff;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: #63a4ff;
+    text-decoration-thickness: 1px;
+    transition: all 0.2s ease;
+}
+
+.clickable-tap:hover {
+    color: #8bb8ff;
+    text-decoration-color: #8bb8ff;
+    text-shadow: 0 0 3px #63a4ff;
+}

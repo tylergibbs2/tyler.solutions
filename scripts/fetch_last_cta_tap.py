@@ -10,6 +10,7 @@ from pathlib import Path
 import os
 from typing import Optional, Any
 from datetime import datetime
+import pytz
 
 
 def get_verification_token(session: requests.Session, url: str) -> str:
@@ -191,16 +192,24 @@ def get_transaction_history(
 
 
 def format_date(date_string: str) -> str:
-    """Convert Ventra date format to ISO format"""
+    """Convert Ventra date format from Chicago timezone to UTC ISO format"""
     try:
         # Remove HTML tags and clean up the date string
         clean_date = date_string.replace("<br/>", " ").strip()
 
         # Parse the date (format: MM/DD/YYYY HH:MM:SS AM/PM)
+        # This is in Chicago timezone
+        chicago_tz = pytz.timezone('America/Chicago')
         parsed_date = datetime.strptime(clean_date, "%m/%d/%Y %I:%M:%S %p")
+        
+        # Localize the datetime to Chicago timezone
+        chicago_date = chicago_tz.localize(parsed_date)
+        
+        # Convert to UTC
+        utc_date = chicago_date.astimezone(pytz.UTC)
 
-        # Return ISO format
-        return parsed_date.isoformat()
+        # Return UTC ISO format
+        return utc_date.isoformat()
     except Exception as e:
         print(f"Error formatting date '{date_string}': {e}")
         return date_string
@@ -222,28 +231,18 @@ def get_rail_tap_history(transaction_data: dict[str, Any]) -> list[dict[str, str
                 transaction_date = format_date(transaction["TransactionDateFormatted"])
 
                 # Parse the location route to extract line and station
-                # Format is typically "Line-Station" or "Line-Station_Details"
-                # Handle cases like "Orange_Roosevelt" where there's no dash
-                if "_" in location_route and "-" not in location_route:
-                    # Format: "Line_Station" (like Orange_Roosevelt)
-                    parts = location_route.split("_", 1)
-                    if len(parts) >= 2:
-                        line = parts[0]
-                        station = parts[1].replace("_", " ")
-                    else:
-                        line = "Unknown"
-                        station = location_route
-                else:
-                    # Format: "Line-Station" or "Line-Station_Details"
+                # Handle various formats: "Line-Station", "Line_Station", "Line_Station-Station"
+                if "-" in location_route:
                     parts = location_route.split("-", 1)
-                    if len(parts) >= 2:
-                        line = parts[0]
-                        station = (
-                            parts[1].replace("_", " ").replace("SS-", "")
-                        )  # Clean up station name
-                    else:
-                        line = "Unknown"
-                        station = location_route
+                    line = parts[0].split("_")[0]  # Take first part before any underscore
+                    station = parts[1].replace("_", " ").replace("SS-", "").replace("DB ", "")
+                elif "_" in location_route:
+                    parts = location_route.split("_", 1)
+                    line = parts[0]
+                    station = parts[1].replace("_", " ")
+                else:
+                    line = "Unknown"
+                    station = location_route
 
                 rail_taps.append(
                     {
@@ -251,6 +250,7 @@ def get_rail_tap_history(transaction_data: dict[str, Any]) -> list[dict[str, str
                         "station": station,
                         "date": transaction_date,
                         "location_route": location_route,
+                        "original_location_route": transaction["LocationRoute"],
                     }
                 )
 
@@ -306,7 +306,7 @@ if __name__ == "__main__":
             if rail_taps:
                 print(f"Found {len(rail_taps)} CTA Rail taps:")
                 for i, tap in enumerate(rail_taps, 1):
-                    print(f"{i}. {tap['line']} Line - {tap['station']} ({tap['date']})")
+                    print(f"{i}. {tap['line']} Line - {tap['station']} ({tap['date']}) - {tap['original_location_route']}")
 
                 # Save to JSON file
                 save_rail_tap_data(rail_taps)

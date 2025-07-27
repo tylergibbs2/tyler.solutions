@@ -335,14 +335,70 @@ function displayCtaTap(ctaData) {
 
     const mostRecentTap = ctaData.rail_taps[0]; // First entry is most recent
     const tapDate = new Date(mostRecentTap.date);
+    
     const formattedDate = tapDate.toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric',
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
+        timeZoneName: 'short'
     });
 
-    const displayText = `Last 'L' tap: <span class="line-name">${mostRecentTap.line}</span> Line at <span class="station-name">${mostRecentTap.station}</span> (${formattedDate})`;
+    const displayText = `<span class="clickable-tap" onclick="toggleTapHistory()">Last 'L' tap:</span> <span class="line-name">${mostRecentTap.line}</span> Line at <span class="station-name">${mostRecentTap.station}</span> (${formattedDate})`;
     
     typeEffect(ctaDisplay, displayText, null, false);
+    
+    // Store the tap data globally for the dropdown
+    window.ctaTapData = ctaData.rail_taps;
+}
+
+function toggleTapHistory() {
+    const ctaDisplay = document.getElementById('cta-tap-display');
+    const existingDropdown = document.getElementById('tap-history-dropdown');
+    
+    if (existingDropdown) {
+        // Remove existing dropdown
+        existingDropdown.remove();
+        return;
+    }
+    
+    // Create dropdown
+    const dropdown = document.createElement('div');
+    dropdown.id = 'tap-history-dropdown';
+    dropdown.style.cssText = `
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #666;
+        background: #1a1a1a;
+        font-family: monospace;
+        font-size: 0.9em;
+        max-height: 200px;
+        overflow-y: auto;
+    `;
+    
+    // Get up to 5 recent taps (excluding the first one which is already shown)
+    const recentTaps = window.ctaTapData.slice(1, 6);
+    
+    if (recentTaps.length === 0) {
+        dropdown.innerHTML = '<span style="color: #666;">No additional recent taps</span>';
+    } else {
+        const tapList = recentTaps.map((tap, index) => {
+            const tapDate = new Date(tap.date);
+            const formattedDate = tapDate.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZoneName: 'short'
+            });
+            
+            return `<div style="margin-bottom: 5px;">
+                <span class="line-name">${tap.line}</span> Line at <span class="station-name">${tap.station}</span> (${formattedDate})
+            </div>`;
+        }).join('');
+        
+        dropdown.innerHTML = tapList;
+    }
+    
+    ctaDisplay.appendChild(dropdown);
 }
