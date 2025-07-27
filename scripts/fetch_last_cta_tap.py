@@ -254,6 +254,8 @@ def get_rail_tap_history(transaction_data: dict[str, Any]) -> list[dict[str, str
                     }
                 )
 
+        rail_taps.sort(key=lambda x: x["date"], reverse=True)
+
         return rail_taps
 
     except Exception as e:
