@@ -1,7 +1,19 @@
 {
-  "last_updated": "2025-07-26T06:17:22.209032",
+  "last_updated": "2025-07-27T06:17:54.819895",
   "total_taps": 62,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-07-26T16:43:25",
+      "location_route": "Blue-203 LaSalle"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-07-26T13:51:50",
+      "location_route": "Blue-203 LaSalle"
+    },
     {
       "line": "Red",
       "station": "Addison",
@@ -361,18 +373,6 @@
       "station": "Lake Wells",
       "date": "2025-03-19T16:56:59",
       "location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Division O'Hare",
-      "date": "2025-03-18T20:16:57",
-      "location_route": "Blue-Division_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "LaSalle Congress",
-      "date": "2025-03-18T17:34:13",
-      "location_route": "Blue-LaSalle_Congress"
     }
   ]
 }
