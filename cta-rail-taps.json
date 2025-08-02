@@ -1,7 +1,21 @@
 {
-  "last_updated": "2025-08-01T06:21:30.695389",
-  "total_taps": 82,
+  "last_updated": "2025-08-02T06:17:11.605340",
+  "total_taps": 81,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Argyle",
+      "date": "2025-08-02T01:21:39+00:00",
+      "location_route": "Red-Argyle",
+      "original_location_route": "Red-Argyle"
+    },
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2025-08-01T23:04:50+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
     {
       "line": "Green",
       "station": "Morgan Lake",
@@ -554,27 +568,6 @@
       "date": "2025-03-29T18:13:43+00:00",
       "location_route": "Blue-Chicago_O'Hare",
       "original_location_route": "Blue-Chicago_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-03-29T16:42:44+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-03-28T21:40:55+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-03-19T21:56:59+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
