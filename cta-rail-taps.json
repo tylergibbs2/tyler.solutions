@@ -1,7 +1,21 @@
 {
-  "last_updated": "2025-08-02T06:17:11.605340",
-  "total_taps": 81,
+  "last_updated": "2025-08-03T06:17:25.205185",
+  "total_taps": 82,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "California O'Hare",
+      "date": "2025-08-02T16:55:54+00:00",
+      "location_route": "Blue-California_O'Hare",
+      "original_location_route": "Blue-California_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-08-02T15:17:56+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Red",
       "station": "Argyle",
@@ -561,13 +575,6 @@
       "date": "2025-03-29T23:11:34+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Chicago O'Hare",
-      "date": "2025-03-29T18:13:43+00:00",
-      "location_route": "Blue-Chicago_O'Hare",
-      "original_location_route": "Blue-Chicago_O'Hare"
     }
   ]
 }
