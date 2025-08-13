@@ -1,7 +1,14 @@
 {
-  "last_updated": "2025-08-12T06:19:21.066531",
+  "last_updated": "2025-08-13T06:19:02.812255",
   "total_taps": 82,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "O'Hare",
+      "date": "2025-08-13T01:35:57+00:00",
+      "location_route": "Blue-O'Hare",
+      "original_location_route": "Blue-O'Hare"
+    },
     {
       "line": "Blue",
       "station": "Damen O'Hare",
@@ -568,13 +575,6 @@
       "date": "2025-04-10T01:13:34+00:00",
       "location_route": "Green-Morgan_Lake",
       "original_location_route": "Green-Morgan_Lake"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-04-09T23:06:26+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
     }
   ]
 }
