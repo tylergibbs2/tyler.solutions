@@ -1,7 +1,28 @@
 {
-  "last_updated": "2025-09-07T06:14:55.580295",
-  "total_taps": 82,
+  "last_updated": "2025-09-08T06:18:28.662424",
+  "total_taps": 84,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Division O'Hare",
+      "date": "2025-09-07T03:40:19+00:00",
+      "location_route": "Blue-Division_O'Hare",
+      "original_location_route": "Blue-Division_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Damen O'Hare",
+      "date": "2025-09-06T21:37:54+00:00",
+      "location_route": "Blue-Damen_O'Hare",
+      "original_location_route": "Blue-Damen_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-09-06T20:21:12+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "203 LaSalle",
@@ -568,13 +589,6 @@
       "date": "2025-04-19T17:12:09+00:00",
       "location_route": "Blue-Western_O'Hare",
       "original_location_route": "Blue-Western_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-04-19T14:22:35+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
