@@ -1,7 +1,14 @@
 {
-  "last_updated": "2025-09-13T06:14:55.328686",
+  "last_updated": "2025-09-14T06:15:13.297822",
   "total_taps": 84,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Randolph-Washington",
+      "date": "2025-09-13T23:33:22+00:00",
+      "location_route": "Blue-DB Randolph-Washington",
+      "original_location_route": "Blue-DB Randolph-Washington"
+    },
     {
       "line": "Blue",
       "station": "203 LaSalle",
@@ -582,13 +589,6 @@
       "date": "2025-04-22T22:23:48+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Green",
-      "station": "Clinton",
-      "date": "2025-04-20T18:01:42+00:00",
-      "location_route": "Green_Lake-Clinton",
-      "original_location_route": "Green_Lake-Clinton"
     }
   ]
 }
