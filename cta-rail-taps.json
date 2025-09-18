@@ -1,7 +1,21 @@
 {
-  "last_updated": "2025-09-17T06:17:46.830489",
+  "last_updated": "2025-09-18T06:17:32.913910",
   "total_taps": 84,
   "rail_taps": [
+    {
+      "line": "Green",
+      "station": "Morgan Lake",
+      "date": "2025-09-18T02:03:29+00:00",
+      "location_route": "Green-Morgan_Lake",
+      "original_location_route": "Green-Morgan_Lake"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2025-09-17T23:32:14+00:00",
+      "location_route": "Blue-203 LaSalle",
+      "original_location_route": "Blue-203 LaSalle"
+    },
     {
       "line": "Blue",
       "station": "Randolph-Washington",
@@ -575,20 +589,6 @@
       "date": "2025-04-30T22:23:16+00:00",
       "location_route": "Red-SS-Lake-Randolph",
       "original_location_route": "Red-SS-Lake-Randolph"
-    },
-    {
-      "line": "Blue",
-      "station": "Division O'Hare",
-      "date": "2025-04-23T00:16:43+00:00",
-      "location_route": "Blue-Division_O'Hare",
-      "original_location_route": "Blue-Division_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-04-22T22:23:48+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
