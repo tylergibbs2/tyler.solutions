@@ -1,6 +1,6 @@
 {
-  "last_updated": "2025-09-18T06:17:32.913910",
-  "total_taps": 84,
+  "last_updated": "2025-09-19T06:17:45.635292",
+  "total_taps": 83,
   "rail_taps": [
     {
       "line": "Green",
@@ -582,13 +582,6 @@
       "date": "2025-05-02T12:12:26+00:00",
       "location_route": "Blue-203 LaSalle",
       "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Red",
-      "station": "Lake-Randolph",
-      "date": "2025-04-30T22:23:16+00:00",
-      "location_route": "Red-SS-Lake-Randolph",
-      "original_location_route": "Red-SS-Lake-Randolph"
     }
   ]
 }
