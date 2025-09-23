@@ -1,6 +1,14 @@
+#!/usr/bin/env uv run --script
+# /// script
+# requires-python = ">=3.11,<3.12"
+# dependencies = [
+#   "requests==2.32.5"
+# ]
+# ///
 from collections import defaultdict
 import json
 import statistics
+
 import requests
 
 

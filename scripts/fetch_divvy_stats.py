@@ -1,3 +1,12 @@
+#!/usr/bin/env uv run --script
+# /// script
+# requires-python = ">=3.11,<3.12"
+# dependencies = [
+#   "geopandas==1.1.1",
+#   "pandas==2.3.2",
+#   "requests==2.32.5"
+# ]
+# ///
 from datetime import datetime
 import io
 import json

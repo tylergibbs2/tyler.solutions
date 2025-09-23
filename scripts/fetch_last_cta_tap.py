@@ -1,16 +1,20 @@
-#!/usr/bin/env python3
-"""
-Script to automate login to Ventra Chicago website
-"""
-
-import requests
-import re
-import json
-from pathlib import Path
-import os
-from typing import Optional, Any
+#!/usr/bin/env uv run --script
+# /// script
+# requires-python = ">=3.11,<3.12"
+# dependencies = [
+#   "pytz==2025.2",
+#   "requests==2.32.5"
+# ]
+# ///
 from datetime import datetime
+import json
+import os
+from pathlib import Path
+import re
+from typing import Optional, Any
+
 import pytz
+import requests
 
 
 def get_verification_token(session: requests.Session, url: str) -> str:

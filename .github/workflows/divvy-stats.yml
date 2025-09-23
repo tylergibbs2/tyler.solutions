@@ -13,18 +13,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests pandas geopandas
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
 
     - name: Run fetch script
-      run: python scripts/fetch_divvy_stats.py
+      run: uv run scripts/fetch_divvy_stats.py
 
     - name: Commit and push data file
       uses: EndBug/add-and-commit@v9
