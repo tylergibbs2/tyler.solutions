@@ -4,3 +4,4 @@
 \.idea/
 **/_site/*
 **/.venv/*
+.DS_Store
