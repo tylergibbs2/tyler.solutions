@@ -377,6 +377,7 @@ function toggleTapHistory() {
     if (existingDropdown) {
         // Remove existing dropdown
         existingDropdown.remove();
+        drawMainContentBorder();
         return;
     }
     
@@ -419,4 +420,6 @@ function toggleTapHistory() {
     }
     
     ctaDisplay.appendChild(dropdown);
+    // redraw the border
+    drawMainContentBorder();
 }
