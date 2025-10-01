@@ -1,7 +1,21 @@
 {
-  "last_updated": "2025-09-30T06:18:05.357717",
+  "last_updated": "2025-10-01T06:17:49.088864",
   "total_taps": 81,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Belmont",
+      "date": "2025-10-01T01:02:27+00:00",
+      "location_route": "Red-Belmont",
+      "original_location_route": "Red-Belmont"
+    },
+    {
+      "line": "Brown",
+      "station": "Washington/Wells",
+      "date": "2025-09-30T23:01:08+00:00",
+      "location_route": "Brown-Washington/Wells",
+      "original_location_route": "Brown-Washington/Wells"
+    },
     {
       "line": "Brown",
       "station": "Armitage",
@@ -554,20 +568,6 @@
       "date": "2025-05-25T17:36:12+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Red",
-      "station": "Belmont",
-      "date": "2025-05-25T02:49:48+00:00",
-      "location_route": "Red-Belmont",
-      "original_location_route": "Red-Belmont"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-05-25T01:27:41+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
     }
   ]
 }
