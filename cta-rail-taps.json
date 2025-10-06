@@ -1,7 +1,14 @@
 {
-  "last_updated": "2025-10-04T06:15:19.415680",
+  "last_updated": "2025-10-06T06:18:12.443126",
   "total_taps": 81,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-10-05T19:46:13+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Red",
       "station": "Belmont",
@@ -561,13 +568,6 @@
       "date": "2025-05-25T21:35:49+00:00",
       "location_route": "Blue-Damen_O'Hare",
       "original_location_route": "Blue-Damen_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-05-25T17:36:12+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
