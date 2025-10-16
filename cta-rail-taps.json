@@ -1,7 +1,14 @@
 {
-  "last_updated": "2025-10-15T06:18:24.525942",
+  "last_updated": "2025-10-16T06:18:16.400074",
   "total_taps": 82,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-10-15T22:34:29+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "203 LaSalle",
@@ -568,13 +575,6 @@
       "date": "2025-06-11T23:06:30+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Brown",
-      "station": "Washington/Wells",
-      "date": "2025-06-06T23:22:22+00:00",
-      "location_route": "Brown-Washington/Wells",
-      "original_location_route": "Brown-Washington/Wells"
     }
   ]
 }
