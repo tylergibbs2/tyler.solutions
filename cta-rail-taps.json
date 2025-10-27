@@ -1,7 +1,63 @@
 {
-  "last_updated": "2025-10-23T06:18:10.868171",
+  "last_updated": "2025-10-27T06:20:22.429100",
   "total_taps": 80,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2025-10-26T23:28:23+00:00",
+      "location_route": "Red-SS-Lake-Randolph",
+      "original_location_route": "Red-SS-Lake-Randolph"
+    },
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2025-10-26T20:03:51+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
+    {
+      "line": "Red",
+      "station": "Argyle",
+      "date": "2025-10-26T18:24:40+00:00",
+      "location_route": "Red-Argyle",
+      "original_location_route": "Red-Argyle"
+    },
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2025-10-26T16:54:36+00:00",
+      "location_route": "Red-SS-Lake-Randolph",
+      "original_location_route": "Red-SS-Lake-Randolph"
+    },
+    {
+      "line": "Blue",
+      "station": "Western O'Hare",
+      "date": "2025-10-26T01:06:04+00:00",
+      "location_route": "Blue-Western_O'Hare",
+      "original_location_route": "Blue-Western_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-10-25T23:19:40+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Brown",
+      "station": "Paulina",
+      "date": "2025-10-25T19:11:16+00:00",
+      "location_route": "Brown-Paulina",
+      "original_location_route": "Brown-Paulina"
+    },
+    {
+      "line": "Brown",
+      "station": "Merchandise Mart",
+      "date": "2025-10-25T16:57:50+00:00",
+      "location_route": "Brown-Merchandise Mart",
+      "original_location_route": "Brown-Merchandise Mart"
+    },
     {
       "line": "Blue",
       "station": "203 LaSalle",
@@ -505,62 +561,6 @@
       "date": "2025-06-25T13:28:48+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Western O'Hare",
-      "date": "2025-06-24T05:45:27+00:00",
-      "location_route": "Blue-Western_O'Hare",
-      "original_location_route": "Blue-Western_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-06-24T02:35:22+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Green",
-      "station": "Morgan Lake",
-      "date": "2025-06-22T18:07:26+00:00",
-      "location_route": "Green-Morgan_Lake",
-      "original_location_route": "Green-Morgan_Lake"
-    },
-    {
-      "line": "Loop",
-      "station": "Quincy/Wells",
-      "date": "2025-06-22T16:54:47+00:00",
-      "location_route": "Loop-Quincy/Wells",
-      "original_location_route": "Loop-Quincy/Wells"
-    },
-    {
-      "line": "Red",
-      "station": "Lake-Randolph",
-      "date": "2025-06-22T00:54:24+00:00",
-      "location_route": "Red-SS-Lake-Randolph",
-      "original_location_route": "Red-SS-Lake-Randolph"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-06-21T18:06:42+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Randolph-Washington",
-      "date": "2025-06-21T17:40:21+00:00",
-      "location_route": "Blue-DB Randolph-Washington",
-      "original_location_route": "Blue-DB Randolph-Washington"
-    },
-    {
-      "line": "Brown",
-      "station": "Sedgwick",
-      "date": "2025-06-20T21:45:38+00:00",
-      "location_route": "Brown-Sedgwick",
-      "original_location_route": "Brown-Sedgwick"
     }
   ]
 }
