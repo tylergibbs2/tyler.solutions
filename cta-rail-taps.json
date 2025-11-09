@@ -1,7 +1,14 @@
 {
-  "last_updated": "2025-11-08T06:16:21.614918",
+  "last_updated": "2025-11-09T06:16:47.018625",
   "total_taps": 80,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "O'Hare",
+      "date": "2025-11-08T22:00:01+00:00",
+      "location_route": "Blue-O'Hare",
+      "original_location_route": "Blue-O'Hare"
+    },
     {
       "line": "Blue",
       "station": "Lake Wells",
@@ -554,13 +561,6 @@
       "date": "2025-06-28T05:05:34+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-06-27T00:02:05+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
     }
   ]
 }
