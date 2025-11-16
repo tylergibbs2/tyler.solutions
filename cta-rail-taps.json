@@ -1,7 +1,35 @@
 {
-  "last_updated": "2025-11-15T06:17:10.380759",
-  "total_taps": 80,
+  "last_updated": "2025-11-16T06:17:33.926448",
+  "total_taps": 82,
   "rail_taps": [
+    {
+      "line": "Brown",
+      "station": "Merchandise Mart",
+      "date": "2025-11-16T00:21:00+00:00",
+      "location_route": "Brown-Merchandise Mart",
+      "original_location_route": "Brown-Merchandise Mart"
+    },
+    {
+      "line": "Red",
+      "station": "SS Randolph-Washington",
+      "date": "2025-11-15T23:22:47+00:00",
+      "location_route": "Red-SS Randolph-Washington",
+      "original_location_route": "Red-SS Randolph-Washington"
+    },
+    {
+      "line": "Red",
+      "station": "SS Randolph-Washington",
+      "date": "2025-11-15T23:22:27+00:00",
+      "location_route": "Red-SS Randolph-Washington",
+      "original_location_route": "Red-SS Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Thompson Center",
+      "date": "2025-11-15T19:31:13+00:00",
+      "location_route": "Blue-Thompson Center",
+      "original_location_route": "Blue-Thompson Center"
+    },
     {
       "line": "Blue",
       "station": "O'Hare",
@@ -547,20 +575,6 @@
       "date": "2025-07-04T00:13:19+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Brown",
-      "station": "Chicago",
-      "date": "2025-07-01T23:40:54+00:00",
-      "location_route": "Brown-Chicago",
-      "original_location_route": "Brown-Chicago"
-    },
-    {
-      "line": "Red",
-      "station": "Belmont",
-      "date": "2025-07-01T22:55:54+00:00",
-      "location_route": "Red-Belmont",
-      "original_location_route": "Red-Belmont"
     }
   ]
 }
