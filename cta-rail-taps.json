@@ -1,7 +1,14 @@
 {
-  "last_updated": "2025-11-16T06:17:33.926448",
+  "last_updated": "2025-11-17T06:19:45.435522",
   "total_taps": 82,
   "rail_taps": [
+    {
+      "line": "Brown",
+      "station": "Armitage",
+      "date": "2025-11-16T06:19:11+00:00",
+      "location_route": "Brown-Armitage",
+      "original_location_route": "Brown-Armitage"
+    },
     {
       "line": "Brown",
       "station": "Merchandise Mart",
@@ -568,13 +575,6 @@
       "date": "2025-07-04T01:48:22+00:00",
       "location_route": "Blue-Western_O'Hare",
       "original_location_route": "Blue-Western_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-07-04T00:13:19+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
