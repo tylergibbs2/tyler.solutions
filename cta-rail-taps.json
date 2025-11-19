@@ -1,7 +1,35 @@
 {
-  "last_updated": "2025-11-18T06:18:39.031733",
-  "total_taps": 83,
+  "last_updated": "2025-11-19T06:18:55.920721",
+  "total_taps": 85,
   "rail_taps": [
+    {
+      "line": "Orange",
+      "station": "State/Lake",
+      "date": "2025-11-18T14:43:06+00:00",
+      "location_route": "Orange-State/Lake",
+      "original_location_route": "Orange-State/Lake"
+    },
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2025-11-18T14:25:02+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
+    {
+      "line": "Red",
+      "station": "SS Randolph-Washington",
+      "date": "2025-11-18T14:07:30+00:00",
+      "location_route": "Red-SS Randolph-Washington",
+      "original_location_route": "Red-SS Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-11-18T14:02:39+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Red",
       "station": "Chicago",
@@ -568,20 +596,6 @@
       "date": "2025-07-06T00:49:56+00:00",
       "location_route": "Blue-203 LaSalle",
       "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Blue",
-      "station": "Damen O'Hare",
-      "date": "2025-07-05T18:25:00+00:00",
-      "location_route": "Blue-Damen_O'Hare",
-      "original_location_route": "Blue-Damen_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-07-05T17:10:26+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
