@@ -1,7 +1,14 @@
 {
-  "last_updated": "2025-11-20T06:18:21.039104",
-  "total_taps": 85,
+  "last_updated": "2025-11-21T06:19:25.682686",
+  "total_taps": 84,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2025-11-20T23:19:48+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
     {
       "line": "Orange",
       "station": "State/Lake",
@@ -582,20 +589,6 @@
       "date": "2025-07-06T16:24:06+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-07-06T16:23:55+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-07-06T00:49:56+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
     }
   ]
 }
