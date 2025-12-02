@@ -1,7 +1,42 @@
 {
-  "last_updated": "2025-11-30T06:18:19.664357",
-  "total_taps": 84,
+  "last_updated": "2025-12-02T06:20:31.960073",
+  "total_taps": 85,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2025-12-02T05:48:50+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
+    {
+      "line": "Red",
+      "station": "SS Randolph-Washington",
+      "date": "2025-12-02T05:18:10+00:00",
+      "location_route": "Red-SS Randolph-Washington",
+      "original_location_route": "Red-SS Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-12-02T05:10:30+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Green",
+      "station": "Morgan Lake",
+      "date": "2025-12-01T01:25:57+00:00",
+      "location_route": "Green-Morgan_Lake",
+      "original_location_route": "Green-Morgan_Lake"
+    },
+    {
+      "line": "Brown",
+      "station": "Washington/Wells",
+      "date": "2025-12-01T00:48:29+00:00",
+      "location_route": "Brown-Washington/Wells",
+      "original_location_route": "Brown-Washington/Wells"
+    },
     {
       "line": "Blue",
       "station": "O'Hare",
@@ -561,34 +596,6 @@
       "date": "2025-07-17T22:37:22+00:00",
       "location_route": "Orange_Roosevelt",
       "original_location_route": "Orange_Roosevelt"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-07-11T21:23:47+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Blue",
-      "station": "Logan Square",
-      "date": "2025-07-11T01:12:17+00:00",
-      "location_route": "Blue-Logan_Square",
-      "original_location_route": "Blue-Logan_Square"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-07-10T23:29:37+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-07-07T23:08:05+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
     }
   ]
 }
