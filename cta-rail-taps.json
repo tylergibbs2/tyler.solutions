@@ -1,7 +1,21 @@
 {
-  "last_updated": "2025-12-05T06:20:13.252740",
-  "total_taps": 85,
+  "last_updated": "2025-12-07T06:17:20.102500",
+  "total_taps": 86,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Western O'Hare",
+      "date": "2025-12-06T00:00:19+00:00",
+      "location_route": "Blue-Western_O'Hare",
+      "original_location_route": "Blue-Western_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-12-05T23:18:38+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "Randolph-Washington",
@@ -589,13 +603,6 @@
       "date": "2025-07-19T11:59:02+00:00",
       "location_route": "Red-SS-Lake-Randolph",
       "original_location_route": "Red-SS-Lake-Randolph"
-    },
-    {
-      "line": "Blue",
-      "station": "Division O'Hare",
-      "date": "2025-07-18T00:53:34+00:00",
-      "location_route": "Blue-Division_O'Hare",
-      "original_location_route": "Blue-Division_O'Hare"
     }
   ]
 }
