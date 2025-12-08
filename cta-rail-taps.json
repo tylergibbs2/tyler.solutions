@@ -1,7 +1,21 @@
 {
-  "last_updated": "2025-12-07T06:17:20.102500",
-  "total_taps": 86,
+  "last_updated": "2025-12-08T06:21:52.005112",
+  "total_taps": 85,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Damen O'Hare",
+      "date": "2025-12-07T20:25:06+00:00",
+      "location_route": "Blue-Damen_O'Hare",
+      "original_location_route": "Blue-Damen_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-12-07T18:34:20+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "Western O'Hare",
@@ -582,27 +596,6 @@
       "date": "2025-07-22T23:25:13+00:00",
       "location_route": "Red-Chicago",
       "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Red",
-      "station": "Lake-Randolph",
-      "date": "2025-07-22T22:56:44+00:00",
-      "location_route": "Red-SS-Lake-Randolph",
-      "original_location_route": "Red-SS-Lake-Randolph"
-    },
-    {
-      "line": "Red",
-      "station": "Cermak/Chinatown",
-      "date": "2025-07-19T14:00:41+00:00",
-      "location_route": "Red-Cermak/Chinatown",
-      "original_location_route": "Red-Cermak/Chinatown"
-    },
-    {
-      "line": "Red",
-      "station": "Lake-Randolph",
-      "date": "2025-07-19T11:59:02+00:00",
-      "location_route": "Red-SS-Lake-Randolph",
-      "original_location_route": "Red-SS-Lake-Randolph"
     }
   ]
 }
