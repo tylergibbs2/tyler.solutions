@@ -1,7 +1,14 @@
 {
-  "last_updated": "2025-12-13T06:18:27.531802",
+  "last_updated": "2025-12-14T06:18:20.624370",
   "total_taps": 85,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-12-14T02:02:26+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "Randolph-Washington",
@@ -589,13 +596,6 @@
       "date": "2025-07-26T23:39:34+00:00",
       "location_route": "Green-Morgan_Lake",
       "original_location_route": "Green-Morgan_Lake"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-07-26T21:43:25+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
     }
   ]
 }
