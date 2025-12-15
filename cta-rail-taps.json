@@ -1,7 +1,49 @@
 {
-  "last_updated": "2025-12-14T06:18:20.624370",
-  "total_taps": 85,
+  "last_updated": "2025-12-15T06:22:12.739855",
+  "total_taps": 86,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Randolph-Washington",
+      "date": "2025-12-14T16:50:16+00:00",
+      "location_route": "Blue-DB Randolph-Washington",
+      "original_location_route": "Blue-DB Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Randolph-Washington",
+      "date": "2025-12-14T16:49:26+00:00",
+      "location_route": "Blue-DB Randolph-Washington",
+      "original_location_route": "Blue-DB Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Randolph-Washington",
+      "date": "2025-12-14T16:48:46+00:00",
+      "location_route": "Blue-DB Randolph-Washington",
+      "original_location_route": "Blue-DB Randolph-Washington"
+    },
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2025-12-14T16:38:55+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
+    {
+      "line": "Red",
+      "station": "SS Randolph-Washington",
+      "date": "2025-12-14T16:00:37+00:00",
+      "location_route": "Red-SS Randolph-Washington",
+      "original_location_route": "Red-SS Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-12-14T15:49:44+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "Lake Wells",
@@ -561,41 +603,6 @@
       "date": "2025-08-04T22:38:02+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "California O'Hare",
-      "date": "2025-08-02T16:55:54+00:00",
-      "location_route": "Blue-California_O'Hare",
-      "original_location_route": "Blue-California_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-08-02T15:17:56+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Red",
-      "station": "Argyle",
-      "date": "2025-08-02T01:21:39+00:00",
-      "location_route": "Red-Argyle",
-      "original_location_route": "Red-Argyle"
-    },
-    {
-      "line": "Red",
-      "station": "Chicago",
-      "date": "2025-08-01T23:04:50+00:00",
-      "location_route": "Red-Chicago",
-      "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Green",
-      "station": "Morgan Lake",
-      "date": "2025-07-26T23:39:34+00:00",
-      "location_route": "Green-Morgan_Lake",
-      "original_location_route": "Green-Morgan_Lake"
     }
   ]
 }
