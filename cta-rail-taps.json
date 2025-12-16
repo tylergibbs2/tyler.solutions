@@ -1,7 +1,14 @@
 {
-  "last_updated": "2025-12-15T06:22:12.739855",
+  "last_updated": "2025-12-16T06:21:03.641543",
   "total_taps": 86,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Randolph-Washington",
+      "date": "2025-12-16T02:27:12+00:00",
+      "location_route": "Blue-DB Randolph-Washington",
+      "original_location_route": "Blue-DB Randolph-Washington"
+    },
     {
       "line": "Blue",
       "station": "Randolph-Washington",
@@ -596,13 +603,6 @@
       "date": "2025-08-05T03:32:52+00:00",
       "location_route": "Blue-Damen_O'Hare",
       "original_location_route": "Blue-Damen_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-08-04T22:38:02+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
