@@ -1,7 +1,70 @@
 {
-  "last_updated": "2025-12-16T06:21:03.641543",
-  "total_taps": 86,
+  "last_updated": "2025-12-28T06:19:23.689320",
+  "total_taps": 83,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-12-26T10:47:41+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Red",
+      "station": "Cermak/Chinatown",
+      "date": "2025-12-25T21:53:06+00:00",
+      "location_route": "Red-Cermak/Chinatown",
+      "original_location_route": "Red-Cermak/Chinatown"
+    },
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2025-12-25T20:40:50+00:00",
+      "location_route": "Red-SS-Lake-Randolph",
+      "original_location_route": "Red-SS-Lake-Randolph"
+    },
+    {
+      "line": "Red",
+      "station": "Grand",
+      "date": "2025-12-20T21:48:42+00:00",
+      "location_route": "Red-Grand",
+      "original_location_route": "Red-Grand"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-12-20T16:01:47+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "O'Hare",
+      "date": "2025-12-19T22:23:02+00:00",
+      "location_route": "Blue-O'Hare",
+      "original_location_route": "Blue-O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-12-19T21:10:44+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Logan Square",
+      "date": "2025-12-19T01:50:10+00:00",
+      "location_route": "Blue-Logan_Square",
+      "original_location_route": "Blue-Logan_Square"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2025-12-18T23:09:20+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "Randolph-Washington",
@@ -519,90 +582,6 @@
       "date": "2025-09-25T23:28:09+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Green",
-      "station": "Morgan Lake",
-      "date": "2025-09-18T02:03:29+00:00",
-      "location_route": "Green-Morgan_Lake",
-      "original_location_route": "Green-Morgan_Lake"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-09-17T23:32:14+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Blue",
-      "station": "Randolph-Washington",
-      "date": "2025-09-13T23:33:22+00:00",
-      "location_route": "Blue-DB Randolph-Washington",
-      "original_location_route": "Blue-DB Randolph-Washington"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-09-11T21:48:30+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Blue",
-      "station": "Division O'Hare",
-      "date": "2025-09-07T03:40:19+00:00",
-      "location_route": "Blue-Division_O'Hare",
-      "original_location_route": "Blue-Division_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Damen O'Hare",
-      "date": "2025-09-06T21:37:54+00:00",
-      "location_route": "Blue-Damen_O'Hare",
-      "original_location_route": "Blue-Damen_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-09-06T20:21:12+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-08-23T23:54:39+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Blue",
-      "station": "O'Hare",
-      "date": "2025-08-19T04:34:49+00:00",
-      "location_route": "Blue-O'Hare",
-      "original_location_route": "Blue-O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-08-19T01:01:26+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "O'Hare",
-      "date": "2025-08-13T01:35:57+00:00",
-      "location_route": "Blue-O'Hare",
-      "original_location_route": "Blue-O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Damen O'Hare",
-      "date": "2025-08-05T03:32:52+00:00",
-      "location_route": "Blue-Damen_O'Hare",
-      "original_location_route": "Blue-Damen_O'Hare"
     }
   ]
 }
