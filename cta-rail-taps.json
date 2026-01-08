@@ -1,7 +1,28 @@
 {
-  "last_updated": "2026-01-07T06:21:36.386920",
-  "total_taps": 84,
+  "last_updated": "2026-01-08T06:21:32.238037",
+  "total_taps": 86,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2026-01-08T00:37:39+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
+    {
+      "line": "Red",
+      "station": "SS Randolph-Washington",
+      "date": "2026-01-07T23:57:14+00:00",
+      "location_route": "Red-SS Randolph-Washington",
+      "original_location_route": "Red-SS Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-01-07T23:48:41+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "Lake Wells",
@@ -582,13 +603,6 @@
       "date": "2025-09-28T03:30:00+00:00",
       "location_route": "Orange_Roosevelt",
       "original_location_route": "Orange_Roosevelt"
-    },
-    {
-      "line": "Red",
-      "station": "Lake-Randolph",
-      "date": "2025-09-26T22:49:55+00:00",
-      "location_route": "Red-SS-Lake-Randolph",
-      "original_location_route": "Red-SS-Lake-Randolph"
     }
   ]
 }
