@@ -1,7 +1,28 @@
 {
-  "last_updated": "2026-01-12T06:24:14.630029",
+  "last_updated": "2026-01-13T06:21:31.229389",
   "total_taps": 86,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2026-01-13T00:39:02+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
+    {
+      "line": "Red",
+      "station": "SS Randolph-Washington",
+      "date": "2026-01-13T00:00:09+00:00",
+      "location_route": "Red-SS Randolph-Washington",
+      "original_location_route": "Red-SS Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-01-12T23:49:56+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Red",
       "station": "Chicago",
@@ -582,27 +603,6 @@
       "date": "2025-09-30T23:01:08+00:00",
       "location_route": "Brown-Washington/Wells",
       "original_location_route": "Brown-Washington/Wells"
-    },
-    {
-      "line": "Brown",
-      "station": "Armitage",
-      "date": "2025-09-28T18:20:01+00:00",
-      "location_route": "Brown-Armitage",
-      "original_location_route": "Brown-Armitage"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-09-28T15:30:05+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Orange",
-      "station": "Roosevelt",
-      "date": "2025-09-28T03:30:00+00:00",
-      "location_route": "Orange_Roosevelt",
-      "original_location_route": "Orange_Roosevelt"
     }
   ]
 }
