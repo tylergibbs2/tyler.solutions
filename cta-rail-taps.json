@@ -1,7 +1,35 @@
 {
-  "last_updated": "2026-01-27T06:22:35.385215",
+  "last_updated": "2026-01-28T06:23:58.142445",
   "total_taps": 86,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Randolph-Washington",
+      "date": "2026-01-28T01:10:35+00:00",
+      "location_route": "Blue-DB Randolph-Washington",
+      "original_location_route": "Blue-DB Randolph-Washington"
+    },
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2026-01-28T00:55:27+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
+    {
+      "line": "Red",
+      "station": "SS Randolph-Washington",
+      "date": "2026-01-27T23:37:51+00:00",
+      "location_route": "Red-SS Randolph-Washington",
+      "original_location_route": "Red-SS Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-01-27T23:31:05+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "Western O'Hare",
@@ -575,34 +603,6 @@
       "date": "2025-10-15T22:34:29+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-10-14T22:13:09+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Blue",
-      "station": "O'Hare",
-      "date": "2025-10-11T16:57:29+00:00",
-      "location_route": "Blue-O'Hare",
-      "original_location_route": "Blue-O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-10-11T15:47:01+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Red",
-      "station": "Chicago",
-      "date": "2025-10-11T15:05:30+00:00",
-      "location_route": "Red-Chicago",
-      "original_location_route": "Red-Chicago"
     }
   ]
 }
