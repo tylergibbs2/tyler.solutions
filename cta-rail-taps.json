@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-02-08T06:38:39.993659",
-  "total_taps": 85,
+  "last_updated": "2026-02-09T06:55:15.210032",
+  "total_taps": 86,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Western O'Hare",
+      "date": "2026-02-08T21:05:53+00:00",
+      "location_route": "Blue-Western_O'Hare",
+      "original_location_route": "Blue-Western_O'Hare"
+    },
     {
       "line": "Blue",
       "station": "Lake Wells",
