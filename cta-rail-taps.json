@@ -1,7 +1,28 @@
 {
-  "last_updated": "2026-02-20T06:42:51.681547",
-  "total_taps": 86,
+  "last_updated": "2026-02-21T06:30:59.693670",
+  "total_taps": 88,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2026-02-20T14:54:04+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
+    {
+      "line": "Red",
+      "station": "SS Randolph-Washington",
+      "date": "2026-02-20T14:28:04+00:00",
+      "location_route": "Red-SS Randolph-Washington",
+      "original_location_route": "Red-SS Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-02-20T14:21:22+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Brown",
       "station": "Diversey",
@@ -596,13 +617,6 @@
       "date": "2025-10-25T16:57:50+00:00",
       "location_route": "Brown-Merchandise Mart",
       "original_location_route": "Brown-Merchandise Mart"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2025-10-22T00:40:06+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
     }
   ]
 }
