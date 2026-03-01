@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-02-28T06:26:12.065772",
-  "total_taps": 88,
+  "last_updated": "2026-03-01T06:34:57.454175",
+  "total_taps": 87,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2026-02-28T17:08:45+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
     {
       "line": "Red",
       "station": "Chicago",
@@ -603,20 +610,6 @@
       "date": "2025-10-25T23:19:40+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Brown",
-      "station": "Paulina",
-      "date": "2025-10-25T19:11:16+00:00",
-      "location_route": "Brown-Paulina",
-      "original_location_route": "Brown-Paulina"
-    },
-    {
-      "line": "Brown",
-      "station": "Merchandise Mart",
-      "date": "2025-10-25T16:57:50+00:00",
-      "location_route": "Brown-Merchandise Mart",
-      "original_location_route": "Brown-Merchandise Mart"
     }
   ]
 }
