@@ -1,7 +1,35 @@
 {
-  "last_updated": "2026-03-01T06:34:57.454175",
+  "last_updated": "2026-03-02T06:44:39.470502",
   "total_taps": 87,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Cermak/Chinatown",
+      "date": "2026-03-01T20:05:33+00:00",
+      "location_route": "Red-Cermak/Chinatown",
+      "original_location_route": "Red-Cermak/Chinatown"
+    },
+    {
+      "line": "Red",
+      "station": "SS Adams-Jackson",
+      "date": "2026-03-01T17:56:39+00:00",
+      "location_route": "Red-SS Adams-Jackson",
+      "original_location_route": "Red-SS Adams-Jackson"
+    },
+    {
+      "line": "Red",
+      "station": "Clark/Division",
+      "date": "2026-03-01T17:33:53+00:00",
+      "location_route": "Red-Clark/Division",
+      "original_location_route": "Red-Clark/Division"
+    },
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2026-03-01T16:32:20+00:00",
+      "location_route": "Red-SS-Lake-Randolph",
+      "original_location_route": "Red-SS-Lake-Randolph"
+    },
     {
       "line": "Red",
       "station": "Chicago",
@@ -582,34 +610,6 @@
       "date": "2025-10-26T20:03:51+00:00",
       "location_route": "Red-Chicago",
       "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Red",
-      "station": "Argyle",
-      "date": "2025-10-26T18:24:40+00:00",
-      "location_route": "Red-Argyle",
-      "original_location_route": "Red-Argyle"
-    },
-    {
-      "line": "Red",
-      "station": "Lake-Randolph",
-      "date": "2025-10-26T16:54:36+00:00",
-      "location_route": "Red-SS-Lake-Randolph",
-      "original_location_route": "Red-SS-Lake-Randolph"
-    },
-    {
-      "line": "Blue",
-      "station": "Western O'Hare",
-      "date": "2025-10-26T01:06:04+00:00",
-      "location_route": "Blue-Western_O'Hare",
-      "original_location_route": "Blue-Western_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-10-25T23:19:40+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
