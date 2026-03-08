@@ -1,7 +1,28 @@
 {
-  "last_updated": "2026-03-07T06:27:57.850048",
-  "total_taps": 87,
+  "last_updated": "2026-03-08T06:31:44.543069",
+  "total_taps": 86,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-03-07T21:13:56+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Red",
+      "station": "Addison",
+      "date": "2026-03-07T19:15:33+00:00",
+      "location_route": "Red-Addison",
+      "original_location_route": "Red-Addison"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2026-03-07T17:00:53+00:00",
+      "location_route": "Blue-203 LaSalle",
+      "original_location_route": "Blue-203 LaSalle"
+    },
     {
       "line": "Red",
       "station": "Cermak/Chinatown",
@@ -582,34 +603,6 @@
       "date": "2025-11-11T21:59:39+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "O'Hare",
-      "date": "2025-11-08T22:00:01+00:00",
-      "location_route": "Blue-O'Hare",
-      "original_location_route": "Blue-O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-10-27T15:52:42+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Red",
-      "station": "Lake-Randolph",
-      "date": "2025-10-26T23:28:23+00:00",
-      "location_route": "Red-SS-Lake-Randolph",
-      "original_location_route": "Red-SS-Lake-Randolph"
-    },
-    {
-      "line": "Red",
-      "station": "Chicago",
-      "date": "2025-10-26T20:03:51+00:00",
-      "location_route": "Red-Chicago",
-      "original_location_route": "Red-Chicago"
     }
   ]
 }
