@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-03-12T06:41:42.033412",
-  "total_taps": 85,
+  "last_updated": "2026-03-13T06:39:37.490230",
+  "total_taps": 86,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2026-03-12T22:50:30+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
     {
       "line": "Blue",
       "station": "Lake Wells",
