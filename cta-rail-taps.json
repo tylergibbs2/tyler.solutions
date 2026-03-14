@@ -1,7 +1,28 @@
 {
-  "last_updated": "2026-03-13T06:39:37.490230",
+  "last_updated": "2026-03-14T06:35:28.519080",
   "total_taps": 86,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "O'Hare",
+      "date": "2026-03-13T23:00:00+00:00",
+      "location_route": "Blue-O'Hare",
+      "original_location_route": "Blue-O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-03-13T22:01:08+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-03-13T22:00:44+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Red",
       "station": "Chicago",
@@ -582,27 +603,6 @@
       "date": "2025-11-16T00:21:00+00:00",
       "location_route": "Brown-Merchandise Mart",
       "original_location_route": "Brown-Merchandise Mart"
-    },
-    {
-      "line": "Red",
-      "station": "SS Randolph-Washington",
-      "date": "2025-11-15T23:22:47+00:00",
-      "location_route": "Red-SS Randolph-Washington",
-      "original_location_route": "Red-SS Randolph-Washington"
-    },
-    {
-      "line": "Red",
-      "station": "SS Randolph-Washington",
-      "date": "2025-11-15T23:22:27+00:00",
-      "location_route": "Red-SS Randolph-Washington",
-      "original_location_route": "Red-SS Randolph-Washington"
-    },
-    {
-      "line": "Blue",
-      "station": "Thompson Center",
-      "date": "2025-11-15T19:31:13+00:00",
-      "location_route": "Blue-Thompson Center",
-      "original_location_route": "Blue-Thompson Center"
     }
   ]
 }
