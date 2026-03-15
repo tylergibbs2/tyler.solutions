@@ -1,7 +1,35 @@
 {
-  "last_updated": "2026-03-14T06:35:28.519080",
-  "total_taps": 86,
+  "last_updated": "2026-03-15T06:44:19.920101",
+  "total_taps": 85,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2026-03-15T00:06:29+00:00",
+      "location_route": "Red-SS-Lake-Randolph",
+      "original_location_route": "Red-SS-Lake-Randolph"
+    },
+    {
+      "line": "Green",
+      "station": "Morgan Lake",
+      "date": "2026-03-14T19:45:26+00:00",
+      "location_route": "Green-Morgan_Lake",
+      "original_location_route": "Green-Morgan_Lake"
+    },
+    {
+      "line": "Green",
+      "station": "Morgan Lake",
+      "date": "2026-03-14T19:45:20+00:00",
+      "location_route": "Green-Morgan_Lake",
+      "original_location_route": "Green-Morgan_Lake"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2026-03-14T18:34:47+00:00",
+      "location_route": "Blue-203 LaSalle",
+      "original_location_route": "Blue-203 LaSalle"
+    },
     {
       "line": "Blue",
       "station": "O'Hare",
@@ -568,41 +596,6 @@
       "date": "2025-11-18T14:02:39+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Red",
-      "station": "Chicago",
-      "date": "2025-11-17T23:57:58+00:00",
-      "location_route": "Red-Chicago",
-      "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Red",
-      "station": "SS Randolph-Washington",
-      "date": "2025-11-17T23:41:52+00:00",
-      "location_route": "Red-SS Randolph-Washington",
-      "original_location_route": "Red-SS Randolph-Washington"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-11-17T23:33:11+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Brown",
-      "station": "Armitage",
-      "date": "2025-11-16T06:19:11+00:00",
-      "location_route": "Brown-Armitage",
-      "original_location_route": "Brown-Armitage"
-    },
-    {
-      "line": "Brown",
-      "station": "Merchandise Mart",
-      "date": "2025-11-16T00:21:00+00:00",
-      "location_route": "Brown-Merchandise Mart",
-      "original_location_route": "Brown-Merchandise Mart"
     }
   ]
 }
