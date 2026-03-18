@@ -1,7 +1,21 @@
 {
-  "last_updated": "2026-03-17T06:52:57.362085",
+  "last_updated": "2026-03-18T06:51:48.588839",
   "total_taps": 85,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Adams-Jackson",
+      "date": "2026-03-17T23:59:38+00:00",
+      "location_route": "Blue-DB Adams-Jackson",
+      "original_location_route": "Blue-DB Adams-Jackson"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-03-17T23:13:20+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Red",
       "station": "Lake-Randolph",
@@ -582,20 +596,6 @@
       "date": "2025-11-18T14:43:06+00:00",
       "location_route": "Orange-State/Lake",
       "original_location_route": "Orange-State/Lake"
-    },
-    {
-      "line": "Red",
-      "station": "Chicago",
-      "date": "2025-11-18T14:25:02+00:00",
-      "location_route": "Red-Chicago",
-      "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Red",
-      "station": "SS Randolph-Washington",
-      "date": "2025-11-18T14:07:30+00:00",
-      "location_route": "Red-SS Randolph-Washington",
-      "original_location_route": "Red-SS Randolph-Washington"
     }
   ]
 }
