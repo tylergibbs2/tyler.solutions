@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-03-23T06:59:00.081047",
+  "last_updated": "2026-03-24T06:53:30.286492",
   "total_taps": 85,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-03-24T01:44:58+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "Adams-Jackson",
@@ -589,13 +596,6 @@
       "date": "2025-11-20T23:19:48+00:00",
       "location_route": "Red-Chicago",
       "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Orange",
-      "station": "State/Lake",
-      "date": "2025-11-18T14:43:06+00:00",
-      "location_route": "Orange-State/Lake",
-      "original_location_route": "Orange-State/Lake"
     }
   ]
 }
