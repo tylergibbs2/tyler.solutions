@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-04-10T07:16:12.798565",
+  "last_updated": "2026-04-11T06:50:46.529899",
   "total_taps": 84,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-04-10T22:45:42+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Red",
       "station": "Addison",
@@ -582,13 +589,6 @@
       "date": "2025-12-01T01:25:57+00:00",
       "location_route": "Green-Morgan_Lake",
       "original_location_route": "Green-Morgan_Lake"
-    },
-    {
-      "line": "Brown",
-      "station": "Washington/Wells",
-      "date": "2025-12-01T00:48:29+00:00",
-      "location_route": "Brown-Washington/Wells",
-      "original_location_route": "Brown-Washington/Wells"
     }
   ]
 }
