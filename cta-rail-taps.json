@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-04-23T07:22:30.859092",
-  "total_taps": 82,
+  "last_updated": "2026-04-24T07:49:07.966601",
+  "total_taps": 81,
   "rail_taps": [
     {
       "line": "Blue",
@@ -566,13 +566,6 @@
       "line": "Red",
       "station": "Chicago",
       "date": "2025-12-04T01:06:36+00:00",
-      "location_route": "Red-Chicago",
-      "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Red",
-      "station": "Chicago",
-      "date": "2025-12-02T05:48:50+00:00",
       "location_route": "Red-Chicago",
       "original_location_route": "Red-Chicago"
     }
