@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-05-14T08:27:55.506741",
+  "last_updated": "2026-05-15T08:38:18.661203",
   "total_taps": 79,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2026-05-15T00:10:08+00:00",
+      "location_route": "Blue-203 LaSalle",
+      "original_location_route": "Blue-203 LaSalle"
+    },
     {
       "line": "Blue",
       "station": "O'Hare",
@@ -547,13 +554,6 @@
       "date": "2025-12-09T22:58:00+00:00",
       "location_route": "Green_Lake-Clinton",
       "original_location_route": "Green_Lake-Clinton"
-    },
-    {
-      "line": "Blue",
-      "station": "Damen O'Hare",
-      "date": "2025-12-07T20:25:06+00:00",
-      "location_route": "Blue-Damen_O'Hare",
-      "original_location_route": "Blue-Damen_O'Hare"
     }
   ]
 }
