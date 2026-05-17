@@ -1,7 +1,21 @@
 {
-  "last_updated": "2026-05-16T07:50:51.982385",
-  "total_taps": 79,
+  "last_updated": "2026-05-17T08:11:54.655598",
+  "total_taps": 78,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Rosemont",
+      "date": "2026-05-16T19:07:37+00:00",
+      "location_route": "Blue-Rosemont",
+      "original_location_route": "Blue-Rosemont"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-05-16T15:35:52+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "203 LaSalle",
@@ -533,27 +547,6 @@
       "date": "2025-12-10T03:35:14+00:00",
       "location_route": "Blue-DB Randolph-Washington",
       "original_location_route": "Blue-DB Randolph-Washington"
-    },
-    {
-      "line": "Red",
-      "station": "Chicago",
-      "date": "2025-12-10T00:35:30+00:00",
-      "location_route": "Red-Chicago",
-      "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Red",
-      "station": "Lake-Randolph",
-      "date": "2025-12-09T23:16:30+00:00",
-      "location_route": "Red-SS-Lake-Randolph",
-      "original_location_route": "Red-SS-Lake-Randolph"
-    },
-    {
-      "line": "Green",
-      "station": "Clinton",
-      "date": "2025-12-09T22:58:00+00:00",
-      "location_route": "Green_Lake-Clinton",
-      "original_location_route": "Green_Lake-Clinton"
     }
   ]
 }
