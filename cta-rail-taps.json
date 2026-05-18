@@ -1,7 +1,35 @@
 {
-  "last_updated": "2026-05-17T08:11:54.655598",
+  "last_updated": "2026-05-18T09:40:44.186917",
   "total_taps": 78,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "SS Randolph-Washington",
+      "date": "2026-05-17T23:36:52+00:00",
+      "location_route": "Red-SS Randolph-Washington",
+      "original_location_route": "Red-SS Randolph-Washington"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-05-17T23:32:26+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Red",
+      "station": "Fullerton",
+      "date": "2026-05-17T17:06:54+00:00",
+      "location_route": "Red-Fullerton",
+      "original_location_route": "Red-Fullerton"
+    },
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2026-05-17T15:22:00+00:00",
+      "location_route": "Blue-203 LaSalle",
+      "original_location_route": "Blue-203 LaSalle"
+    },
     {
       "line": "Blue",
       "station": "Rosemont",
@@ -519,34 +547,6 @@
       "date": "2025-12-14T16:38:55+00:00",
       "location_route": "Red-Chicago",
       "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Red",
-      "station": "SS Randolph-Washington",
-      "date": "2025-12-14T16:00:37+00:00",
-      "location_route": "Red-SS Randolph-Washington",
-      "original_location_route": "Red-SS Randolph-Washington"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-12-14T15:49:44+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-12-14T02:02:26+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Randolph-Washington",
-      "date": "2025-12-10T03:35:14+00:00",
-      "location_route": "Blue-DB Randolph-Washington",
-      "original_location_route": "Blue-DB Randolph-Washington"
     }
   ]
 }
