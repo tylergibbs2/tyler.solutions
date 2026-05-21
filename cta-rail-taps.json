@@ -1,7 +1,21 @@
 {
-  "last_updated": "2026-05-20T08:53:21.334554",
+  "last_updated": "2026-05-21T08:56:36.360719",
   "total_taps": 78,
   "rail_taps": [
+    {
+      "line": "Green",
+      "station": "Cermak",
+      "date": "2026-05-21T03:33:44+00:00",
+      "location_route": "Green-Cermak",
+      "original_location_route": "Green-Cermak"
+    },
+    {
+      "line": "Blue",
+      "station": "Thompson Center",
+      "date": "2026-05-20T23:55:52+00:00",
+      "location_route": "Blue-Thompson Center",
+      "original_location_route": "Blue-Thompson Center"
+    },
     {
       "line": "Red",
       "station": "SS Randolph-Washington",
@@ -533,20 +547,6 @@
       "date": "2025-12-14T16:49:26+00:00",
       "location_route": "Blue-DB Randolph-Washington",
       "original_location_route": "Blue-DB Randolph-Washington"
-    },
-    {
-      "line": "Blue",
-      "station": "Randolph-Washington",
-      "date": "2025-12-14T16:48:46+00:00",
-      "location_route": "Blue-DB Randolph-Washington",
-      "original_location_route": "Blue-DB Randolph-Washington"
-    },
-    {
-      "line": "Red",
-      "station": "Chicago",
-      "date": "2025-12-14T16:38:55+00:00",
-      "location_route": "Red-Chicago",
-      "original_location_route": "Red-Chicago"
     }
   ]
 }
