@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-05-26T09:36:25.012782",
-  "total_taps": 77,
+  "last_updated": "2026-05-27T09:29:23.915815",
+  "total_taps": 75,
   "rail_taps": [
     {
       "line": "Green",
@@ -526,20 +526,6 @@
       "date": "2025-12-18T23:09:20+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Randolph-Washington",
-      "date": "2025-12-16T02:27:12+00:00",
-      "location_route": "Blue-DB Randolph-Washington",
-      "original_location_route": "Blue-DB Randolph-Washington"
-    },
-    {
-      "line": "Blue",
-      "station": "Randolph-Washington",
-      "date": "2025-12-14T16:50:16+00:00",
-      "location_route": "Blue-DB Randolph-Washington",
-      "original_location_route": "Blue-DB Randolph-Washington"
     }
   ]
 }
