@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-05-29T09:36:26.523772",
-  "total_taps": 75,
+  "last_updated": "2026-05-30T08:16:46.936289",
+  "total_taps": 76,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-05-29T22:22:17+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Green",
       "station": "Cermak",
