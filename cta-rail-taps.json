@@ -1,7 +1,28 @@
 {
-  "last_updated": "2026-05-31T08:34:18.031613",
+  "last_updated": "2026-06-01T11:09:23.898516",
   "total_taps": 76,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Damen O'Hare",
+      "date": "2026-05-31T18:08:10+00:00",
+      "location_route": "Blue-Damen_O'Hare",
+      "original_location_route": "Blue-Damen_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-05-31T16:52:56+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-05-31T16:52:52+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "203 LaSalle",
@@ -512,27 +533,6 @@
       "date": "2025-12-20T16:01:47+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "O'Hare",
-      "date": "2025-12-19T22:23:02+00:00",
-      "location_route": "Blue-O'Hare",
-      "original_location_route": "Blue-O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-12-19T21:10:44+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Logan Square",
-      "date": "2025-12-19T01:50:10+00:00",
-      "location_route": "Blue-Logan_Square",
-      "original_location_route": "Blue-Logan_Square"
     }
   ]
 }
