@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-06-04T09:43:04.712503",
+  "last_updated": "2026-06-05T09:31:15.108638",
   "total_taps": 76,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2026-06-04T23:09:25+00:00",
+      "location_route": "Blue-203 LaSalle",
+      "original_location_route": "Blue-203 LaSalle"
+    },
     {
       "line": "Blue",
       "station": "Damen O'Hare",
@@ -526,13 +533,6 @@
       "date": "2025-12-20T21:48:42+00:00",
       "location_route": "Red-Grand",
       "original_location_route": "Red-Grand"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2025-12-20T16:01:47+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
