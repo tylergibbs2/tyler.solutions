@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-06-06T08:23:55.672867",
+  "last_updated": "2026-06-07T08:45:04.040806",
   "total_taps": 76,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2026-06-06T18:24:43+00:00",
+      "location_route": "Blue-203 LaSalle",
+      "original_location_route": "Blue-203 LaSalle"
+    },
     {
       "line": "Blue",
       "station": "203 LaSalle",
@@ -526,13 +533,6 @@
       "date": "2025-12-25T20:40:50+00:00",
       "location_route": "Red-SS-Lake-Randolph",
       "original_location_route": "Red-SS-Lake-Randolph"
-    },
-    {
-      "line": "Red",
-      "station": "Grand",
-      "date": "2025-12-20T21:48:42+00:00",
-      "location_route": "Red-Grand",
-      "original_location_route": "Red-Grand"
     }
   ]
 }
