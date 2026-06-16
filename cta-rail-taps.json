@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-06-15T11:46:03.893365",
+  "last_updated": "2026-06-16T10:54:22.281352",
   "total_taps": 75,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2026-06-15T22:54:52+00:00",
+      "location_route": "Blue-203 LaSalle",
+      "original_location_route": "Blue-203 LaSalle"
+    },
     {
       "line": "Blue",
       "station": "Chicago O'Hare",
@@ -517,13 +524,6 @@
       "line": "Blue",
       "station": "203 LaSalle",
       "date": "2026-01-03T23:55:23+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2026-01-01T18:58:39+00:00",
       "location_route": "Blue-203 LaSalle",
       "original_location_route": "Blue-203 LaSalle"
     }
