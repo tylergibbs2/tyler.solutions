@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-06-20T08:40:58.507898",
-  "total_taps": 75,
+  "last_updated": "2026-06-21T09:36:05.095054",
+  "total_taps": 74,
   "rail_taps": [
     {
       "line": "Blue",
@@ -519,13 +519,6 @@
       "date": "2026-01-06T21:14:18+00:00",
       "location_route": "Red-Chicago",
       "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2026-01-03T23:55:23+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
     }
   ]
 }
