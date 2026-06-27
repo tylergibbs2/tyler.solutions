@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-06-26T08:50:14.880665",
+  "last_updated": "2026-06-27T08:26:04.933701",
   "total_taps": 73,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-06-26T22:26:02+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "Lake Wells",
@@ -505,13 +512,6 @@
       "date": "2026-01-07T23:57:14+00:00",
       "location_route": "Red-SS Randolph-Washington",
       "original_location_route": "Red-SS Randolph-Washington"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2026-01-07T23:48:41+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
