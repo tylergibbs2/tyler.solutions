@@ -1,7 +1,21 @@
 {
-  "last_updated": "2026-06-28T08:40:32.070605",
-  "total_taps": 72,
+  "last_updated": "2026-06-29T10:22:42.727881",
+  "total_taps": 73,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Belmont O'Hare",
+      "date": "2026-06-29T02:31:14+00:00",
+      "location_route": "Blue-Belmont_O'Hare",
+      "original_location_route": "Blue-Belmont_O'Hare"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-06-28T17:20:53+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "O'Hare",
@@ -498,13 +512,6 @@
       "date": "2026-01-13T00:00:09+00:00",
       "location_route": "Red-SS Randolph-Washington",
       "original_location_route": "Red-SS Randolph-Washington"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2026-01-12T23:49:56+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
