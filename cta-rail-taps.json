@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-07-10T09:18:50.014576",
+  "last_updated": "2026-07-11T07:40:31.805123",
   "total_taps": 71,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-07-10T13:50:08+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Loop",
       "station": "Adams/Wabash",
@@ -491,13 +498,6 @@
       "date": "2026-01-28T00:55:27+00:00",
       "location_route": "Red-Chicago",
       "original_location_route": "Red-Chicago"
-    },
-    {
-      "line": "Red",
-      "station": "SS Randolph-Washington",
-      "date": "2026-01-27T23:37:51+00:00",
-      "location_route": "Red-SS Randolph-Washington",
-      "original_location_route": "Red-SS Randolph-Washington"
     }
   ]
 }
