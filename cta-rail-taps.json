@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-07-23T08:12:02.301622",
-  "total_taps": 71,
+  "last_updated": "2026-07-24T08:08:04.777344",
+  "total_taps": 70,
   "rail_taps": [
+    {
+      "line": "Brown",
+      "station": "Washington/Wells",
+      "date": "2026-07-23T22:40:01+00:00",
+      "location_route": "Brown-Washington/Wells",
+      "original_location_route": "Brown-Washington/Wells"
+    },
     {
       "line": "Blue",
       "station": "Lake Wells",
@@ -484,20 +491,6 @@
       "date": "2026-02-01T19:00:56+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Randolph-Washington",
-      "date": "2026-01-28T01:10:35+00:00",
-      "location_route": "Blue-DB Randolph-Washington",
-      "original_location_route": "Blue-DB Randolph-Washington"
-    },
-    {
-      "line": "Red",
-      "station": "Chicago",
-      "date": "2026-01-28T00:55:27+00:00",
-      "location_route": "Red-Chicago",
-      "original_location_route": "Red-Chicago"
     }
   ]
 }
