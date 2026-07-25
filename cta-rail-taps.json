@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-07-24T08:08:04.777344",
-  "total_taps": 70,
+  "last_updated": "2026-07-25T07:50:46.412964",
+  "total_taps": 71,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Chicago",
+      "date": "2026-07-24T13:32:55+00:00",
+      "location_route": "Red-Chicago",
+      "original_location_route": "Red-Chicago"
+    },
     {
       "line": "Brown",
       "station": "Washington/Wells",
