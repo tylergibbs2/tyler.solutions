@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-07-26T08:08:53.350535",
+  "last_updated": "2026-07-27T09:31:49.413429",
   "total_taps": 72,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Lake-Randolph",
+      "date": "2026-07-26T17:25:57+00:00",
+      "location_route": "Red-SS-Lake-Randolph",
+      "original_location_route": "Red-SS-Lake-Randolph"
+    },
     {
       "line": "Blue",
       "station": "Lake Wells",
@@ -498,13 +505,6 @@
       "date": "2026-02-02T15:53:58+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Chicago O'Hare",
-      "date": "2026-02-01T20:17:17+00:00",
-      "location_route": "Blue-Chicago_O'Hare",
-      "original_location_route": "Blue-Chicago_O'Hare"
     }
   ]
 }
