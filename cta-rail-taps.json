@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-07-28T08:14:26.199499",
-  "total_taps": 72,
+  "last_updated": "2026-07-29T08:21:05.221748",
+  "total_taps": 71,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "SS Madison-Monroe",
+      "date": "2026-07-29T00:11:32+00:00",
+      "location_route": "Red-SS Madison-Monroe",
+      "original_location_route": "Red-SS Madison-Monroe"
+    },
     {
       "line": "Red",
       "station": "Lake-Randolph",
@@ -491,20 +498,6 @@
       "date": "2026-02-10T23:37:53+00:00",
       "location_route": "Blue-203 LaSalle",
       "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Blue",
-      "station": "Western O'Hare",
-      "date": "2026-02-08T21:05:53+00:00",
-      "location_route": "Blue-Western_O'Hare",
-      "original_location_route": "Blue-Western_O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2026-02-02T15:53:58+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
