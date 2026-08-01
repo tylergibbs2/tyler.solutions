@@ -1,7 +1,21 @@
 {
-  "last_updated": "2026-07-31T08:34:31.959641",
-  "total_taps": 71,
+  "last_updated": "2026-08-01T08:04:07.109130",
+  "total_taps": 72,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Jackson-VanBuren",
+      "date": "2026-08-01T03:22:03+00:00",
+      "location_route": "Blue-DB Jackson-VanBuren",
+      "original_location_route": "Blue-DB Jackson-VanBuren"
+    },
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-07-31T20:45:48+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Red",
       "station": "SS Madison-Monroe",
@@ -491,13 +505,6 @@
       "date": "2026-02-11T02:08:33+00:00",
       "location_route": "Brown-Diversey",
       "original_location_route": "Brown-Diversey"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2026-02-10T23:37:53+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
     }
   ]
 }
