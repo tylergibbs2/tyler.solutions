@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-02T08:06:06.560409",
-  "total_taps": 72,
+  "last_updated": "2026-08-03T09:23:30.148291",
+  "total_taps": 71,
   "rail_taps": [
     {
       "line": "Blue",
@@ -498,13 +498,6 @@
       "date": "2026-02-20T14:21:22+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Brown",
-      "station": "Diversey",
-      "date": "2026-02-11T02:08:33+00:00",
-      "location_route": "Brown-Diversey",
-      "original_location_route": "Brown-Diversey"
     }
   ]
 }
