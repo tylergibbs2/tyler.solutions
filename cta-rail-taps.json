@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-13T07:12:31.492098",
-  "total_taps": 71,
+  "last_updated": "2026-08-14T07:09:28.794356",
+  "total_taps": 70,
   "rail_taps": [
     {
       "line": "Blue",
@@ -491,13 +491,6 @@
       "date": "2026-03-01T17:56:39+00:00",
       "location_route": "Red-SS Adams-Jackson",
       "original_location_route": "Red-SS Adams-Jackson"
-    },
-    {
-      "line": "Red",
-      "station": "Clark/Division",
-      "date": "2026-03-01T17:33:53+00:00",
-      "location_route": "Red-Clark/Division",
-      "original_location_route": "Red-Clark/Division"
     }
   ]
 }
