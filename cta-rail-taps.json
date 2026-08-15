@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-08-14T07:09:28.794356",
+  "last_updated": "2026-08-15T06:20:45.363705",
   "total_taps": 70,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-08-15T00:46:11+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "O'Hare",
@@ -484,13 +491,6 @@
       "date": "2026-03-01T20:05:33+00:00",
       "location_route": "Red-Cermak/Chinatown",
       "original_location_route": "Red-Cermak/Chinatown"
-    },
-    {
-      "line": "Red",
-      "station": "SS Adams-Jackson",
-      "date": "2026-03-01T17:56:39+00:00",
-      "location_route": "Red-SS Adams-Jackson",
-      "original_location_route": "Red-SS Adams-Jackson"
     }
   ]
 }
