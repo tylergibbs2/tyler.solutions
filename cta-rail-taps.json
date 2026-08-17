@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-08-16T06:22:48.786319",
+  "last_updated": "2026-08-17T06:33:43.687085",
   "total_taps": 70,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "203 LaSalle",
+      "date": "2026-08-16T19:20:22+00:00",
+      "location_route": "Blue-203 LaSalle",
+      "original_location_route": "Blue-203 LaSalle"
+    },
     {
       "line": "Blue",
       "station": "Lake Wells",
@@ -484,13 +491,6 @@
       "date": "2026-03-07T17:00:53+00:00",
       "location_route": "Blue-203 LaSalle",
       "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Red",
-      "station": "Cermak/Chinatown",
-      "date": "2026-03-01T20:05:33+00:00",
-      "location_route": "Red-Cermak/Chinatown",
-      "original_location_route": "Red-Cermak/Chinatown"
     }
   ]
 }
