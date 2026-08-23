@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-22T06:22:14.616918",
-  "total_taps": 70,
+  "last_updated": "2026-08-23T06:23:52.198117",
+  "total_taps": 68,
   "rail_taps": [
     {
       "line": "Blue",
@@ -477,20 +477,6 @@
       "date": "2026-03-11T01:15:34+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2026-03-07T21:13:56+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Red",
-      "station": "Addison",
-      "date": "2026-03-07T19:15:33+00:00",
-      "location_route": "Red-Addison",
-      "original_location_route": "Red-Addison"
     }
   ]
 }
