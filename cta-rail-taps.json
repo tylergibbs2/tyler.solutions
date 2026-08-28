@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-08-27T17:06:57.412411",
-  "total_taps": 68,
+  "last_updated": "2026-08-28T17:54:16.812378",
+  "total_taps": 69,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-08-27T20:49:52+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Blue",
       "station": "203 LaSalle",
