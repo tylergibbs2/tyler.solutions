@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-09-08T10:17:40.783249",
+  "last_updated": "2026-09-09T10:25:03.180748",
   "total_taps": 68,
   "rail_taps": [
+    {
+      "line": "Red",
+      "station": "Belmont",
+      "date": "2026-09-09T01:11:21+00:00",
+      "location_route": "Red-Belmont",
+      "original_location_route": "Red-Belmont"
+    },
     {
       "line": "Blue",
       "station": "Lake Wells",
@@ -470,13 +477,6 @@
       "date": "2026-03-13T22:00:44+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Red",
-      "station": "Chicago",
-      "date": "2026-03-12T22:50:30+00:00",
-      "location_route": "Red-Chicago",
-      "original_location_route": "Red-Chicago"
     }
   ]
 }
