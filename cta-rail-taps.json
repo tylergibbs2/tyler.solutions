@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-09-09T10:25:03.180748",
-  "total_taps": 68,
+  "last_updated": "2026-09-10T10:16:09.993422",
+  "total_taps": 65,
   "rail_taps": [
     {
       "line": "Red",
@@ -456,27 +456,6 @@
       "date": "2026-03-14T18:34:47+00:00",
       "location_route": "Blue-203 LaSalle",
       "original_location_route": "Blue-203 LaSalle"
-    },
-    {
-      "line": "Blue",
-      "station": "O'Hare",
-      "date": "2026-03-13T23:00:00+00:00",
-      "location_route": "Blue-O'Hare",
-      "original_location_route": "Blue-O'Hare"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2026-03-13T22:01:08+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2026-03-13T22:00:44+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
     }
   ]
 }
