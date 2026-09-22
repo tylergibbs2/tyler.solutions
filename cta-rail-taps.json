@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-09-21T11:28:32.410972",
-  "total_taps": 57,
+  "last_updated": "2026-09-22T10:36:27.519018",
+  "total_taps": 56,
   "rail_taps": [
     {
       "line": "Red",
@@ -391,13 +391,6 @@
       "line": "Red",
       "station": "Lake-Randolph",
       "date": "2026-03-28T17:51:40+00:00",
-      "location_route": "Red-SS-Lake-Randolph",
-      "original_location_route": "Red-SS-Lake-Randolph"
-    },
-    {
-      "line": "Red",
-      "station": "Lake-Randolph",
-      "date": "2026-03-25T22:40:34+00:00",
       "location_route": "Red-SS-Lake-Randolph",
       "original_location_route": "Red-SS-Lake-Randolph"
     }
