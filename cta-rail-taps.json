@@ -1,7 +1,14 @@
 {
-  "last_updated": "2026-09-24T10:45:40.653865",
-  "total_taps": 56,
+  "last_updated": "2026-09-25T10:50:36.401332",
+  "total_taps": 55,
   "rail_taps": [
+    {
+      "line": "Blue",
+      "station": "Lake Wells",
+      "date": "2026-09-22T21:21:08+00:00",
+      "location_route": "Blue-Lake_Wells",
+      "original_location_route": "Blue-Lake_Wells"
+    },
     {
       "line": "Red",
       "station": "Belmont",
@@ -379,20 +386,6 @@
       "date": "2026-04-10T22:45:42+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Red",
-      "station": "Addison",
-      "date": "2026-03-28T20:41:23+00:00",
-      "location_route": "Red-Addison",
-      "original_location_route": "Red-Addison"
-    },
-    {
-      "line": "Red",
-      "station": "Lake-Randolph",
-      "date": "2026-03-28T17:51:40+00:00",
-      "location_route": "Red-SS-Lake-Randolph",
-      "original_location_route": "Red-SS-Lake-Randolph"
     }
   ]
 }
