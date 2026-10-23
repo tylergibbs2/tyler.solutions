@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-10-22T10:52:06.226250",
-  "total_taps": 53,
+  "last_updated": "2026-10-23T10:43:14.590617",
+  "total_taps": 52,
   "rail_taps": [
     {
       "line": "Blue",
@@ -363,13 +363,6 @@
       "line": "Blue",
       "station": "Lake Wells",
       "date": "2026-05-02T13:09:23+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2026-04-25T12:03:16+00:00",
       "location_route": "Blue-Lake_Wells",
       "original_location_route": "Blue-Lake_Wells"
     }
