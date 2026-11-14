@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-11-13T13:39:23.337850",
-  "total_taps": 47,
+  "last_updated": "2026-11-14T12:43:26.536932",
+  "total_taps": 43,
   "rail_taps": [
     {
       "line": "Blue",
@@ -302,34 +302,6 @@
       "date": "2026-05-20T23:55:52+00:00",
       "location_route": "Blue-Thompson Center",
       "original_location_route": "Blue-Thompson Center"
-    },
-    {
-      "line": "Red",
-      "station": "SS Randolph-Washington",
-      "date": "2026-05-17T23:36:52+00:00",
-      "location_route": "Red-SS Randolph-Washington",
-      "original_location_route": "Red-SS Randolph-Washington"
-    },
-    {
-      "line": "Blue",
-      "station": "Lake Wells",
-      "date": "2026-05-17T23:32:26+00:00",
-      "location_route": "Blue-Lake_Wells",
-      "original_location_route": "Blue-Lake_Wells"
-    },
-    {
-      "line": "Red",
-      "station": "Fullerton",
-      "date": "2026-05-17T17:06:54+00:00",
-      "location_route": "Red-Fullerton",
-      "original_location_route": "Red-Fullerton"
-    },
-    {
-      "line": "Blue",
-      "station": "203 LaSalle",
-      "date": "2026-05-17T15:22:00+00:00",
-      "location_route": "Blue-203 LaSalle",
-      "original_location_route": "Blue-203 LaSalle"
     }
   ]
 }
